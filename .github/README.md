@@ -1,3 +1,24 @@
+# Init Project
+
+## clone repository
+
+```sh
+git clone https://github.com/Savecoders/WebCrowdFunding.git &&
+cd WebCrowdFunding
+```
+
+## Create Virtual Environment
+
+```sh
+py -m venv venv.
+```
+
+## Activate Virtual Environment
+
+```sh
+.\venv\Scripts\activate
+```
+
 ## Dependencies Environment
 
 ```sh
@@ -7,15 +28,21 @@ pip install -r requirements.txt
 ## Environment Variables
 
 ```sh
-ORACLE_USER=system
-ORACLE_PASSWORD=oracle
-ORACLE_HOST=localhost
-ORACLE_PORT=1521
-ORACLE_SID=xe
+SECRET_KEY='secret'
+DATABASE_HOST='localhost'
+DATABASE_PASSWORD='password'
+DATABASE_USER='user'
+DATABASE_PORT=1521
 ```
 
-# Run
+## Run
 
 ```sh
-python main.py
+py app.py
+```
+
+or
+
+```sh
+python app.py
 ```
