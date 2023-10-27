@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>CrowdFunding</title>
+
+    <!-- link to chosen google fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins:400,600,900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- jinja2 static css -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/styles.css') }}"
+    />
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <ul class="navbar-links">
+        <li><a href="#">Descubre Proyectos</a></li>
+        <li><a href="#">Nosotros</a></li>
+        <li><a href="#">Empieza tu Proyecto</a></li>
+      </ul>
+      <h1>YStartUp</h1>
+      <ul class="navbar-links">
+        <li><a href="#">Como funciona</a></li>
+        <li><a href="#" class="login">Iniciar Sesion</a></li>
+        <button class="navigation-button">Registrate</button>
+      </ul>
+    </nav>
+  </body>
+</html>
