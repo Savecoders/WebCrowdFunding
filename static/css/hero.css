@@ -23,7 +23,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 3em;
+  gap: 1em;
   width: 50%;
 }
 
@@ -39,9 +39,35 @@
   flex-direction: row;
   gap: 1em;
   align-items: center;
-  font-size: 16px;
+  font-size: 1.2rem;
 }
 
 .mondrian {
   max-width: 100%;
+}
+
+button {
+  color: var(--bg);
+  border: none;
+  border-radius: 3px;
+  padding: 0.7rem 1.2rem;
+  font-size: 1rem;
+  cursor: pointer;
+  background-color: var(--bg-actions);
+}
+
+.subtitle {
+  font-size: 1.4rem;
+  font-weight: lighter;
+  font-style: normal;
+  font-family: "Inter", sans-serif;
+  color: var(--subtext-color);
+  line-height: 1.5;
+}
+
+.hero-title {
+  font-size: 3rem;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  margin-bottom: 0.5em;
 }

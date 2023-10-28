@@ -23,7 +23,7 @@
   :root {
     --bg: #ffffff;
     --bg-actions: #121212;
-    --bg-ascent: #faffff;
+    --bg-ascent: #ffffff;
     --secondary-color: #6793ff;
     --accent-color: #e44542;
     --text-color: #121212;
@@ -52,7 +52,7 @@ body {
   justify-content: flex-start;
   height: 100vh;
   margin: 0 10%;
-  gap: 2em;
+  gap: 4em;
   font-family: "Raleway", sans-serif;
   color: var(--text-color);
   background-color: var(--bg);
