@@ -1,0 +1,59 @@
+/* imports fonts */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Raleway:ital,wght@0,400;1,600&display=swap");
+
+/* define pallete colors */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #06080a;
+    --bg-ascent: #05070a;
+    --bg-actions: #e0dcd1;
+    --secondary-color: #1a2840;
+    --accent-color: #e0dcd1;
+    --text-color: #d0caba;
+    --subtext-color: #e0dcd1;
+    --h1: 48px;
+    --h2: 32px;
+    --subtitle: 24px;
+    --p: 18px;
+    --sub: 16px;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #ffffff;
+    --bg-actions: #121212;
+    --bg-ascent: #faffff;
+    --secondary-color: #6793ff;
+    --accent-color: #e44542;
+    --text-color: #121212;
+    --subtext-color: #2c2c2c;
+    --h1: 48px;
+    --h2: 32px;
+    --subtitle: 24px;
+    --p: 18px;
+    --sub: 16px;
+  }
+}
+
+html {
+  font-size: 100%;
+}
+
+* {
+  box-sizing: border-box;
+  scroll-padding-top: 3em;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100vh;
+  margin: 0 10%;
+  gap: 2em;
+  font-family: "Raleway", sans-serif;
+  color: var(--text-color);
+  background-color: var(--bg);
+}
