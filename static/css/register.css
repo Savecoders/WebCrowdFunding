@@ -1,0 +1,125 @@
+body {
+  margin: 0;
+  padding: 0;
+  gap: 0;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.container {
+  height: 100vh;
+}
+.register-card {
+  border-radius: 12px;
+  min-width: 50vw;
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+  gap: 0.4rem;
+  border: 0.2px solid var(--accent-color-transparent);
+  box-shadow: 10px 10px 20px 20px var(--bg2);
+  overflow: auto;
+}
+
+.register-card h2 {
+  color: var(--text-color);
+  font-size: 3ch;
+  margin: 0;
+}
+
+.register-card h5 {
+  color: var(--text-color);
+  font-size: 1.6ch;
+}
+
+.register-card a {
+  color: var(--text-color);
+  font-size: 1.6ch;
+  text-decoration: underline;
+}
+
+.box {
+  min-width: 50%;
+  gap: 1.4rem;
+}
+
+.box input[type="email"],
+.box input[type="password"],
+.box input[type="date"],
+.box input[type="text"] {
+  border-radius: 5px;
+  padding: 1rem 1rem;
+  outline: none;
+  color: var(--text-color);
+  width: 320px;
+  background-color: var(--bg);
+  -webkit-transition: all 0.2s ease-out;
+  -moz-transition: all 0.2s ease-out;
+  -ms-transition: all 0.2s ease-out;
+  -o-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
+  border: 1px solid var(--accent-color-transparent);
+}
+::-webkit-input-placeholder {
+  color: var(--text-color);
+}
+
+.box input[type="email"]:focus,
+.box input[type="password"]:focus {
+  border: 1px solid #79a6fe;
+}
+
+a {
+  color: #5c7fda;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.btn1 {
+  color: var(--text-color2);
+  background: var(--accent-color);
+  font-size: 1rem;
+  width: 320px;
+  border-radius: 5px;
+  transition: 0.3s;
+  padding: 1rem 1rem;
+  cursor: pointer;
+  border: none;
+}
+
+.btn1:hover {
+  background: var(--hover-color);
+}
+
+/* responsive */
+
+@media (max-width: 768px) {
+  .register-card {
+    min-width: 70vw;
+    min-height: 40vh;
+    border: none;
+    box-shadow: none;
+  }
+  .box {
+    min-width: 90%;
+  }
+}
+
+@media (max-width: 480px) {
+  .register-card {
+    min-width: 80vw;
+    min-height: 40vh;
+    border: none;
+    box-shadow: none;
+  }
+  .box {
+    min-width: 90%;
+  }
+}
