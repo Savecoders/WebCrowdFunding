@@ -1,0 +1,112 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: var(--bg);
+  margin: 0;
+  padding: 0;
+}
+.login-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: center;
+  text-align: center;
+  background-color: var(--bg);
+  border-radius: 12px;
+  min-width: 50vw;
+  height: 60vh;
+  padding: 20;
+  border: 0.2px solid var(--accent-color-transparent);
+  box-shadow: 10px 10px 20px 20px var(--bg-ascent);
+}
+
+.box h4 {
+  color: #5c6bc0;
+  font-size: 18px;
+  margin-top: 94px;
+}
+
+.box h4 span {
+  color: #dfdeee;
+  font-weight: lighter;
+}
+
+.box h5 {
+  font-size: 13px;
+  color: #a1a4ad;
+  letter-spacing: 1.5px;
+}
+
+.box input[type="text"],
+.box input[type="password"] {
+  display: block;
+  margin: 20px auto;
+  background: #262e49;
+  border: 0;
+  border-radius: 5px;
+  padding: 14px 10px;
+  width: 320px;
+  outline: none;
+  color: #d6d6d6;
+  -webkit-transition: all 0.2s ease-out;
+  -moz-transition: all 0.2s ease-out;
+  -ms-transition: all 0.2s ease-out;
+  -o-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
+}
+::-webkit-input-placeholder {
+  color: #565f79;
+}
+
+.box input[type="text"]:focus,
+.box input[type="password"]:focus {
+  border: 1px solid #79a6fe;
+}
+
+a {
+  color: #5c7fda;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.btn1 {
+  background: #7f5feb;
+  color: #dfdeee;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: 0.3s;
+  width: 320px;
+  padding: 14px 10px;
+  cursor: pointer;
+}
+
+.btn1:hover {
+  background: #5d33e6;
+}
+
+.remember {
+  color: #dfdeee;
+  font-size: 13px;
+}
+
+.typcn {
+  color: #3b476b;
+  font-size: 22px;
+}
+
+.error {
+  background: #ff3333;
+  text-align: center;
+  width: 337px;
+  height: 20px;
+  padding: 2px;
+  border: 0;
+  color: white;
+  display: none;
+  visibility: hidden;
+}

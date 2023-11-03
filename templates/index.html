@@ -3,7 +3,8 @@
   href="{{ url_for('static', filename='css/hero.css') }}"
 />
 
-{% extends "base.html" %} {% block content %}
+{% extends "base.html" %} {% block content %} {% include "navbar.html" %}
+<!-- Hero -->
 <div class="hero">
   <div class="hero-text">
     <h1 class="hero-title">

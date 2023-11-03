@@ -2,6 +2,7 @@
 from flask import Blueprint, request, render_template, url_for, session
 
 # Create the user blueprint
+# routes for user registration, login, and profile
 bp = Blueprint('user', __name__, url_prefix='/user')
 
 # create a route for the user blueprint

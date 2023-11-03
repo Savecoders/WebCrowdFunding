@@ -1,0 +1,30 @@
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/login.css') }}"
+/>
+
+{% extends "base.html" %} {% block content %}
+
+<div class="container">
+  <div class="login-card">
+    <span class="error animated" id="msg"></span>
+    <form name="form1" class="box" onsubmit="return checkStuff()">
+      <h4>Admin<span>Dashboard</span></h4>
+      <h5>Sign in to your account.</h5>
+      <input type="text" name="email" placeholder="Email" autocomplete="off" />
+      <i class="typcn typcn-eye" id="controller"></i>
+      <input
+        type="password"
+        name="password"
+        placeholder="Passsword"
+        id="password"
+        autocomplete="off"
+      />
+
+      <input type="submit" value="Sign in" class="btn1" />
+    </form>
+    <a href="#" class="havent">Don’t have an account? Sign up</a>
+  </div>
+</div>
+
+{% endblock %}
