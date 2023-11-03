@@ -20,7 +20,7 @@ body {
   height: 60vh;
   gap: 0.4rem;
   border: 0.2px solid var(--accent-color-transparent);
-  box-shadow: 10px 10px 20px 20px var(--bg-ascent);
+  box-shadow: 10px 10px 20px 20px var(--bg2);
   overflow: auto;
 }
 
@@ -80,18 +80,19 @@ a:hover {
 }
 
 .btn1 {
+  color: var(--text-color2);
   background: var(--accent-color);
-  color: var(--bg-ascent);
   font-size: 1rem;
   width: 320px;
   border-radius: 5px;
   transition: 0.3s;
   padding: 1rem 1rem;
   cursor: pointer;
+  border: none;
 }
 
 .btn1:hover {
-  background: #5d33e6;
+  background: var(--hover-color);
 }
 
 /* responsive */

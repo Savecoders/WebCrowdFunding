@@ -5,11 +5,13 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --bg: #06080a;
-    --bg-ascent: #05070a;
+    --bg2: #06080a;
     --bg-actions: #e0dcd1;
     --secondary-color: #1a2840;
-    --accent-color: #e0dcd1;
+    --accent-color: #79a6fe;
+    --hover-color: #5586e8;
     --text-color: #d0caba;
+    --text-color2: #07090b;
     --subtext-color: #e0dcd1;
     --accent-color-transparent: #e0dcd121;
     --h1: 48px;
@@ -23,14 +25,15 @@
 @media (prefers-color-scheme: light) {
   :root {
     --bg: #ffffff;
+    --bg2: #fafffa;
     --bg-actions: #121212;
-    --bg-ascent: #ffffff;
     --secondary-color: #6793ff;
     --accent-color: #e44542;
+    --hover-color: #d73c39;
     --text-color: #121212;
+    --text-color2: #fafffa;
     --subtext-color: #2c2c2c;
-    --accent-color-transparent: #e0dcd121;
-
+    --accent-color-transparent: #06080a23;
     --h1: 48px;
     --h2: 32px;
     --subtitle: 24px;
