@@ -5,25 +5,30 @@
 
 {% extends "base.html" %} {% block content %}
 
-<div class="container">
-  <div class="login-card">
-    <span class="error animated" id="msg"></span>
-    <form name="form1" class="box" onsubmit="return checkStuff()">
-      <h4>Admin<span>Dashboard</span></h4>
-      <h5>Sign in to your account.</h5>
-      <input type="text" name="email" placeholder="Email" autocomplete="off" />
-      <i class="typcn typcn-eye" id="controller"></i>
+<div class="flex container">
+  <div class="flex login-card">
+    <h2>YStart<span>Up</span></h2>
+    <h5>Inicia Sesion con tu Cuenta</h5>
+    <form name="form1" class="flex box" onsubmit="return checkStuff()">
+      <input
+        type="email"
+        name="email"
+        placeholder="Correo Electronico"
+        autocomplete="off"
+        required
+        autofocus
+      />
       <input
         type="password"
         name="password"
-        placeholder="Passsword"
+        placeholder="Contraseña"
         id="password"
         autocomplete="off"
+        required
       />
-
-      <input type="submit" value="Sign in" class="btn1" />
+      <input type="submit" value="Iniciar Sesion" class="btn1" />
     </form>
-    <a href="#" class="havent">Don’t have an account? Sign up</a>
+    <a href="/user/register" class="havent">No tienes una cuenta? Registrate</a>
   </div>
 </div>
 
