@@ -22,6 +22,13 @@ def login():
     return render_template('user/login.html')
 
 
+@bp.route('/update', methods=['GET'])
+def update():
+    if request.method == 'POST':
+        return 'Create user'
+    return render_template('user/update.html')
+
+
 @bp.route('/profile', methods=['GET'])
 def profile():
     return 'Profile'
