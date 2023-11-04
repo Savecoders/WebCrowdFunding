@@ -2,6 +2,7 @@ body {
   margin: 0;
   padding: 0;
   gap: 0;
+  overflow: auto;
 }
 
 .flex {
@@ -12,7 +13,7 @@ body {
 }
 
 .container {
-  height: 100vh;
+  padding: 3rem 0;
 }
 .register-card {
   border-radius: 12px;
@@ -22,7 +23,6 @@ body {
   gap: 0.4rem;
   border: 0.2px solid var(--accent-color-transparent);
   box-shadow: 10px 10px 20px 20px var(--bg2);
-  overflow: auto;
 }
 
 .register-card h2 {
@@ -68,8 +68,7 @@ body {
   color: var(--text-color);
 }
 
-.box input[type="email"]:focus,
-.box input[type="password"]:focus {
+.box input:focus {
   border: 1px solid #79a6fe;
 }
 
@@ -102,7 +101,7 @@ a:hover {
 
 @media (max-width: 768px) {
   .register-card {
-    min-width: 70vw;
+    min-width: 60vw;
     min-height: 40vh;
     border: none;
     box-shadow: none;
@@ -114,12 +113,9 @@ a:hover {
 
 @media (max-width: 480px) {
   .register-card {
-    min-width: 80vw;
+    min-width: 60vw;
     min-height: 40vh;
     border: none;
     box-shadow: none;
-  }
-  .box {
-    min-width: 90%;
   }
 }
