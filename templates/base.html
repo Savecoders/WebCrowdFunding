@@ -6,19 +6,24 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>CrowdFunding</title>
 
-    <!-- link to chosen google fonts -->
-    <link
-      href="https://fonts.googleapis.com/css?family=Poppins:400,600,900&display=swap"
-      rel="stylesheet"
-    />
     <!-- jinja2 static css -->
     <link
       rel="stylesheet"
       href="{{ url_for('static', filename='css/styles.css') }}"
     />
+    <!-- icon page -->
+    <link
+      rel="icon"
+      href="{{ url_for('static', filename='icons/Vector.svg') }}"
+    />
+    <!-- link to chosen google fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins:400,600,900&display=swap"
+      rel="stylesheet"
+    />
   </head>
 
   <body>
-    <main>{% block content %} {% endblock %}</main>
+    {% block content %} {% endblock %}
   </body>
 </html>
