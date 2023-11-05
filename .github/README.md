@@ -1,5 +1,14 @@
 # Init Project
 
+## Specification
+<p>In Powersheel execute the command:</p>
+
+```sh
+    Set-ExecutionPolicy RemoteSigned -Scope CurrentUser ​
+```
+please execute next commands in powersheel
+
+
 ## clone repository
 
 ```sh
