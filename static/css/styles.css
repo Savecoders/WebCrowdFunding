@@ -51,7 +51,7 @@
   bottom: 0;
   right: 0;
   background-color: var(--bg2);
-  width: 65%;
+  width: 80%;
   max-width: 400px;
   padding: 0;
   list-style: none;
@@ -248,48 +248,5 @@ a:hover {
 
   .nav__contain_sign {
     width: auto;
-  }
-
-  .main__grid {
-    margin: 0 auto;
-    max-width: 1200px;
-    width: 90%;
-
-    gap: 2em;
-    grid-template-columns: 1fr 1fr;
-    grid-template-areas: "text img";
-
-    padding: 70px 0;
-  }
-
-  .main__picture {
-    max-height: 500px;
-  }
-
-  .main__img {
-    height: 100%;
-  }
-
-  .main__article {
-    text-align: left;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .main__brands {
-    margin: auto 0 0 0;
-  }
-
-  .main__texts {
-    margin: auto 0;
-  }
-
-  .main__title {
-    font-size: 3.5rem;
-  }
-
-  .main__paragraph {
-    margin: 2em 0;
   }
 }

@@ -5,32 +5,54 @@
 
 {% extends "base.html" %} {% block content %} {% include "navbar.html" %}
 <!-- Hero -->
-<!-- <div class="hero">
-  <div class="hero-text">
-    <h1 class="hero-title">
-      <span class="color-effect">Crowdfunding</span> Para Tus Projectos
-      Innovadores E Inversiones
-    </h1>
-    <p class="subtitle">
-      YStartUp es una plataforma de crowdfunding que te permite financiar tus
-      proyectos e inversiones. <br />
-      Tu proyecto puede ser de cualquier tipo y de cualquier tamaño. <br />
-    </p>
-    <div class="hero-cta">
-      <button href="#how" class="secondary-button">Crea tu Proyecto</button>
-    </div>
-    <div class="hero-scroll">
-      <p class="sub">Has scroll para ver mas.</p>
-    </div>
-  </div>
-  <div class="hero-img">
-    <embed
-      width="502"
-      height="504"
-      class="mondrian"
-      src="{{ url_for('static', filename='icons/Scenes.svg') }}"
-    />
-  </div>
-</div> -->
+<main class="main">
+  <section class="main__grid">
+    <picture class="main__picture">
+      <source
+        srcset="{{ url_for('static', filename='img/Scenes.svg') }}"
+        class="main__img"
+        media="(min-width:768px)"
+      />
 
+      <img
+        src="{{ url_for('static', filename='img/Scenes.svg') }}"
+        class="main__img"
+      />
+    </picture>
+
+    <article class="main__article">
+      <div class="main__texts">
+        <h1 class="main__title">
+          <span class="color-effect">Crowdfunding</span> Para Tus Projectos
+          Innovadores e Inversiones
+        </h1>
+        <p class="main__paragraph">
+          YStartUp es una plataforma de crowdfunding que te permite financiar
+          tus proyectos e inversiones. <br />
+          Tu proyecto puede ser de cualquier tipo y de cualquier tamaño. <br />
+        </p>
+        <a href="/projects/create" class="main__cta">Crea tu Proyecto</a>
+      </div>
+
+      <div class="main__brands">
+        <img
+          src="{{ url_for('static', filename='icons/clients/slack.svg') }}"
+          class="main__brand"
+        />
+        <img
+          src="{{ url_for('static', filename='icons/clients/spotify.svg') }}"
+          class="main__brand"
+        />
+        <img
+          src="{{ url_for('static', filename='icons/clients/meet.svg') }}"
+          class="main__brand"
+        />
+        <img
+          src="{{ url_for('static', filename='icons/clients/microsoft.svg') }}"
+          class="main__brand"
+        />
+      </div>
+    </article>
+  </section>
+</main>
 {% endblock %}
