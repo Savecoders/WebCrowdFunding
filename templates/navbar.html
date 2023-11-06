@@ -1,22 +1,85 @@
-<nav class="navbar">
+<nav class="nav container">
   <div class="logo">
-    <img
-      src="{{ url_for('static', filename='icons/Vector.png') }}"
-      alt="logo"
-      class="logoface"
-    />
-    <h1>
-      <a href="#" class="logo-name">YStartUp</a>
-    </h1>
+    <div class="logo__icon"></div>
+    <a href="/" class="logo__name">YStartUp</a>
   </div>
-  <ul class="navbar-links">
-    <li><a href="#">Descubre Proyectos</a></li>
-    <li><a href="#">Nosotros</a></li>
-    <li><a href="#">Empieza tu Proyecto</a></li>
-    <li><a href="#">Como funciona</a></li>
-  </ul>
-  <ul class="navbar-links">
-    <li><a href="/user/login" class="login">Iniciar Sesion</a></li>
-    <button class="navigation-button">Registrate</button>
-  </ul>
+
+  <div class="nav__hamburguer"></div>
+
+  <section class="nav__overlay">
+    <ul class="nav__menu">
+      <li class="nav__item">
+        <span class="nav__parent can__open"
+          >Descubre Proyectos
+          <div class="arrow__down"></div
+        ></span>
+
+        <ul class="nav__inner">
+          <li class="nav__dropdown">
+            <a href="/projects" class="nav__link">
+              <img
+                src="{{ url_for('static', filename='icons/icon-planning.svg') }}"
+                class="nav__illustration"
+              />
+              Proyectos Nuevos
+            </a>
+          </li>
+
+          <li class="nav__dropdown">
+            <a href="/projects" class="nav__link">
+              <img
+                src="{{ url_for('static', filename='icons/icon-calendar.svg') }}"
+                class="nav__illustration"
+              />
+              Proyectos mas Antiguos
+            </a>
+          </li>
+
+          <li class="nav__dropdown">
+            <a href="/projects" class="nav__link">
+              <img
+                src="{{ url_for('static', filename='icons/icon-todo.svg') }}"
+                class="nav__illustration"
+              />
+              Precios
+            </a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="nav__item">
+        <span class="nav__parent can__open"
+          >Nosotros
+          <div class="arrow__down"></div
+        ></span>
+
+        <ul class="nav__inner">
+          <li class="nav__dropdown">
+            <a href="/projects" class="nav__link">Proyecto</a>
+          </li>
+
+          <li class="nav__dropdown">
+            <a href="/projects" class="nav__link">Nuestro Equipo</a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="nav__item">
+        <a href="/projects/create" class="nav__link">Empieza Tu Proyecto</a>
+      </li>
+
+      <li class="nav__item">
+        <a href="#" class="nav__link">Como Funciona</a>
+      </li>
+
+      <li class="nav__login login">
+        <a href="/user/login" class="">Iniciar Sesion</a>
+      </li>
+      <li class="nav__contain_sign">
+        <a href="/user/register" class="nav__sign">Registrate</a>
+      </li>
+    </ul>
+  </section>
 </nav>
+
+<script src="{{ url_for('static', filename='js/navbar.js') }}"></script>

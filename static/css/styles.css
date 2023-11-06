@@ -2,59 +2,294 @@
 
 @import url("base.css");
 
-.navbar {
+.container {
+  width: 90%;
+  margin: 0 auto;
+  overflow: hidden;
+  max-width: 1200px;
+}
+
+.nav {
+  height: 90px;
   display: flex;
-  justify-content: space-evenly;
-  width: 100%;
-  margin-top: 1.8em;
-  background-color: var(--bg2);
-  border-radius: 6px;
-}
-
-.navbar-links {
-  display: inherit;
-  justify-content: center;
   align-items: center;
-  list-style: none;
-  gap: 2em;
-  font-size: 16px;
+  justify-content: space-between;
 }
 
-a {
+.nav__hamburguer {
+  width: 30px;
+  height: 50%;
+  background-image: var(--icon-menu);
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  z-index: 100;
+  transition: background-image 0.3s;
+}
+
+.nav__hamburguer--open {
+  background-image: var(--icon-close);
+}
+
+.nav__overlay {
+  background-color: #000000a7;
+  position: fixed;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.3s opacity;
+}
+
+.nav__overlay--show {
+  opacity: 1;
+  pointer-events: unset;
+}
+
+.nav__menu {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  background-color: var(--bg2);
+  width: 65%;
+  max-width: 400px;
+  padding: 0;
+  list-style: none;
+  overflow: auto;
+  padding: 70px 0;
+}
+
+.nav__item {
+  width: 80%;
+  margin: 0 auto;
+  cursor: pointer;
+  padding: 20px 0;
+}
+
+.nav__item:has(.nav__parent) {
+  padding: 0;
+}
+
+.logo {
+  display: flex;
+  justify-content: stretch;
+  align-items: center;
+  flex-direction: row;
+  gap: 1em;
+}
+
+.logo__icon {
+  width: 40px;
+  height: 40px;
+  background-image: var(--icon-page);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.logo__name {
+  font-size: 26px;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
   text-decoration: none;
   color: var(--text-color);
 }
 
+.nav__inner {
+  list-style: none;
+  padding: 0;
+  width: 80%;
+  margin: 0 auto;
+  display: grid;
+  gap: 1.5em;
+  overflow: hidden;
+  height: 0;
+  transition: height 0.4s;
+}
+
+.nav__parent {
+  display: grid;
+  align-items: center;
+  grid-auto-flow: column;
+  grid-auto-columns: max-content;
+  gap: 1em;
+  padding: 20px 0;
+}
+
+.arrow__down {
+  width: 8px;
+  height: 10px;
+  background-image: url("../icons/icon-arrow-down.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: transform 0.3s;
+}
+
+.nav__link {
+  text-decoration: none;
+  color: var(--text-color);
+}
 a:hover {
   text-decoration-thickness: underline;
   font-weight: bolder;
 }
 
-.logo {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 1em;
-}
-
-.navbar button {
-  color: var(--bg);
-  border: none;
-  border-radius: 3px;
-  padding: 0.7rem 1.2rem;
-  font-size: 16px;
-  cursor: pointer;
-  background-color: var(--bg-actions);
-}
-
-h1 {
-  font-size: 26px;
-  font-family: "Inter", sans-serif;
-  font-weight: 600;
-}
-
-.navbar .login {
+.nav__login {
+  width: 90%;
+  margin: 0 auto;
+  padding-top: 4em;
+  padding-bottom: 4em;
+  text-align: center;
   color: var(--accent-color);
   font-weight: bold;
   text-decoration: underline solid 3px;
+}
+
+.nav__login a {
+  text-decoration: none;
+  color: var(--accent-color);
+}
+
+.nav__login a:hover {
+  color: var(--hover-color);
+  text-decoration: underline solid 3px;
+}
+
+.nav__contain_sign {
+  width: 90%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.nav__sign {
+  display: inline-block;
+  text-align: center;
+  background-color: var(--bg-actions);
+  color: var(--bg);
+  border-radius: 3px;
+  padding: 0.7em 1em;
+  text-decoration: none;
+  color: var(--bg);
+  font-weight: 600;
+}
+
+.nav__sign:hover {
+  background-color: var(--bg);
+  color: var(--bg-actions);
+}
+
+/* .media*/
+
+@media (min-width: 1200px) {
+  .nav {
+    gap: 3em;
+    overflow: visible;
+    padding: 50px 0 0;
+  }
+
+  .nav__hamburguer {
+    display: none;
+  }
+
+  .nav__overlay {
+    position: unset;
+    background-color: transparent;
+    opacity: 1;
+    pointer-events: unset;
+    flex: 1;
+  }
+
+  .nav__menu {
+    position: unset;
+    width: 100%;
+    max-width: unset;
+    background-color: unset;
+    padding: 0;
+    overflow: unset;
+
+    display: flex;
+    align-items: center;
+    gap: 2em;
+  }
+
+  .nav__item {
+    width: max-content;
+    margin: 0;
+    padding: 0;
+
+    position: relative;
+  }
+
+  .nav__inner {
+    position: absolute;
+    left: 0;
+    padding: 0;
+    width: max-content;
+    height: auto;
+    padding: 2.5em;
+    background-color: var(--bg2);
+    z-index: 1000;
+    border-radius: 6px;
+    border: 1px solid var(--accent-color-transparent);
+    transition: opacity 0.3s;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .nav__inner--show {
+    opacity: 1;
+    pointer-events: unset;
+  }
+
+  .nav__login {
+    width: max-content;
+    margin: 0;
+    margin-left: auto;
+  }
+
+  .nav__contain_sign {
+    width: auto;
+  }
+
+  .main__grid {
+    margin: 0 auto;
+    max-width: 1200px;
+    width: 90%;
+
+    gap: 2em;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "text img";
+
+    padding: 70px 0;
+  }
+
+  .main__picture {
+    max-height: 500px;
+  }
+
+  .main__img {
+    height: 100%;
+  }
+
+  .main__article {
+    text-align: left;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .main__brands {
+    margin: auto 0 0 0;
+  }
+
+  .main__texts {
+    margin: auto 0;
+  }
+
+  .main__title {
+    font-size: 3.5rem;
+  }
+
+  .main__paragraph {
+    margin: 2em 0;
+  }
 }
