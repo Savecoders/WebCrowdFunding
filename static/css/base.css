@@ -1,51 +1,26 @@
 /* imports fonts */
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Raleway:ital,wght@0,400;1,600&display=swap");
 
-/* define pallete colors */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #06080a;
-    --bg2: #06080a;
-    --bg-actions: #e0dcd1;
-    --secondary-color: #1a2840;
-    --accent-color: #79a6fe;
-    --hover-color: #5586e8;
-    --text-color: #d0caba;
-    --text-color2: #07090b;
-    --subtext-color: #e0dcd1;
-    --accent-color-transparent: #e0dcd121;
-    --icon-close: url("../icons/icon-close-menu-dark.svg");
-    --icon-menu: url("../icons/icon-menu-dark.svg");
-    --icon-page: url("../icons/icon-page-dark.svg");
-    --h1: 48px;
-    --h2: 32px;
-    --subtitle: 24px;
-    --p: 18px;
-    --sub: 16px;
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    --bg: #ffffff;
-    --bg2: #fefefe;
-    --bg-actions: #121212;
-    --secondary-color: #6793ff;
-    --accent-color: #e44542;
-    --hover-color: #d73c39;
-    --text-color: #121212;
-    --text-color2: #fefefe;
-    --subtext-color: #2c2c2c;
-    --accent-color-transparent: #06080a23;
-    --icon-close: url("../icons/icon-close-menu.svg");
-    --icon-menu: url("../icons/icon-menu.svg");
-    --icon-page: url("../icons/icon-page.svg");
-    --h1: 48px;
-    --h2: 32px;
-    --subtitle: 24px;
-    --p: 18px;
-    --sub: 16px;
-  }
+:root {
+  --bg: #ffffff;
+  --bg2: #fefefe;
+  --bg-actions: #121212;
+  --secondary-color: #6793ff;
+  --accent-color: #e44542;
+  --hover-color: #d73c39;
+  --text-color: #121212;
+  --text-color2: #fefefe;
+  --subtext-color: #2c2c2c;
+  --accent-color-transparent: #06080a3c;
+  --icon-close: url("../icons/icon-close-menu.svg");
+  --icon-menu: url("../icons/icon-menu.svg");
+  --icon-page: url("../icons/icon-page.svg");
+  --icon-theme: url("../icons/icon-sun.svg");
+  --h1: 48px;
+  --h2: 32px;
+  --subtitle: 24px;
+  --p: 18px;
+  --sub: 16px;
 }
 
 html {
@@ -62,4 +37,43 @@ body {
   font-family: "Raleway", sans-serif;
   color: var(--text-color);
   background-color: var(--bg);
+}
+/* define pallete colors */
+body.dark {
+  --bg: #06080a;
+  --bg2: #06080a;
+  --bg-actions: #e0dcd1;
+  --secondary-color: #1a2840;
+  --accent-color: #79a6fe;
+  --hover-color: #5586e8;
+  --text-color: #d0caba;
+  --text-color2: #07090b;
+  --subtext-color: #e0dcd1;
+  --accent-color-transparent: #e0dcd128;
+  --icon-close: url("../icons/icon-close-menu-dark.svg");
+  --icon-menu: url("../icons/icon-menu-dark.svg");
+  --icon-page: url("../icons/icon-page-dark.svg");
+  --icon-theme: url("../icons/icon-moon.svg");
+  --h1: 48px;
+  --h2: 32px;
+  --subtitle: 24px;
+  --p: 18px;
+  --sub: 16px;
+}
+
+.theme-toogle {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 100;
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
+  background-image: var(--icon-theme);
+  background-color: var(--bg-actions);
+  background-repeat: no-repeat;
+  box-shadow: 0 0 10px var(--accent-color-transparent);
+  border: none;
+  cursor: pointer;
+  transition: all 0.4s ease-in-out;
 }
