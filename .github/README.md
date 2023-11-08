@@ -1,13 +1,32 @@
 # Init Project
 
+<img
+ align="center"
+ src="assets/PagePreview.png"
+ alt="Page Preview"
+/>
+
 ## Specification
-<p>In Powersheel execute the command:</p>
+
+In Powersheel execute the command:
 
 ```sh
-    Set-ExecutionPolicy RemoteSigned -Scope CurrentUser ​
+Set-ExecutionPolicy RemoteSigned -Scope CurrentUser ​
 ```
+
 please execute next commands in powersheel
 
+## Install Dependencies
+
+* [Download Python](https://www.python.org/downloads/windows/)
+* [Download OracleDB 21c xe](https://www.oracle.com/database/technologies/xe-downloads.html)
+* [Download Git](https://git-scm.com/download/win)
+
+## Developer Folder
+
+```sh
+cd C:\Users\nameUser\Documents\ && mkdir Developer && cd Developer
+```
 
 ## clone repository
 
@@ -54,4 +73,10 @@ or
 
 ```sh
 python app.py
+```
+
+## Open Browser
+
+```sh
+http://localhost:5000/
 ```
