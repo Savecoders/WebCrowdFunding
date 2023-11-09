@@ -9,13 +9,18 @@
   <div class="flex register-card">
     <h2>YStart<span>Up</span></h2>
     <h5>Registra tu Cuenta Aqui</h5>
-    <form name="formRegister" class="flex box" onsubmit="return checkStuff()">
+    <form
+      method="post"
+      name="formRegister"
+      class="flex box"
+      onsubmit="return checkStuff()"
+    >
       <input
         type="text"
         name="name"
         placeholder="Nombre Completo"
         autocomplete="off"
-        id="name"
+        id="username"
         oninput="this.value = this.value.replace(/[^a-zA-Z0-9 ]/g, '')"
         required
       />
@@ -32,7 +37,7 @@
         name="born"
         placeholder="Fecha de Nacimiento"
         autocomplete="off"
-        id="born"
+        id="date_born"
         required
       />
       <input

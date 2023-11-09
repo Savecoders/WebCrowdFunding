@@ -22,13 +22,19 @@ def create_app():
         DATABASE_PASSWORD=os.getenv('DATABASE_PASSWORD'),
         DATABASE_USER=os.getenv('DATABASE_USER'),
         DATABASE_PORT=os.getenv('DATABASE_PORT'),
+        DATABASE_DSN=os.getenv('DATABASE_DSN'),
     )
+    # Create the database object
+    from src.db import init_db
+
+    init_db()
 
     # Register the blueprints
     app.register_blueprint(user.bp)
     app.register_blueprint(projects.bp)
 
     # app / route
+
     @app.route('/')
     def index():
         # use template
