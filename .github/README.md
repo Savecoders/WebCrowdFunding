@@ -25,13 +25,15 @@ please execute next commands in powersheel
 ## Developer Folder
 
 ```sh
-cd C:\Users\nameUser\Documents\ && mkdir Developer && cd Developer
+cd C:\Users\nameUser\Documents\ 
+mkdir Developer 
+cd Developer
 ```
 
 ## clone repository
 
 ```sh
-git clone https://github.com/Savecoders/WebCrowdFunding.git &&
+git clone https://github.com/Savecoders/WebCrowdFunding.git
 cd WebCrowdFunding
 ```
 
