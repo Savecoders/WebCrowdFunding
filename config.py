@@ -11,8 +11,8 @@ load_dotenv()
 def create_app():
     # Create the flask app
     # search for templates and static in the templates folder
-    app = Flask(__name__, template_folder='./templates',
-                static_folder='./static')
+    app = Flask(__name__, template_folder='./public/templates',
+                static_folder='./public/static')
 
     # Set up the app configuration
 
