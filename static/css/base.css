@@ -77,3 +77,7 @@ body.dark {
   cursor: pointer;
   transition: all 0.4s ease-in-out;
 }
+
+.svg {
+  fill: var(--text-color);
+}

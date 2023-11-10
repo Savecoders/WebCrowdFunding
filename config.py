@@ -25,9 +25,9 @@ def create_app():
         DATABASE_DSN=os.getenv('DATABASE_DSN'),
     )
     # Create the database object
-    from src.db import init_db
+    from src.db import init_app
 
-    init_db()
+    init_app(app)
 
     # Register the blueprints
     app.register_blueprint(user.bp)

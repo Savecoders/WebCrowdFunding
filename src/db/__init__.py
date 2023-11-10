@@ -8,6 +8,10 @@ from flask.cli import with_appcontext
 from src.schema.schemas import instructions
 
 
+class Database:
+    pass
+
+
 def get_db():
     if 'db' not in g:
         g.db = oracledb.connect(
@@ -50,6 +54,3 @@ def init_app(app):
     # execute functions to finally app
     app.teardown_appcontext(close_db)
     app.cli.add_command(init_db_command)
-
-
-init_db()
