@@ -1,4 +1,3 @@
-
 import oracledb
 import click
 
@@ -21,7 +20,7 @@ def get_db():
             dsn=app.config['DATABASE_DSN'],
             host=app.config['DATABASE_HOST']
         )
-        g.c = g.db.cursor(dictionary=True)
+        g.c = g.db.cursor()
     return g.db, g.c
 
 

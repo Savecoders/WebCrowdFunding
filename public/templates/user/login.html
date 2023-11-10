@@ -9,7 +9,12 @@
   <div class="flex login-card">
     <h2>YStart<span>Up</span></h2>
     <h5>Inicia Sesion con tu Cuenta</h5>
-    <form name="form1" class="flex box" onsubmit="return checkStuff()">
+    <form
+      name="form1"
+      method="post"
+      class="flex box"
+      onsubmit="return checkStuff()"
+    >
       <input
         type="email"
         name="email"
@@ -22,7 +27,6 @@
         type="password"
         name="password"
         placeholder="Contraseña"
-        id="password"
         autocomplete="off"
         required
       />

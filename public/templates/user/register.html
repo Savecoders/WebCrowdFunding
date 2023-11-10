@@ -9,18 +9,12 @@
   <div class="flex register-card">
     <h2>YStart<span>Up</span></h2>
     <h5>Registra tu Cuenta Aqui</h5>
-    <form
-      method="post"
-      name="formRegister"
-      class="flex box"
-      onsubmit="return checkStuff()"
-    >
+    <form method="post" name="formRegister" class="flex box">
       <input
         type="text"
-        name="name"
+        name="username"
         placeholder="Nombre Completo"
         autocomplete="off"
-        id="username"
         oninput="this.value = this.value.replace(/[^a-zA-Z0-9 ]/g, '')"
         required
       />
@@ -29,15 +23,13 @@
         name="email"
         placeholder="Correo Electronico"
         autocomplete="off"
-        id="email"
         required
       />
       <input
         type="date"
-        name="born"
+        name="date_born"
         placeholder="Fecha de Nacimiento"
         autocomplete="off"
-        id="date_born"
         required
       />
       <input
@@ -46,7 +38,6 @@
         placeholder="Pais de Residencia"
         autocomplete="off"
         oninput="this.value = this.value.replace(/[^a-zA-Z0-9 ]/g, '')"
-        id="country"
         required
       />
       <input
@@ -55,7 +46,6 @@
         placeholder="Ciudad de Residencia"
         autocomplete="off"
         oninput="this.value = this.value.replace(/[^a-zA-Z0-9 ]/g, '')"
-        id="city"
         required
       />
 
@@ -65,7 +55,6 @@
         placeholder="Numero de Telefono"
         autocomplete="off"
         oninput="this.value = this.value.replace(/[^0-9 ]/g, '')"
-        id="phone"
         required
       />
 
@@ -73,7 +62,6 @@
         type="password"
         name="password"
         placeholder="Contraseña"
-        id="password"
         autocomplete="off"
         required
       />
