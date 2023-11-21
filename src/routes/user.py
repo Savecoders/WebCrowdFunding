@@ -29,8 +29,6 @@ def register():
         phone = request.form['phone']
         password = request.form['password']
 
-        print(username, mail, date_born, country, city, phone, password)
-
         id = hashlib.sha256(uuid.uuid4().bytes).hexdigest()
 
         db, c = get_db()
