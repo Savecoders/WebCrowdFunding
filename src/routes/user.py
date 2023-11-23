@@ -1,5 +1,5 @@
 # Database: src/db/__init__.py
-from src.db import get_db
+from src.db.database import get_db
 from werkzeug.security import check_password_hash, generate_password_hash
 from flask import (Blueprint, flash, g, render_template, request, url_for,
                    session, redirect)
