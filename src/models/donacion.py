@@ -1,0 +1,3 @@
+
+class Donacion:
+    pass
