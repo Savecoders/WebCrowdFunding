@@ -1,3 +1,6 @@
+
+# instructions contains all the instructions to create the tables
+# init_db() function will execute all the instructions
 instructions = [
     """
         CREATE TABLE USUARIO(
