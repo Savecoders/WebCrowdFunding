@@ -27,8 +27,12 @@ class DataBase:
 
     # initialize database
     def initialize(self) -> None:
-        for i in instructions:
-            self.cursor.execute(i)
+        # path: src/db/tables.sql
+        with open('tables.sql', 'r') as file:
+            sql_commands = file.read().split(';')
+            for command in sql_commands:
+                if command.strip() != '':
+                    self.cursor.execute(command)
         self.connection.commit()
 
     # cursor
@@ -78,8 +82,14 @@ def close_db(e=None):
 def init_db():
     db, c = get_db()
 
-    for i in instructions:
-        c.execute(i)
+    # path: src/db/tables.sql
+    with open('tables.sql', 'r') as file:
+        sql_commands = file.read().split(';')
+        for command in sql_commands:
+            if command.strip() != '':
+                c.execute(command)
+
+    c.connection.commit()
 
     db.commit()
 
