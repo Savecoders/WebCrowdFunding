@@ -9,7 +9,6 @@ body {
   display: flex;
   align-items: center;
   flex-direction: column;
-  justify-content: center;
 }
 
 .container {
@@ -20,18 +19,18 @@ body {
   min-width: 50vw;
   padding-top: 2.5rem;
   padding-bottom: 2.5rem;
-  gap: 0.4rem;
-  border: 0.2px solid var(--accent-color-transparent);
+  gap: 1.5em;
   box-shadow: 10px 10px 20px 20px var(--bg2);
 }
 
-.register-card h2 {
+.register-card h1 {
+  font-family: "Inter", sans-serif;
   color: var(--text-color);
   font-size: 3ch;
   margin: 0;
 }
 
-.register-card h5 {
+.register-card h4 {
   color: var(--text-color);
   font-size: 1.6ch;
 }
@@ -43,8 +42,8 @@ body {
 }
 
 .box {
-  min-width: 50%;
-  gap: 1.4rem;
+  min-width: 70%;
+  gap: 1.8rem;
 }
 
 .box input[type="email"],
@@ -68,17 +67,59 @@ body {
   color: var(--text-color);
 }
 
+.file-upload input[type="file"] {
+  appearance: none;
+  display: none;
+  visibility: hidden;
+  opacity: 0;
+  z-index: -1;
+}
+.file-upload {
+  display: inline-block;
+  position: relative;
+  background-color: var(--bg);
+  width: 320px;
+  color: var(--text-color);
+  padding: 1rem 1rem;
+  border-radius: 5px;
+  justify-content: initial;
+  text-align: initial;
+  -webkit-transition: all 0.2s ease-out;
+  -moz-transition: all 0.2s ease-out;
+  -ms-transition: all 0.2s ease-out;
+  -o-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
+  border: 1px solid var(--accent-color-transparent);
+}
+::-webkit-input-placeholder {
+  color: var(--text-color);
+}
+
 .box input:focus {
   border: 1px solid #79a6fe;
 }
 
-a {
-  color: #5c7fda;
-  text-decoration: none;
+.file-upload:hover {
+  border: 1px solid #79a6fe;
 }
 
-a:hover {
-  text-decoration: underline;
+.file-upload label {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+}
+
+.file-upload-selected {
+  color: var(--check-color);
+  font-family: "Raleway", sans-serif;
+  font-size: 2ch;
+  font-style: oblique;
+  font-weight: 700;
 }
 
 .btn1 {

@@ -7,15 +7,15 @@
 
 <div class="flex container">
   <div class="flex register-card">
-    <h2>YStart<span>Up</span></h2>
-    <h5>Registra tu Cuenta Aqui</h5>
+    <h1>YStart<span>Up</span></h1>
+    <h4>Registra tu Cuenta Aqui</h4>
     <form method="post" name="formRegister" class="flex box">
       <input
         type="text"
         name="username"
         placeholder="Nombre Completo"
         autocomplete="off"
-        oninput="this.value = this.value.replace(/[^a-zA-Z0-9 ]/g, '')"
+        oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '')"
         required
       />
       <input
@@ -37,7 +37,7 @@
         name="country"
         placeholder="Pais de Residencia"
         autocomplete="off"
-        oninput="this.value = this.value.replace(/[^a-zA-Z0-9 ]/g, '')"
+        oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '')"
         required
       />
       <input
@@ -45,7 +45,7 @@
         name="city"
         placeholder="Ciudad de Residencia"
         autocomplete="off"
-        oninput="this.value = this.value.replace(/[^a-zA-Z0-9 ]/g, '')"
+        oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '')"
         required
       />
 
@@ -57,6 +57,19 @@
         oninput="this.value = this.value.replace(/[^0-9 ]/g, '')"
         required
       />
+
+      <!-- input perfil image -->
+      <button class="file-upload">
+        <span class="file-upload-label">Subir Foto de Perfil</span>
+        <label for="profile_image"></label>
+        <input
+          type="file"
+          id="profile_image"
+          accept="image/*"
+          name="profile_image"
+          onchange="checkSubmitFile()"
+        />
+      </button>
 
       <input
         type="password"
@@ -70,5 +83,7 @@
     <a href="/user/login" class="havent">Ya tienes una cuenta? Log In</a>
   </div>
 </div>
+
+<script src="{{ url_for('static', filename='js/checkSubmitFile.js') }}"></script>
 
 {% endblock %}

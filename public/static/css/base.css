@@ -8,6 +8,7 @@
   --secondary-color: #6793ff;
   --accent-color: #e44542;
   --hover-color: #d73c39;
+  --check-color: rgb(123, 215, 92);
   --text-color: #121212;
   --text-color2: #fefefe;
   --subtext-color: #2c2c2c;
@@ -24,7 +25,7 @@
 }
 
 html {
-  font-size: 100%;
+  font-size: 110%;
 }
 
 * {
@@ -46,6 +47,7 @@ body.dark {
   --secondary-color: #1a2840;
   --accent-color: #79a6fe;
   --hover-color: #5586e8;
+  --check-color: rgb(146, 254, 107);
   --text-color: #d0caba;
   --text-color2: #07090b;
   --subtext-color: #e0dcd1;
