@@ -5,7 +5,7 @@ const checkSubmitFile = () => {
     // label upload image 
     const label = $('.file-upload-label');
     // input image
-    const inputFile = $('#profile_image');
+    const inputFile = $('#profile');
 
     // check if file/image is selected
     if (inputFile && inputFile.files.length) {

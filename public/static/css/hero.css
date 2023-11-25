@@ -5,9 +5,7 @@
 
   display: grid;
   grid-template-columns: 5% 1fr 5%;
-  grid-template-areas:
-    "img img img"
-    ".   text . ";
+  grid-template-areas: "img img img" ".   text . ";
 }
 
 .main__article {
