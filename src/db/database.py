@@ -19,9 +19,6 @@ class DataBase:
         )
         self.cursor = self.connection.cursor()
 
-    def __del__(self):
-        self.connection.close()
-
     # initialize database
     def initialize(self) -> None:
         # path: src/db/tables.sql
@@ -32,16 +29,32 @@ class DataBase:
                     self.cursor.execute(command)
         self.connection.commit()
 
-    # cursor
+    # cursor get and setter
     @property
     def cursor(self) -> oracledb.Cursor:
         return self.cursor
+
+    @cursor.setter
+    def cursor(self, cursor: oracledb.Cursor) -> None:
+        self.cursor = cursor
+
+    @property
+    def connection(self) -> oracledb.Connection:
+        return self.connection
+
+    @connection.setter
+    def connection(self, connection: oracledb.Connection) -> None:
+        self.connection = connection
 
     def openCursor(self) -> None:
         self.cursor = self.connection.cursor()
 
     def closeCursor(self) -> None:
         self.cursor.close()
+
+    # close connection
+    def close(self) -> None:
+        self.connection.close()
 
     # querys for database
 
