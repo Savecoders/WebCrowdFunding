@@ -122,8 +122,29 @@ class Usuario:
 
     @image_perfil.setter
     def image_perfil(self, image_perfil):
-        # Grabar image name
+
+        # Save image
+
+        # validate image
+        if not image_perfil:
+            raise ValueError("La imagen de perfil es requerida.")
+
+        # validate extension
+        extensions = ['png', 'jpg', 'jpeg', 'gif']
+
+        # get extension
+        extension = image_perfil.filename.split('.')[-1]
+
+        if extension not in extensions:
+            raise ValueError(
+                f"La extensión de la imagen debe ser {', '.join(extensions)}.")
+
+        # get filename and content type
+        # in image profile we don't need filename and content type
         filename = secure_filename(image_perfil.filename)
+        content_type = image_perfil.content_type
+
+        # get read image
         self.__image_perfil = image_perfil.read()
 
     @property

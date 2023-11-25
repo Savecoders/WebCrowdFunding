@@ -1,5 +1,5 @@
 # Database: src/db/__init__.py
-from src.db.database import DataBase, get_db
+from src.db.database import DataBase, get_db, close_db
 
 # werkzeug security for password hashing
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -7,8 +7,10 @@ from werkzeug.exceptions import abort
 from distutils.log import error
 
 # flask imports
-from flask import (Blueprint, flash, g, render_template, request, url_for,
-                   session, redirect)
+from flask import (Blueprint, flash, g, render_template,
+                   request, url_for, jsonify,
+                   session, redirect
+                   )
 from flask import current_app as app
 
 # hash uid
@@ -33,66 +35,17 @@ bp = Blueprint('user', __name__, url_prefix='/user')
 @bp.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
-        # username = request.form['username']
-        # mail = request.form['email']
-        # date_born = request.form['date_born']
-        # country = request.form['country']
-        # city = request.form['city']
-        # phone = request.form['phone']
-        # image_profile = request.form['image_profile']
-        # password = request.form['password']
 
-        # id = hashlib.sha256(uuid.uuid4().bytes).hexdigest()
-
-        # db, c = get_db()
-
-        # error = None
-
-        # if not username:
-        #     error = 'Username is required'
-
-        # elif not password:
-        #     error = 'Password is required'
-
-        # elif not mail:
-        #     error = 'Mail is required'
-
-        # elif not date_born:
-        #     error = 'Date born is required'
-
-        # elif not country:
-        #     error = 'Country is required'
-
-        # elif not city:
-        #     error = 'City is required'
-
-        # elif not phone:
-        #     error = 'Phone is required'
-
-        # if error is None:
-
-        #     c.execute("SELECT * FROM USUARIO")
-
-        #     sql = 'INSERT INTO USUARIO(id, username, password, mail, date_born, country, city, phone) VALUES (:1, :2, :3, :4, :5, :6, :7, :8)'
-
-        #     values = (id, username, generate_password_hash(password),
-        #               mail, date_born, country, city, phone)
-
-        #     c.execute(sql, values)
-        #     db.commit()
-        #     return redirect(url_for('user.login'))
-
-        # create user
         try:
+            # create user object
             usuario = Usuario()
-
             usuario.nombres = request.form['username']
             usuario.email = request.form['email']
             usuario.fecha_nacimiento = request.form['date_born']
             usuario.pais = request.form['country']
             usuario.ciudad = request.form['city']
             usuario.telefono = request.form['phone']
-            usuario.image_perfil = request.form['image_profile']
+            usuario.image_perfil = request.files['image_profile']
             usuario.contrasena = request.form['password']
             usuario.generateEstado()
             usuario.generateHashPassword()
@@ -108,14 +61,18 @@ def register():
             usuario_dao.insert(usuario)
 
             # close database connection
-            db.close()
+            close_db()
 
             return redirect(url_for('user.login'))
 
+        except ValueError as error:
+            # imprimir error
+            flash(str(error))
+
         except Exception as error:
             # imprimir error
-            print(error.args)
-            # flash(error)
+            flash(str(error))
+
     return render_template('user/register.html')
 
 
