@@ -1,5 +1,9 @@
 from oracledb import Connection, Cursor
 
+# user model
+
+from src.models import GruposColaboradores, Usuario
+
 
 class GruposColaboradoresDao:
 
