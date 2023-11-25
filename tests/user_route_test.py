@@ -1,11 +1,21 @@
-import unittest
-from src.models import Usuario
-from src.schema import UsuarioDao
-from src.db import get_db, close_db
+
+try:
+
+    import unittest
+    from ..config import create_app
+    from src.models import Usuario
+    from src.db.database import get_db, close_db
+    from src.schema import UsuarioDao
+
+except Exception as e:
+    print('Some modules are missing {}'.format(e))
 
 
 class TestUsuarioDao(unittest.TestCase):
     def setUp(self):
+        self.app = create_app('testing')
+        self.app.run(debug=True)
+        self.client = self.app.test_client()
         self.db, self.c = get_db()
 
     def tearDown(self):
@@ -15,14 +25,14 @@ class TestUsuarioDao(unittest.TestCase):
     def test_insert(self):
         with self.app.app_context():
             user = Usuario()
-            user.nombres = 'test'
+            user.nombres = 'testing'
             user.email = 'test@gmail.com'
             user.fecha_nacimiento = '2003/05/05'
             user.pais = 'ecuador'
             user.ciudad = 'quito'
             user.telefono = '0987654321'
             with open('public/static/img/profile.jpg', 'rb') as file:
-                user.image_perfil = file.read()
+                user.image_perfil = file
             user.contrasena = 'password'
             user.generateEstado()
             user.generateHashId()
@@ -38,5 +48,5 @@ class TestUsuarioDao(unittest.TestCase):
             self.assertIsNotNone(result)
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     unittest.main()
