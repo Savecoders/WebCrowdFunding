@@ -6,10 +6,15 @@ import uuid
 # generate_password_hash: Genera un hash de la contraseña
 from werkzeug.security import generate_password_hash
 
+# secure_filename: Valida el nombre de un archivo
+from werkzeug.utils import secure_filename
+import os
+import base64
+
 # desing pattern: Data Transfer Object - DTO
 
 
-class Usuarios:
+class Usuario:
 
     # contructor
     def __init__(self, id_usuario, nombres, contrasena, telefono, estado, email, image_perfil, pais, ciudad, fecha_nacimiento):
@@ -45,6 +50,10 @@ class Usuarios:
     @property
     def id_usuario(self):
         return self.__id
+
+    @id_usuario.setter
+    def id_usuario(self, id_usuario):
+        self.__id = id_usuario
 
     @property
     def nombres(self):
@@ -113,7 +122,9 @@ class Usuarios:
 
     @image_perfil.setter
     def image_perfil(self, image_perfil):
-        self.__image_perfil = image_perfil
+        # Grabar image name
+        filename = secure_filename(image_perfil.filename)
+        self.__image_perfil = image_perfil.read()
 
     @property
     def pais(self):
@@ -153,15 +164,18 @@ class Usuarios:
 
     @fecha_nacimiento.setter
     def fecha_nacimiento(self, fecha_nacimiento):
-        if not re.match(r'^\d{2}-\d{2}-\d{4}$', fecha_nacimiento):
+        if not re.match(r'^\d{4}-\d{2}-\d{2}$', fecha_nacimiento):
             raise ValueError(
-                "La fecha de nacimiento debe estar en formato DD-MM-YYYY.")
+                "La fecha de nacimiento debe estar en formato YYYY-MM-DD.")
         self.__fecha_nacimiento = fecha_nacimiento
 
     # METODOS
 
-    def setHashId(self):
+    def generateHashId(self):
         self.__id = hashlib.sha256(uuid.uuid4().bytes).hexdigest()
 
-    def generarHashContrasena(self):
+    def generateHashPassword(self):
         self.__contrasena = generate_password_hash(self.__contrasena)
+
+    def generateEstado(self):
+        self.__estado = 'activo'
