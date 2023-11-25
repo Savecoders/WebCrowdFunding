@@ -4,9 +4,6 @@ import click
 from flask import current_app as app, g
 from flask.cli import with_appcontext
 
-# instructions
-from src.schema import instructions
-
 
 # in this class we have all functions to connect with database
 # but you don't need to use this class, you can use the functions

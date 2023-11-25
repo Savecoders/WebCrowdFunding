@@ -21,54 +21,60 @@ bp = Blueprint('user', __name__, url_prefix='/user')
 @bp.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
-        username = request.form['username']
-        mail = request.form['email']
-        date_born = request.form['date_born']
-        country = request.form['country']
-        city = request.form['city']
-        phone = request.form['phone']
-        password = request.form['password']
+        # username = request.form['username']
+        # mail = request.form['email']
+        # date_born = request.form['date_born']
+        # country = request.form['country']
+        # city = request.form['city']
+        # phone = request.form['phone']
+        # image_profile = request.form['image_profile']
+        # password = request.form['password']
 
-        id = hashlib.sha256(uuid.uuid4().bytes).hexdigest()
+        # id = hashlib.sha256(uuid.uuid4().bytes).hexdigest()
 
-        db, c = get_db()
+        # db, c = get_db()
 
-        error = None
+        # error = None
 
-        if not username:
-            error = 'Username is required'
+        # if not username:
+        #     error = 'Username is required'
 
-        elif not password:
-            error = 'Password is required'
+        # elif not password:
+        #     error = 'Password is required'
 
-        elif not mail:
-            error = 'Mail is required'
+        # elif not mail:
+        #     error = 'Mail is required'
 
-        elif not date_born:
-            error = 'Date born is required'
+        # elif not date_born:
+        #     error = 'Date born is required'
 
-        elif not country:
-            error = 'Country is required'
+        # elif not country:
+        #     error = 'Country is required'
 
-        elif not city:
-            error = 'City is required'
+        # elif not city:
+        #     error = 'City is required'
 
-        elif not phone:
-            error = 'Phone is required'
+        # elif not phone:
+        #     error = 'Phone is required'
 
-        if error is None:
+        # if error is None:
 
-            c.execute("SELECT * FROM USUARIO")
+        #     c.execute("SELECT * FROM USUARIO")
 
-            sql = 'INSERT INTO USUARIO(id, username, password, mail, date_born, country, city, phone) VALUES (:1, :2, :3, :4, :5, :6, :7, :8)'
+        #     sql = 'INSERT INTO USUARIO(id, username, password, mail, date_born, country, city, phone) VALUES (:1, :2, :3, :4, :5, :6, :7, :8)'
 
-            values = (id, username, generate_password_hash(password),
-                      mail, date_born, country, city, phone)
+        #     values = (id, username, generate_password_hash(password),
+        #               mail, date_born, country, city, phone)
 
-            c.execute(sql, values)
-            db.commit()
-            return redirect(url_for('user.login'))
+        #     c.execute(sql, values)
+        #     db.commit()
+        #     return redirect(url_for('user.login'))
 
+        # create user
+        try:
+            pass
+        except Exception as error:
+            flash(error)
     return render_template('user/register.html')
 
 
