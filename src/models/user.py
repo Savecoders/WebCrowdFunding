@@ -17,7 +17,7 @@ import base64
 class Usuario:
 
     # contructor
-    def __init__(self, id_usuario, nombres, contrasena, telefono, estado, email, image_perfil, pais, ciudad, fecha_nacimiento):
+    def __init__(self, id_usuario=None, nombres=None, contrasena=None, telefono=None, estado=None, email=None, image_perfil=None, pais=None, ciudad=None, fecha_nacimiento=None):
         self.__id = id_usuario
         self.__nombres = nombres
         self.__contrasena = contrasena
@@ -28,19 +28,6 @@ class Usuario:
         self.__pais = pais
         self.__ciudad = ciudad
         self.__fecha_nacimiento = fecha_nacimiento
-
-    # defaul constructor
-    def __init__(self):
-        self.__id = None
-        self.__nombres = None
-        self.__contrasena = None
-        self.__telefono = None
-        self.__estado = None
-        self.__email = None
-        self.__image_perfil = None
-        self.__pais = None
-        self.__ciudad = None
-        self.__fecha_nacimiento = None
 
     def __str__(self):
         return f'{self.__id}, {self.__nombres}, {self.__contrasena}, {self.__telefono}, {self.__estado}, {self.__email}, {self.__image_perfil}, {self.__pais}, {self.__ciudad}, {self.__fecha_nacimiento}'
@@ -118,7 +105,16 @@ class Usuario:
 
     @property
     def image_perfil(self):
-        return self.__image_perfil
+        if self.__image_perfil:
+            # Read bytes from LOB
+            image_bytes = self.__image_perfil
+            # Convert bytes to base64
+            image_encoded = base64.b64encode(image_bytes).decode('utf-8')
+            # Create data URL
+            image_data_url = f"data:image/png;base64,{image_encoded}"
+            return image_data_url
+        else:
+            return None
 
     @image_perfil.setter
     def image_perfil(self, image_perfil):
@@ -200,3 +196,8 @@ class Usuario:
 
     def generateEstado(self):
         self.__estado = 'activo'
+
+    def load_image_perfil(self):
+        if self.__image_perfil:
+            # Read bytes from LOB
+            self.__image_perfil = self.__image_perfil.read()

@@ -52,25 +52,24 @@ def register():
             usuario.generateHashId()
 
             # database connection
-            db, c = get_db()
+            database = DataBase()
 
             # user dao
-            usuario_dao = UsuarioDao(db, c)
+            usuario_dao = UsuarioDao(database.connection, database.cursor)
 
             # insert user
             usuario_dao.insert(usuario)
-
-            # close database connection
-            close_db()
 
             return redirect(url_for('user.login'))
 
         except ValueError as error:
             # imprimir error
+            print(error)
             flash(str(error))
 
         except Exception as error:
             # imprimir error
+            print(error)
             flash(str(error))
 
     return render_template('user/register.html')
@@ -79,56 +78,81 @@ def register():
 @bp.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
+        # get form data
         email = request.form['email']
         password = request.form['password']
-        db, c = get_db()
+
+        database = DataBase()
+
+        # capture error
+
         error = None
 
-        c.execute(
-            'select * from USUARIO where mail = :1', (email,)
-        )
+        usuario_dao = UsuarioDao(database.connection, database.cursor)
 
-        user = c.fetchone()
+        user = usuario_dao.get_by_email(email)
+
+        # close database connection
+        database.close()
 
         if user is None:
             error = 'Invalid password or mail'
-        elif not check_password_hash(user['password'], password):
+        elif not check_password_hash(user.contrasena, password):
             error = 'Invalid password or mail'
 
         if error is None:
             session.clear()
-            session['user_id'] = user['id']
-            return redirect(url_for('/'))
+            session['id_usuario'] = user.id_usuario
+            return redirect(url_for('user.profile'))
         flash(error)
     return render_template('user/login.html')
 
 
+@bp.before_app_request
+def load_logged_in_user():
+
+    id_usuario = session.get('id_usuario')
+
+    if id_usuario is None:
+        g.user = None
+    else:
+        database = DataBase()
+
+        usuario_dao = UsuarioDao(database.connection, database.cursor)
+
+        user = usuario_dao.get_by_id(id_usuario)
+
+        user.load_image_perfil()
+
+        g.user = user
+
+
+def login_required(view):
+    @functools.wraps(view)
+    def wrapper_view(**kwargs):
+        if g.user is None:
+            return redirect(url_for('user.login'))
+
+        return view(**kwargs)
+
+    return wrapper_view
+
+
 @bp.route('/update', methods=['GET', 'POST'])
+@login_required
 def update():
     if request.method == 'POST':
-
-        db, c = get_db()
-
-        user = Usuario()
-        user.nombres = 'test'
-        user.email = 'test@gmail.com'
-        user.fecha_nacimiento = '2003-05-05'
-        user.pais = 'ecuador'
-        user.ciudad = 'quito'
-        user.telefono = '0987654321'
-        with open('public/static/img/profile.jpg', 'rb') as file:
-            user.image_perfil = file.read()
-        user.contrasena = 'password'
-        user.generateEstado()
-        user.generateHashId()
-        user.generateHashPassword()
-
-        user_dao = UsuarioDao(db, c)
-        user_dao.insert(user)
         return 'Create user'
     return render_template('user/update.html')
 
 
 @bp.route('/profile', methods=['GET'])
+@login_required
 def profile():
-    return 'Profile'
+    return render_template('user/profile.html')
+
+
+@bp.route('/logout')
+def logout():
+    session.clear()
+    return redirect(url_for('user.login'))
