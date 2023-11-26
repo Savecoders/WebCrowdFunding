@@ -54,7 +54,9 @@ class UsuarioDao:
 
         for row in data:
             usuario = Usuario(row[0], row[1], row[2], row[3],
-                              row[4], row[5], row[6], row[8], row[9])
+                              row[4], row[5], row[6], row[7],
+                              row[8], row[9]
+                              )
 
             usuarios.append(usuario)
 
@@ -72,7 +74,9 @@ class UsuarioDao:
         data = self.__cursor.fetchone()
 
         usuario = Usuario(data[0], data[1], data[2], data[3],
-                          data[4], data[5], data[6], data[8], data[9])
+                          data[4], data[5], data[6], data[7],
+                          data[8], data[9]
+                          )
         return usuario
 
     # SELECT USER BY EMAIL
@@ -85,8 +89,13 @@ class UsuarioDao:
         self.__cursor.execute(sql, values)
         data = self.__cursor.fetchone()
 
+        if data is None:
+            return None
+
         usuario = Usuario(data[0], data[1], data[2], data[3],
-                          data[4], data[5], data[6], data[8], data[9])
+                          data[4], data[5], data[6], data[7],
+                          data[8], data[9]
+                          )
 
         return usuario
 

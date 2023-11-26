@@ -10,14 +10,14 @@ from flask.cli import with_appcontext
 
 class DataBase:
     def __init__(self) -> None:
-        self.connection = oracledb.connect(
+        self._connection = oracledb.connect(
             port=app.config['DATABASE_PORT'],
             user=app.config['DATABASE_USER'],
             password=app.config['DATABASE_PASSWORD'],
             dsn=app.config['DATABASE_DSN'],
             host=app.config['DATABASE_HOST']
         )
-        self.cursor = self.connection.cursor()
+        self._cursor = self._connection.cursor()
 
     # initialize database
     def initialize(self) -> None:
@@ -26,42 +26,42 @@ class DataBase:
             sql_commands = file.read().split(';')
             for command in sql_commands:
                 if command.strip() != '':
-                    self.cursor.execute(command)
-        self.connection.commit()
+                    self._cursor.execute(command)
+        self._connection.commit()
 
     # cursor get and setter
     @property
     def cursor(self) -> oracledb.Cursor:
-        return self.cursor
+        return self._cursor
 
     @cursor.setter
     def cursor(self, cursor: oracledb.Cursor) -> None:
-        self.cursor = cursor
+        self._cursor = cursor
 
     @property
     def connection(self) -> oracledb.Connection:
-        return self.connection
+        return self._connection
 
     @connection.setter
     def connection(self, connection: oracledb.Connection) -> None:
-        self.connection = connection
+        self._connection = connection
 
     def openCursor(self) -> None:
-        self.cursor = self.connection.cursor()
+        self._cursor = self._connection.cursor()
 
     def closeCursor(self) -> None:
-        self.cursor.close()
+        self._cursor.close()
 
     # close connection
     def close(self) -> None:
-        self.connection.close()
+        self._connection.close()
 
     # querys for database
 
     # single query
     def query(self, query):
-        self.cursor.execute(query)
-        return self.cursor.fetchone()
+        self._cursor.execute(query)
+        return self._cursor.fetchone()
 
 # ----------------------
 #!   Functions of db app
