@@ -3,6 +3,7 @@ body {
   padding: 0;
   gap: 0;
   overflow: auto;
+  font-family: "Raleway", sans-serif;
 }
 
 .flex {
@@ -24,20 +25,23 @@ body {
 }
 
 .register-card h1 {
-  font-family: "Inter", sans-serif;
   color: var(--text-color);
-  font-size: 3ch;
+  font-family: "Inter", sans-serif;
+  font-size: 3.6ch;
   margin: 0;
 }
 
 .register-card h4 {
   color: var(--text-color);
-  font-size: 1.6ch;
+  font-family: "Raleway", sans-serif;
+  font-weight: 600;
+  margin: 0;
+  font-size: 2ch;
 }
 
 .register-card a {
   color: var(--text-color);
-  font-size: 1.6ch;
+  font-size: 1.7ch;
   text-decoration: underline;
 }
 
@@ -55,6 +59,7 @@ body {
   outline: none;
   color: var(--text-color);
   width: 320px;
+  font-size: 1rem;
   background-color: var(--bg);
   -webkit-transition: all 0.2s ease-out;
   -moz-transition: all 0.2s ease-out;
@@ -83,6 +88,12 @@ body {
   background-position: center;
   border-radius: 5px;
   border: 1px solid var(--accent-color-transparent);
+}
+
+.image-upload__icon:hover {
+  border: 1px solid #79a6fe;
+  background-color: var(--bg2);
+  cursor: pointer;
 }
 
 .file-upload input[type="file"] {
@@ -143,7 +154,9 @@ body {
 .btn1 {
   color: var(--text-color2);
   background: var(--accent-color);
-  font-size: 1rem;
+  font-family: "Inter", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 600;
   width: 320px;
   border-radius: 5px;
   transition: 0.3s;
