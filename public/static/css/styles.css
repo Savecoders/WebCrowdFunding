@@ -6,11 +6,11 @@
   width: 90%;
   margin: 0 auto;
   overflow: hidden;
-  max-width: 1200px;
+  max-width: 1600px;
 }
 
 .nav {
-  height: 90px;
+  height: 80px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -64,6 +64,7 @@
   margin: 0 auto;
   cursor: pointer;
   padding: 20px 0;
+  font-size: 2ch;
 }
 
 .nav__item:has(.nav__parent) {
@@ -87,7 +88,7 @@
 }
 
 .logo__name {
-  font-size: 26px;
+  font-size: 3.2ch;
   font-family: "Inter", sans-serif;
   font-weight: 600;
   text-decoration: none;
@@ -115,6 +116,24 @@
   padding: 20px 0;
 }
 
+.nav__parent .nav__image-perfil {
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+  background-repeat: no-repeat;
+  background-position: center;
+  image-rendering: optimizeQuality;
+  filter: drop-shadow(0 0 0.15rem var(--accent-color-transparent));
+  aspect-ratio: 3/2;
+  object-fit: cover;
+  mix-blend-mode: normal;
+}
+
+.nav__parent:hover {
+  color: var(--bg-actions);
+  font-weight: 700;
+}
+
 .arrow__down {
   width: 8px;
   height: 10px;
@@ -128,16 +147,13 @@
   text-decoration: none;
   color: var(--text-color);
 }
-a:hover {
+.nav__item a:hover {
   text-decoration-thickness: underline;
+  color: var(--bg-actions);
   font-weight: bolder;
 }
 
 .nav__login {
-  width: 90%;
-  margin: 0 auto;
-  padding-top: 4em;
-  padding-bottom: 4em;
   text-align: center;
   color: var(--accent-color);
   font-weight: bold;
@@ -155,9 +171,10 @@ a:hover {
 }
 
 .nav__contain_sign {
-  width: 90%;
-  margin: 0 auto;
   text-align: center;
+  font-weight: bold;
+  text-decoration: underline solid 3px;
+  margin-top: 2rem;
 }
 
 .nav__sign {
@@ -179,11 +196,10 @@ a:hover {
 
 /* .media*/
 
-@media (min-width: 1200px) {
+@media (min-width: 1240px) {
   .nav {
-    gap: 3em;
     overflow: visible;
-    padding: 50px 0 0;
+    padding: 2rem 0 0;
   }
 
   .nav__hamburguer {
@@ -208,6 +224,7 @@ a:hover {
 
     display: flex;
     align-items: center;
+    justify-content: space-evenly;
     gap: 2em;
   }
 
@@ -215,8 +232,8 @@ a:hover {
     width: max-content;
     margin: 0;
     padding: 0;
-
     position: relative;
+    font-size: 1.8ch;
   }
 
   .nav__inner {
@@ -240,13 +257,8 @@ a:hover {
     pointer-events: unset;
   }
 
-  .nav__login {
-    width: max-content;
-    margin: 0;
-    margin-left: auto;
-  }
-
   .nav__contain_sign {
     width: auto;
+    margin-top: 0;
   }
 }

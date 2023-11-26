@@ -6,8 +6,8 @@
   --bg2: #fefefe;
   --bg-actions: #121212;
   --secondary-color: #6793ff;
-  --accent-color: #e44542;
-  --hover-color: #d73c39;
+  --accent-color: #f34a48;
+  --hover-color: #c43331;
   --check-color: rgb(123, 215, 92);
   --text-color: #121212;
   --text-color2: #fefefe;
@@ -25,7 +25,7 @@
 }
 
 html {
-  font-size: 110%;
+  font-size: 100%;
 }
 
 * {
