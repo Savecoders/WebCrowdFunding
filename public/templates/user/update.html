@@ -7,16 +7,21 @@
 
 <div class="flex container">
   <div class="flex register-card">
-    <h2>YStart<span>Up</span></h2>
-    <h5>Editar informacion de la cuenta</h5>
-    <form name="formRegister" class="flex box" onsubmit="return checkStuff()">
+    <h1>YStart<span>Up</span></h1>
+    <h4>Su Cuenta: {{ g.user.nombres }}</h4>
+    <form
+      method="post"
+      name="formRegister"
+      class="flex box"
+      enctype="multipart/form-data"
+    >
       <input
         type="text"
-        name="name"
+        name="username"
         placeholder="Nombre Completo"
         autocomplete="off"
-        id="name"
-        oninput="this.value = this.value.replace(/[^a-zA-Z0-9 ]/g, '')"
+        oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '')"
+        value="{{ g.user.nombres }}"
         required
       />
       <input
@@ -24,15 +29,14 @@
         name="email"
         placeholder="Correo Electronico"
         autocomplete="off"
-        id="email"
+        value="{{ g.user.email }}"
         required
       />
       <input
         type="date"
-        name="born"
+        name="date_born"
         placeholder="Fecha de Nacimiento"
         autocomplete="off"
-        id="born"
         required
       />
       <input
@@ -40,8 +44,8 @@
         name="country"
         placeholder="Pais de Residencia"
         autocomplete="off"
-        oninput="this.value = this.value.replace(/[^a-zA-Z0-9 ]/g, '')"
-        id="country"
+        oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '')"
+        value="{{ g.user.pais }}"
         required
       />
       <input
@@ -49,8 +53,8 @@
         name="city"
         placeholder="Ciudad de Residencia"
         autocomplete="off"
-        oninput="this.value = this.value.replace(/[^a-zA-Z0-9 ]/g, '')"
-        id="city"
+        oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '')"
+        value="{{ g.user.ciudad }}"
         required
       />
 
@@ -60,21 +64,53 @@
         placeholder="Numero de Telefono"
         autocomplete="off"
         oninput="this.value = this.value.replace(/[^0-9 ]/g, '')"
-        id="phone"
+        value="{{ g.user.telefono }}"
         required
       />
+
+      <!-- image icon -->
+
+      <div class="file__container-upload">
+        <label class="image-plus__icon">
+          <img
+            src="{{ url_for('static', filename='icons/user/photo-plus.svg') }}"
+            alt="image-upload"
+            id="image-upload-icon"
+            class="image-upload__icon"
+          />
+        </label>
+        <!-- input perfil image -->
+        <button class="file-upload">
+          <span class="file-upload-label">Subir Foto de Perfil</span>
+          <label for="profile"></label>
+          <input
+            type="file"
+            id="profile"
+            accept="image/*"
+            class="file-upload-input"
+            name="image_profile"
+            onchange="checkSubmitFile()"
+          />
+        </button>
+      </div>
+
+      <label for="password__input"
+        >Confirme los cambios con su contraseña
+      </label>
 
       <input
         type="password"
         name="password"
+        id="password__input"
         placeholder="Contraseña"
-        id="password"
         autocomplete="off"
         required
       />
-      <input type="submit" value="Registrar" class="btn1" />
+      <input type="submit" value="Guardar Cambios" class="btn1" />
     </form>
   </div>
 </div>
+
+<script src="{{ url_for('static', filename='js/checkSubmitFile.js') }}"></script>
 
 {% endblock %}

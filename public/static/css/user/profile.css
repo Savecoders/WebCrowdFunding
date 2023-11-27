@@ -1,0 +1,135 @@
+.main__grid {
+  margin-top: 4rem;
+  display: grid;
+  overflow: hidden;
+  gap: 2em;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "profile"
+    " query ";
+  justify-content: center;
+}
+
+.main__article {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: left;
+  grid-area: profile;
+  width: 100%;
+  gap: 2.5em;
+}
+
+.profile__info {
+  display: flex;
+  width: 80%;
+  flex-direction: column;
+  gap: 1.8em;
+}
+
+.profile__info h1 {
+  font-size: 3.5ch;
+  font-weight: 700;
+  font-family: "Inter", sans-serif;
+  color: var(--text-color);
+}
+
+.profile__info h2 {
+  font-size: 2.5ch;
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+.profile__info h4 {
+  font-size: 1.8ch;
+  font-weight: 500;
+  font-family: "Inter", sans-serif;
+  color: var(--text-color);
+}
+
+.profile__container {
+  width: 280px;
+  height: 280px;
+  margin: 0 auto;
+}
+
+.profile__picture {
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.main__seccion {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: left;
+  grid-area: query;
+  width: 100%;
+  gap: 2em;
+}
+
+.profile__groups {
+  display: grid;
+  width: 80%;
+  gap: 3em;
+}
+
+.profile__projects {
+  display: grid;
+  width: 80%;
+  gap: 3em;
+}
+
+.profile__edit__link {
+  color: var(--text-color2);
+  background: var(--accent-color);
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 2.2ch;
+  font-weight: 600;
+  padding: 1rem;
+  transition: 0.3s;
+  text-align: center;
+  text-decoration: none;
+}
+
+/* media  */
+
+@media (min-width: 900px) {
+  .main__grid {
+    margin: 0 auto;
+    padding: 0 2rem;
+    margin-top: 6rem;
+    max-width: 1600px;
+    width: 90%;
+    grid-template-columns: 1fr 3fr;
+    grid-template-areas: "profile query query query";
+  }
+
+  .main__article {
+    width: 100%;
+  }
+
+  .profile__info {
+    width: 100%;
+  }
+
+  .profile__container {
+    width: 300px;
+    height: 300px;
+  }
+
+  .main__seccion {
+    margin: 2rem;
+  }
+
+  .profile__groups {
+    width: 100%;
+  }
+
+  .profile__projects {
+    width: 100%;
+  }
+}

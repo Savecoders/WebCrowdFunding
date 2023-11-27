@@ -1,0 +1,61 @@
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/user/profile.css') }}"
+/>
+
+{% extends "base.html" %} {% block content %} {% include "navbar.html" %}
+
+<main class="main__grid">
+  <!-- profile sidebar -->
+  <article class="main__article">
+    <div class="profile__container">
+      <img
+        src="{{g.user.image_perfil}}"
+        alt="profile picture"
+        class="profile__picture"
+      />
+    </div>
+    <div class="profile__info">
+      <h1>{{ g.user.nombres }}</h1>
+      <h2>{{ g.user.email }}</h2>
+      <h4>{{ g.user.pais }} - {{ g.user.ciudad }}</h4>
+      <h4 class="profile__fecha">{{ g.user.fecha_nacimiento }}</h4>
+      <a href="/user/edit" class="profile__edit__link">Editar Perfil</a>
+    </div>
+  </article>
+
+  <section class="main__seccion">
+    <div class="profile__groups">
+      <h2 class="profile__groups__title">Grupos</h2>
+      <ul class="profile__groups__list">
+        <p>No hay grupos disponibles</p>
+        <!-- {% for group in g.user.groups %}
+            <li class="profile__groups__item">
+                <a href="/groups/{{group.id}}" class="profile__groups__link">
+                {{group.name}}
+                </a>
+            </li>
+            {% endfor %} -->
+      </ul>
+    </div>
+
+    <div class="profile__projects">
+      <h2 class="profile__projects__title">Proyectos</h2>
+      <ul class="profile__projects__list">
+        <p>No hay Proyectos disponibles</p>
+
+        <!-- {% for project in g.user.projects %}
+          <li class="profile__projects__item">
+            <a href="/projects/{{project.id}}" class="profile__projects__link">
+              {{project.name}}
+            </a>
+          </li>
+          {% endfor %} -->
+      </ul>
+    </div>
+  </section>
+
+  <!-- groups and projects -->
+</main>
+
+{% endblock %}
