@@ -60,6 +60,9 @@ def register():
             # insert user
             usuario_dao.insert(usuario)
 
+            # close database connection
+            database.close()
+
             return redirect(url_for('user.login'))
 
         except ValueError as error:
@@ -153,6 +156,7 @@ def profile():
 
 
 @bp.route('/logout')
+@login_required
 def logout():
     session.clear()
     return redirect(url_for('user.login'))

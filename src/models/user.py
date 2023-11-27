@@ -201,3 +201,6 @@ class Usuario:
         if self.__image_perfil:
             # Read bytes from LOB
             self.__image_perfil = self.__image_perfil.read()
+
+    def get_binary_image_perfil(self):
+        return self.__image_perfil
