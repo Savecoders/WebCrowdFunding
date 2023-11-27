@@ -110,7 +110,7 @@ class UsuarioDao:
         WHERE IDUSUARIO = :10
         """
         values = (usuario.nombres, usuario.contrasena, usuario.telefono, usuario.estado, usuario.email,
-                  usuario.get_binary_image_perfil(), usuario.pais, usuario.ciudad, usuario.fecha_nacimiento, usuario.id)
+                  usuario.get_binary_image_perfil(), usuario.pais, usuario.ciudad, usuario.fecha_nacimiento, usuario.id_usuario)
         self.__cursor.execute(sql, values)
         self.__conn.commit()
 
@@ -122,7 +122,7 @@ class UsuarioDao:
         WHERE IDUSUARIO = :8
         """
         values = (usuario.nombres, usuario.telefono, usuario.email, usuario.get_binary_image_perfil(),
-                  usuario.pais, usuario.ciudad, usuario.fecha_nacimiento, usuario.id)
+                  usuario.pais, usuario.ciudad, usuario.fecha_nacimiento, usuario.id_usuario)
         self.__cursor.execute(sql, values)
         self.__conn.commit()
 

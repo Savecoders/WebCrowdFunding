@@ -141,11 +141,64 @@ def login_required(view):
     return wrapper_view
 
 
-@bp.route('/update', methods=['GET', 'POST'])
+@bp.route('/edit', methods=['GET', 'POST'])
 @login_required
 def update():
     if request.method == 'POST':
-        return 'Create user'
+
+        password = request.form['password']
+
+        try:
+            # create user object
+            last_user = g.user
+
+            error = None
+
+            if not check_password_hash(last_user.contrasena, password):
+                error = 'Invalid password'
+
+            if error is None:
+
+                # using the last user
+
+                last_user.nombres = request.form['username']
+                last_user.email = request.form['email']
+                last_user.fecha_nacimiento = request.form['date_born']
+                last_user.pais = request.form['country']
+                last_user.ciudad = request.form['city']
+                last_user.telefono = request.form['phone']
+                last_user.image_perfil = request.files['image_profile']
+
+                # database connection
+                database = DataBase()
+
+                # user dao
+                usuario_dao = UsuarioDao(database.connection, database.cursor)
+
+                # update user
+                usuario_dao.update_basic_info(last_user)
+
+                # close database connection
+                database.close()
+
+                # update session
+
+                session.clear()
+                session['id_usuario'] = last_user.id_usuario
+                return redirect(url_for('user.profile'))
+
+            flash(error)
+
+        except ValueError as error:
+            # imprimir error
+            print(error)
+            flash(str(error))
+
+        except Exception as error:
+            # imprimir error
+            print(error)
+            flash(str(error))
+
     return render_template('user/update.html')
 
 
