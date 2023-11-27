@@ -42,15 +42,100 @@
     <div class="profile__projects">
       <h2 class="profile__projects__title">Proyectos</h2>
       <ul class="profile__projects__list">
-        <p>No hay Proyectos disponibles</p>
-
         <!-- {% for project in g.user.projects %}
-          <li class="profile__projects__item">
-            <a href="/projects/{{project.id}}" class="profile__projects__link">
-              {{project.name}}
-            </a>
-          </li>
-          {% endfor %} -->
+        <li class="profile__projects__item">
+          <a href="/projects/{{project.id}}" class="profile__projects__link">
+            {{project.name}}
+          </a>
+        </li>
+        {% else %}
+        <p>No hay Proyectos disponibles</p>
+        {% endfor %} -->
+
+        <li class="project__item" href="/projects/">
+          <img
+            src="{{ url_for('static', filename='img/project.png') }}"
+            alt="img__project"
+          />
+
+          <ul class="projects__info">
+            <a href="/projects/" class="profile__projects__link">
+              Nombre del Proyecto</a
+            >
+            <li class="projects__idea">Idea: Idea del proyecto</li>
+            <li class="projects__group">Grupo: GrupoABC</li>
+            <li class="projects__group">Presupuesto: Activo</li>
+            <li class="projects__date">Fecha de finalizacion: 12/12/2020</li>
+          </ul>
+        </li>
+
+        <li class="project__item" href="/projects/">
+          <img
+            src="{{ url_for('static', filename='img/project.png') }}"
+            alt="img__project"
+          />
+
+          <ul class="projects__info">
+            <a href="/projects/" class="profile__projects__link">
+              Nombre del Proyecto</a
+            >
+            <li class="projects__idea">Idea: Idea del proyecto</li>
+            <li class="projects__group">Grupo: GrupoABC</li>
+            <li class="projects__group">Presupuesto: Activo</li>
+            <li class="projects__date">Fecha de finalizacion: 12/12/2020</li>
+          </ul>
+        </li>
+
+        <li class="project__item" href="/projects/">
+          <img
+            src="{{ url_for('static', filename='img/project.png') }}"
+            alt="img__project"
+          />
+
+          <ul class="projects__info">
+            <a href="/projects/" class="profile__projects__link">
+              Nombre del Proyecto</a
+            >
+            <li class="projects__idea">Idea: Idea del proyecto</li>
+            <li class="projects__group">Grupo: GrupoABC</li>
+            <li class="projects__group">Presupuesto: Activo</li>
+            <li class="projects__date">Fecha de finalizacion: 12/12/2020</li>
+          </ul>
+        </li>
+
+        <li class="project__item" href="/projects/">
+          <img
+            src="{{ url_for('static', filename='img/project.png') }}"
+            alt="img__project"
+          />
+
+          <ul class="projects__info">
+            <a href="/projects/" class="profile__projects__link">
+              Nombre del Proyecto</a
+            >
+            <li class="projects__idea">Idea: Idea del proyecto</li>
+            <li class="projects__group">Grupo: GrupoABC</li>
+            <li class="projects__group">Presupuesto: Activo</li>
+            <li class="projects__date">Fecha de finalizacion: 12/12/2020</li>
+          </ul>
+        </li>
+
+        <li class="project__item" href="/projects/">
+          <img
+            src="{{ url_for('static', filename='img/project.png') }}"
+            alt="img__project"
+          />
+
+          <ul class="projects__info">
+            <a href="/projects/" class="profile__projects__link">
+              Nombre del Proyecto</a
+            >
+            <li class="projects__idea">Idea: Idea del proyecto</li>
+            <li class="projects__group">Grupo: GrupoABC</li>
+            <li class="projects__group">Presupuesto: Activo</li>
+            <li class="projects__date">Fecha de finalizacion: 12/12/2020</li>
+          </ul>
+        </li>
       </ul>
     </div>
   </section>

@@ -1,5 +1,8 @@
 from flask import Blueprint, request, render_template, url_for, session
 
+# login_required
+from .user import login_required
+
 # Create the projects blueprint
 bp = Blueprint('projects', __name__, url_prefix='/projects')
 
@@ -12,6 +15,7 @@ def index():
 
 
 @bp.route('/create', methods=['GET', 'POST'])
+@login_required
 def create():
     if request.method == 'POST':
         return 'Create project'
