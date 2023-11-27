@@ -66,7 +66,7 @@
       <!-- image icon -->
 
       <div class="file__container-upload">
-        <label>
+        <label class="image-plus__icon">
           <img
             src="{{ url_for('static', filename='icons/user/photo-plus.svg') }}"
             alt="image-upload"
@@ -82,6 +82,7 @@
             type="file"
             id="profile"
             accept="image/*"
+            class="file-upload-input"
             name="image_profile"
             onchange="checkSubmitFile()"
           />

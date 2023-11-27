@@ -2,7 +2,6 @@
 
 .main__grid {
   overflow: hidden;
-
   display: grid;
   grid-template-columns: 5% 1fr 5%;
   grid-template-areas: "img img img" ".   text . ";
@@ -24,12 +23,14 @@
 }
 
 .color-effect {
-  font-weight: 900;
-
+  font-size: 2.5rem;
+  font-weight: 700;
+  font-family: "Inter", sans-serif;
   background: linear-gradient(
     120deg,
-    var(--subtext-color),
-    var(--accent-color)
+    var(--accent-color),
+    var(--hover-color),
+    var(--subtext-color)
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -43,6 +44,12 @@
   border-radius: 3px;
   text-decoration: none;
   font-weight: 700;
+}
+
+.main__cta:hover {
+  background-color: var(--text-color2);
+  font-weight: 900;
+  color: var(--bg-actions);
 }
 
 .main__picture {
@@ -72,20 +79,25 @@
 @media (min-width: 900px) {
   .main__grid {
     margin: 0 auto;
-    max-width: 1200px;
+    max-width: 1600px;
     width: 90%;
-    gap: 3em;
+    gap: 4em;
     grid-template-columns: 1fr 1fr;
     grid-template-areas: "text img";
-    padding: 8em 0;
+    padding: 8em 2em;
   }
 
   .main__picture {
     max-height: 500px;
+    max-width: 500px;
   }
 
   .main__img {
     height: 100%;
+  }
+
+  .color-effect {
+    font-size: 3.6rem;
   }
 
   .main__article {
@@ -101,20 +113,23 @@
 
   .main__texts {
     margin: auto 0;
-    gap: 1.3em 0;
+    gap: 1.5em 0;
   }
 
   .main__title {
     font-size: 3rem;
+    font-family: "Raleway", sans-serif;
+    font-weight: 700;
+    line-height: 1.4;
   }
 
   .main__paragraph {
     margin: 2em 0;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     font-weight: lighter;
-    font-style: normal;
-    font-family: "Inter", sans-serif;
+    font-family: "Raleway", sans-serif;
     color: var(--subtext-color);
-    line-height: 1.6;
+    line-height: 1.8;
+    max-width: 56ch;
   }
 }
