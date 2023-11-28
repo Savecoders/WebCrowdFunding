@@ -23,7 +23,7 @@
   background-repeat: no-repeat;
   background-position: center;
   cursor: pointer;
-  z-index: 100;
+  z-index: 999;
   transition: background-image 0.3s;
 }
 
@@ -43,6 +43,7 @@
 .nav__overlay--show {
   opacity: 1;
   pointer-events: unset;
+  z-index: 998;
 }
 
 .nav__menu {
@@ -200,6 +201,7 @@
   .nav {
     overflow: visible;
     padding: 2rem 0 0;
+    margin-top: 0;
   }
 
   .nav__hamburguer {
@@ -239,10 +241,9 @@
   .nav__inner {
     position: absolute;
     left: 0;
-    padding: 0;
     width: max-content;
     height: auto;
-    padding: 2.5em;
+    padding: 2em;
     background-color: var(--bg2);
     z-index: 1000;
     border-radius: 6px;

@@ -58,6 +58,10 @@
   height: 100%;
   object-fit: cover;
   filter: drop-shadow(0 0 3px var(--accent-color-transparent2));
+  background-repeat: no-repeat;
+  background-position: center;
+  image-rendering: optimizeQuality;
+  mix-blend-mode: normal;
 }
 
 .main__aside {
@@ -96,6 +100,12 @@
   transition: 0.3s;
   text-align: center;
   text-decoration: none;
+}
+
+.profile__edit__link:hover {
+  background: var(--hover-color);
+  color: var(--bg);
+  transition: 0.3s;
 }
 
 .profile__title {
@@ -157,6 +167,7 @@
   font-weight: 700;
   color: var(--text-color);
   text-align: center;
+  text-decoration: none;
 }
 
 .card__article .card__data {
@@ -204,7 +215,7 @@
 }
 
 .card__button:hover {
-  background: var(--bg-actions);
+  background: var(--hover-color);
   color: var(--bg);
   transition: 0.3s;
 }

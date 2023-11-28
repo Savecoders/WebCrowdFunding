@@ -17,30 +17,21 @@
         <ul class="nav__inner">
           <li class="nav__dropdown">
             <a href="/projects" class="nav__link">
-              <img
-                src="{{ url_for('static', filename='icons/icon-planning.svg') }}"
-                class="nav__illustration"
-              />
+              <i class="ti ti-border-all"></i>
               Todos los Proyectos
             </a>
           </li>
 
           <li class="nav__dropdown">
             <a href="/projects" class="nav__link">
-              <img
-                src="{{ url_for('static', filename='icons/icon-calendar.svg') }}"
-                class="nav__illustration"
-              />
+              <i class="ti ti-archive"></i>
               Proyectos mas Antiguos
             </a>
           </li>
 
           <li class="nav__dropdown">
             <a href="/projects" class="nav__link">
-              <img
-                src="{{ url_for('static', filename='icons/icon-todo.svg') }}"
-                class="nav__illustration"
-              />
+              <i class="ti ti-chart-histogram"></i>
               Inversiones mas Altas
             </a>
           </li>
@@ -55,11 +46,15 @@
 
         <ul class="nav__inner">
           <li class="nav__dropdown">
-            <a href="/projects" class="nav__link">Proyecto DB</a>
+            <a href="/projects" class="nav__link"
+              ><i class="ti ti-database"></i> Proyecto Datos</a
+            >
           </li>
 
           <li class="nav__dropdown">
-            <a href="/projects" class="nav__link">Nuestro Equipo</a>
+            <a href="/projects" class="nav__link"
+              ><i class="ti ti-box"></i> Nuestro Equipo</a
+            >
           </li>
         </ul>
       </li>
@@ -86,15 +81,21 @@
 
         <ul class="nav__inner">
           <li class="nav__dropdown">
-            <a href="/user/profile" class="nav__link">Perfil</a>
+            <a href="/user/profile" class="nav__link"
+              ><i class="ti ti-user"></i> Perfil</a
+            >
           </li>
 
           <li class="nav__dropdown">
-            <a href="/user/profile" class="nav__link">Configuracion</a>
+            <a href="/user/edit" class="nav__link"
+              ><i class="ti ti-settings"></i> Configuracion</a
+            >
           </li>
 
           <li class="nav__dropdown">
-            <a href="/user/logout" class="nav__link">Cerrar Sesion</a>
+            <a href="/user/logout" class="nav__link"
+              ><i class="ti ti-logout"></i> Cerrar Sesion</a
+            >
           </li>
         </ul>
       </li>

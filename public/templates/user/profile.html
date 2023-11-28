@@ -18,10 +18,18 @@
     <div class="profile__info">
       <h1>{{ g.user.nombres }}</h1>
       <h2>{{ g.user.email }}</h2>
-      <h4>{{ g.user.pais }} - {{ g.user.ciudad }}</h4>
-      <h4>{{ g.user.telefono }}</h4>
-      <h4 class="profile__fecha">{{ g.user.fecha_nacimiento }}</h4>
-      <a href="/user/edit" class="profile__edit__link">Editar Perfil</a>
+      <h4>
+        <i class="ti ti-location-filled"></i> {{ g.user.pais }} - {{
+        g.user.ciudad }}
+      </h4>
+      <h4><i class="ti ti-phone-filled"></i> {{ g.user.telefono }}</h4>
+      <h4 class="profile__fecha">
+        <i class="ti ti-align-box-left-middle-filled"></i> {{
+        g.user.fecha_nacimiento }}
+      </h4>
+      <a href="/user/edit" class="profile__edit__link"
+        ><i class="ti ti-edit"></i> Editar Perfil</a
+      >
     </div>
   </article>
 
@@ -40,7 +48,9 @@
         </div>-->
 
         <div class="card__group">
-          <a href="" class="card__title">Team Name</a>
+          <a href="" class="card__title"
+            ><i class="ti ti-external-link"></i> Team Name</a
+          >
           <!-- Persons names -->
           <p class="card__date">Pablo Pincay</p>
           <p class="card__date">Miguel Nunez</p>
@@ -49,7 +59,9 @@
         </div>
 
         <div class="card__group">
-          <a href="" class="card__title">Team Name</a>
+          <a href="" class="card__title"
+            ><i class="ti ti-external-link"></i> Team Name</a
+          >
           <!-- Persons names -->
           <p class="card__date">Pablo Pincay</p>
           <p class="card__date">Miguel Nunez</p>
@@ -58,7 +70,9 @@
         </div>
 
         <div class="card__group">
-          <a href="" class="card__title">Team Name</a>
+          <a href="" class="card__title"
+            ><i class="ti ti-external-link"></i> Team Name</a
+          >
           <!-- Persons names -->
           <p class="card__date">Pablo Pincay</p>
           <p class="card__date">Miguel Nunez</p>
