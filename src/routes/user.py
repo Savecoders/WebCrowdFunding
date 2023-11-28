@@ -212,4 +212,4 @@ def profile():
 @login_required
 def logout():
     session.clear()
-    return redirect(url_for('user.login'))
+    return redirect(url_for('index'))
