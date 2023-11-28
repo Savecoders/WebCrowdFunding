@@ -19,126 +19,152 @@
       <h1>{{ g.user.nombres }}</h1>
       <h2>{{ g.user.email }}</h2>
       <h4>{{ g.user.pais }} - {{ g.user.ciudad }}</h4>
+      <h4>{{ g.user.telefono }}</h4>
       <h4 class="profile__fecha">{{ g.user.fecha_nacimiento }}</h4>
       <a href="/user/edit" class="profile__edit__link">Editar Perfil</a>
     </div>
   </article>
 
-  <section class="main__seccion">
+  <aside class="main__aside">
     <div class="profile__groups">
-      <h2 class="profile__groups__title">Grupos</h2>
-      <ul class="profile__groups__list">
-        <p>No hay grupos disponibles</p>
-        <!-- {% for group in g.user.groups %}
-            <li class="profile__groups__item">
-                <a href="/groups/{{group.id}}" class="profile__groups__link">
-                {{group.name}}
-                </a>
-            </li>
-            {% endfor %} -->
-      </ul>
+      <h2 class="profile__title">Grupos</h2>
+      <section class="profile__groups__list">
+        <!-- <p>No hay grupos disponibles</p> -->
+
+        <!-- <div class="card__group">
+          <a href="" class="card__title">Team Name</a>
+          <p class="card__date">Pablo Pincay</p>
+          <p class="card__date">Miguel Nunez</p>
+          <p class="card__date">Jeshua Naranjo</p>
+          <p class="card__date">Samantha Mendoza</p>
+        </div>-->
+
+        <div class="card__group">
+          <a href="" class="card__title">Team Name</a>
+          <!-- Persons names -->
+          <p class="card__date">Pablo Pincay</p>
+          <p class="card__date">Miguel Nunez</p>
+          <p class="card__date">Jeshua Naranjo</p>
+          <p class="card__date">Samantha Mendoza</p>
+        </div>
+
+        <div class="card__group">
+          <a href="" class="card__title">Team Name</a>
+          <!-- Persons names -->
+          <p class="card__date">Pablo Pincay</p>
+          <p class="card__date">Miguel Nunez</p>
+          <p class="card__date">Jeshua Naranjo</p>
+          <p class="card__date">Samantha Mendoza</p>
+        </div>
+
+        <div class="card__group">
+          <a href="" class="card__title">Team Name</a>
+          <!-- Persons names -->
+          <p class="card__date">Pablo Pincay</p>
+          <p class="card__date">Miguel Nunez</p>
+          <p class="card__date">Jeshua Naranjo</p>
+          <p class="card__date">Samantha Mendoza</p>
+        </div>
+      </section>
     </div>
 
     <div class="profile__projects">
-      <h2 class="profile__projects__title">Proyectos</h2>
-      <ul class="profile__projects__list">
-        <!-- {% for project in g.user.projects %}
-        <li class="profile__projects__item">
-          <a href="/projects/{{project.id}}" class="profile__projects__link">
-            {{project.name}}
-          </a>
-        </li>
-        {% else %}
-        <p>No hay Proyectos disponibles</p>
-        {% endfor %} -->
+      <h2 class="profile__title">Proyectos</h2>
 
-        <li class="project__item" href="/projects/">
+      <section class="projects__container">
+        <!-- <article class="card__article">
           <img
-            src="{{ url_for('static', filename='img/project.png') }}"
-            alt="img__project"
+            class="media"
+            src="{{ url_for('static', filename='img/project.png')  }}"
+            alt="image this project"
           />
+          <div class="card__data">
+            <span class="card__date">21-05-2023</span>
+            <h2 class="card__title">The best Project</h2>
+            <a href="#" class="card__button">Ver mas</a>
+          </div>
+        </article> -->
 
-          <ul class="projects__info">
-            <a href="/projects/" class="profile__projects__link">
-              Nombre del Proyecto</a
-            >
-            <li class="projects__idea">Idea: Idea del proyecto</li>
-            <li class="projects__group">Grupo: GrupoABC</li>
-            <li class="projects__group">Presupuesto: Activo</li>
-            <li class="projects__date">Fecha de finalizacion: 12/12/2020</li>
-          </ul>
-        </li>
-
-        <li class="project__item" href="/projects/">
+        <article class="card__article">
           <img
-            src="{{ url_for('static', filename='img/project.png') }}"
-            alt="img__project"
+            class="media"
+            src="{{ url_for('static', filename='img/project.png')  }}"
+            alt="image this project"
           />
+          <div class="card__data">
+            <span class="card__date">21-05-2023</span>
+            <h2 class="card__title">The best Project</h2>
+            <a href="#" class="card__button">Ver mas</a>
+          </div>
+        </article>
 
-          <ul class="projects__info">
-            <a href="/projects/" class="profile__projects__link">
-              Nombre del Proyecto</a
-            >
-            <li class="projects__idea">Idea: Idea del proyecto</li>
-            <li class="projects__group">Grupo: GrupoABC</li>
-            <li class="projects__group">Presupuesto: Activo</li>
-            <li class="projects__date">Fecha de finalizacion: 12/12/2020</li>
-          </ul>
-        </li>
-
-        <li class="project__item" href="/projects/">
+        <article class="card__article">
           <img
-            src="{{ url_for('static', filename='img/project.png') }}"
-            alt="img__project"
+            class="media"
+            src="{{ url_for('static', filename='img/project.png')  }}"
+            alt="image this project"
           />
+          <div class="card__data">
+            <span class="card__date">21-05-2023</span>
+            <h2 class="card__title">The best Project</h2>
+            <a href="#" class="card__button">Ver mas</a>
+          </div>
+        </article>
 
-          <ul class="projects__info">
-            <a href="/projects/" class="profile__projects__link">
-              Nombre del Proyecto</a
-            >
-            <li class="projects__idea">Idea: Idea del proyecto</li>
-            <li class="projects__group">Grupo: GrupoABC</li>
-            <li class="projects__group">Presupuesto: Activo</li>
-            <li class="projects__date">Fecha de finalizacion: 12/12/2020</li>
-          </ul>
-        </li>
-
-        <li class="project__item" href="/projects/">
+        <article class="card__article">
           <img
-            src="{{ url_for('static', filename='img/project.png') }}"
-            alt="img__project"
+            class="media"
+            src="{{ url_for('static', filename='img/project.png')  }}"
+            alt="image this project"
           />
+          <div class="card__data">
+            <span class="card__date">21-05-2023</span>
+            <h2 class="card__title">The best Project</h2>
+            <a href="#" class="card__button">Ver mas</a>
+          </div>
+        </article>
 
-          <ul class="projects__info">
-            <a href="/projects/" class="profile__projects__link">
-              Nombre del Proyecto</a
-            >
-            <li class="projects__idea">Idea: Idea del proyecto</li>
-            <li class="projects__group">Grupo: GrupoABC</li>
-            <li class="projects__group">Presupuesto: Activo</li>
-            <li class="projects__date">Fecha de finalizacion: 12/12/2020</li>
-          </ul>
-        </li>
-
-        <li class="project__item" href="/projects/">
+        <article class="card__article">
           <img
-            src="{{ url_for('static', filename='img/project.png') }}"
-            alt="img__project"
+            class="media"
+            src="{{ url_for('static', filename='img/project.png')  }}"
+            alt="image this project"
           />
+          <div class="card__data">
+            <span class="card__date">21-05-2023</span>
+            <h2 class="card__title">The best Project</h2>
+            <a href="#" class="card__button">Ver mas</a>
+          </div>
+        </article>
 
-          <ul class="projects__info">
-            <a href="/projects/" class="profile__projects__link">
-              Nombre del Proyecto</a
-            >
-            <li class="projects__idea">Idea: Idea del proyecto</li>
-            <li class="projects__group">Grupo: GrupoABC</li>
-            <li class="projects__group">Presupuesto: Activo</li>
-            <li class="projects__date">Fecha de finalizacion: 12/12/2020</li>
-          </ul>
-        </li>
-      </ul>
+        <article class="card__article">
+          <img
+            class="media"
+            src="{{ url_for('static', filename='img/project.png')  }}"
+            alt="image this project"
+          />
+          <div class="card__data">
+            <span class="card__date">21-05-2023</span>
+            <h2 class="card__title">The best Project</h2>
+            <a href="#" class="card__button">Ver mas</a>
+          </div>
+        </article>
+
+        <article class="card__article">
+          <img
+            class="media"
+            src="{{ url_for('static', filename='img/project.png')  }}"
+            alt="image this project"
+          />
+          <div class="card__data">
+            <span class="card__date">21-05-2023</span>
+            <h2 class="card__title">The best Project</h2>
+            <a href="#" class="card__button">Ver mas</a>
+          </div>
+        </article>
+      </section>
     </div>
-  </section>
+  </aside>
 
   <!-- groups and projects -->
 </main>
