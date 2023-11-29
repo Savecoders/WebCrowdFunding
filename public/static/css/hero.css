@@ -43,6 +43,7 @@
   padding: 0.8em 1.5em;
   border-radius: 3px;
   text-decoration: none;
+  border: 0.1px solid var(--bg-actions);
   font-weight: 700;
 }
 
