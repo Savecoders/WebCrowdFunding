@@ -68,12 +68,12 @@ def register():
         except ValueError as error:
             # imprimir error
             print(error)
-            flash(str(error))
+            flash(str(error), "error")
 
         except Exception as error:
             # imprimir error
             print(error)
-            flash(str(error))
+            flash(str(error), "error")
 
     return render_template('user/register.html')
 
@@ -107,7 +107,7 @@ def login():
             session.clear()
             session['id_usuario'] = user.id_usuario
             return redirect(url_for('user.profile'))
-        flash(error)
+        flash(error, "error")
     return render_template('user/login.html')
 
 
@@ -192,12 +192,12 @@ def update():
         except ValueError as error:
             # imprimir error
             print(error)
-            flash(str(error))
+            flash(str(error), "error")
 
         except Exception as error:
             # imprimir error
             print(error)
-            flash(str(error))
+            flash(str(error), "error")
 
     return render_template('user/update.html')
 

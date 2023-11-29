@@ -1,0 +1,107 @@
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/project.css') }}"
+/>
+
+{% extends "base.html" %} {% block content %} {% include "navbar.html" %}
+
+<section class="section__form">
+  <h1 class="main__title">Crear Proyecto</h1>
+  <h3 class="sub_title">
+    Crea tu proyecto en YStartUp y cuentanos Que es lo que esas manos desean
+    crear!
+  </h3>
+  <form action="" method="post" class="container__form">
+    <label for="titleProject">Titulo del Proyecto:</label>
+    <input
+      type="text"
+      name="titleProject"
+      placeholder="Titulo del Proyecto"
+      autocomplete="off"
+      id="titleProject"
+      oninput="this.value = this.value.replace(/[^a-zA-Z0-9 ]/g, '')"
+      required
+    />
+
+    <label for="ideaProject"> Idea del Proyecto:</label>
+
+    <input
+      type="text"
+      name="ideaProject"
+      placeholder="Idea del Proyecto"
+      autocomplete="off"
+      id="ideaProject"
+      oninput="this.value =
+        this.value.replace(/[^a-zA-Z0-9 ]/g, '')"
+      required
+    />
+
+    <label for="presentacionProject">
+      Escribe la Presentacion del Proyecto:</label
+    >
+
+    <textarea
+      name="presentacionProject"
+      id="presentacionProject"
+      cols="30"
+      rows="3"
+      contenteditable="true"
+    >
+Presentacion....
+        </textarea
+    >
+
+    <label for="descriptionProject">
+      Ingresa tus prototipos en formato png, jpg:
+    </label>
+
+    <label for="images" class="drop-container" id="dropcontainer">
+      <span class="drop-title">Arrastra tus imagenes</span>
+      <input type="file" id="images" accept="image/*" required />
+    </label>
+
+    <label for="descriptionProject">
+      Escribe la descriptcion del Proyecto:</label
+    >
+    <textarea
+      name="DescriptionProject"
+      id="descriptionProject"
+      cols="30"
+      rows="10"
+      contenteditable="true"
+    >
+Descripcion....
+        </textarea
+    >
+
+    <label for="planProject"> Escribe El plan del Proyecto:</label>
+    <textarea
+      name="planProject"
+      id="planProject"
+      cols="30"
+      rows="10"
+      contenteditable="true"
+    >
+Plan de contingencia....
+        </textarea
+    >
+    <input type="submit" value="Guardar Proyecto" class="btn" />
+  </form>
+</section>
+
+<div class="notify-messages">
+  {% with messages = get_flashed_messages(with_categories=true) %} {% for
+  category, message in messages %} {% if category == "success" %}
+  <div class="message success" role="alert">
+    {{ message }} <i class="ti ti-check"></i>
+  </div>
+  {% elif category == "error" %}
+  <div class="message error" role="alert">
+    {{ message }} <i class="ti ti-trash-filled"></i>
+  </div>
+  {% endif %} {% endfor %} {% endwith %}
+</div>
+
+<script src="{{ url_for('static', filename='js/messages.js') }}"></script>
+
+{% endblock %}
