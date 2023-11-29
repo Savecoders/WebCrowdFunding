@@ -1,0 +1,20 @@
+<!-- Error 404 Page -->
+
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/notFind.css') }}"
+/>
+
+<title>{{title}}</title>
+
+{% extends "base.html" %} {% block content %}
+
+<main class="flex container">
+  <section class="flex notFound__container">
+    <h1 class="notFound__title">404</h1>
+    <p class="notFound__description">{{ message }}</p>
+    <a href="/" class="main__link">Volver al inicio</a>
+  </section>
+</main>
+
+{% endblock %}

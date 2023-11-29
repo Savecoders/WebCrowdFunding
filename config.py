@@ -40,4 +40,13 @@ def create_app():
         # use template
         return render_template('index.html', title='Home', message='Hello World!')
 
+    # 404 error handler
+    @app.errorhandler(404)
+    def page_not_found(e):
+        return render_template(
+            'notFindPage.html',
+            title='404 CrowdFunding',
+            message='Page not found'
+        ), 404
+
     return app
