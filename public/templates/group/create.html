@@ -1,0 +1,57 @@
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/group/create.css') }}"
+/>
+
+{% extends "base.html" %} {% block content %} {% include "navbar.html" %}
+
+<main class="main__container">
+  <section>
+    <h1>Crear Grupo</h1>
+
+    <form class="formulate__container" action="/group/new" method="post">
+      <label for="nombregrupos">Nombre del Grupo:</label>
+      <input type="text" id="nombregrupos" name="name" required />
+
+      <input class="btn" type="submit" value="Crear Grupo" />
+    </form>
+  </section>
+
+  <section>
+    <h1>Agregar Usuarios Al Grupo</h1>
+
+    <form
+      class="formulate__container"
+      action="/group/add-user-to-group"
+      method="post"
+    >
+      <label for="mail">Mail del Usuario:</label>
+      <input type="email" id="mail" name="mail" required />
+
+      <input class="btn" type="submit" value="Agregar Usuario al Grupo" />
+    </form>
+  </section>
+</main>
+
+<main class="main__container">
+  <a class="main__cta" href="/user/">Salir</a>
+</main>
+
+<!-- flash messages -->
+
+<div class="notify-messages">
+  {% with messages = get_flashed_messages(with_categories=true) %} {% for
+  category, message in messages %} {% if category == "success" %}
+  <div class="message success" role="alert">
+    {{ message }} <i class="ti ti-check"></i>
+  </div>
+  {% elif category == "error" %}
+  <div class="message error" role="alert">
+    {{ message }} <i class="ti ti-trash-filled"></i>
+  </div>
+  {% endif %} {% endfor %} {% endwith %}
+</div>
+
+<script src="{{ url_for('static', filename='js/messages.js') }}"></script>
+
+{% endblock %}

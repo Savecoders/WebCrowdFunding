@@ -197,6 +197,18 @@
   text-decoration: none;
 }
 
+.card__group .card__date {
+  text-decoration: none;
+  font-size: 1.7ch;
+  color: var(--text-color);
+}
+
+.card__group .card__date:hover {
+  text-decoration-thickness: underline;
+  color: var(--bg-actions);
+  font-weight: bolder;
+}
+
 .card__article .card__data {
   position: absolute;
   top: 0;

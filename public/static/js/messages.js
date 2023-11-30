@@ -1,7 +1,4 @@
-const $ = document.querySelector.bind(document);
-const $$ = document.querySelectorAll.bind(document);
-
-const messages = $$(".message");
+const messages = document.querySelectorAll(".message");
 
 messages.forEach((message) => {
   message.addEventListener("click", () => {
