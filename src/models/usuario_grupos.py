@@ -17,9 +17,9 @@ class UsuarioGrupo:
         # basic validation
 
         if not isinstance(usuario, Usuario) and usuario != None:
-            raise ValueError("No se ha ingresado el Usuario")
+            raise ValueError("The user must be a Usuario object.")
 
         if usuario.id_usuario == None:
-            raise ValueError("El usuario debe tener un id.")
+            raise ValueError("The user must have an id.")
 
         self.__usuario = usuario

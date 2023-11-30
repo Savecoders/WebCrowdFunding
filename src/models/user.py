@@ -19,7 +19,7 @@ class Usuario:
     # contructor
     def __init__(self, id_usuario=None, nombres=None, contrasena=None, telefono=None, estado=None, email=None, image_perfil=None, pais=None, ciudad=None, fecha_nacimiento=None):
         self.__id = id_usuario
-        self.__nombres = nombres
+        self.__nombre = nombres
         self.__contrasena = contrasena
         self.__telefono = telefono
         self.__estado = estado
@@ -30,7 +30,7 @@ class Usuario:
         self.__fecha_nacimiento = fecha_nacimiento
 
     def __str__(self):
-        return f'{self.__id}, {self.__nombres}, {self.__contrasena}, {self.__telefono}, {self.__estado}, {self.__email}, {self.__image_perfil}, {self.__pais}, {self.__ciudad}, {self.__fecha_nacimiento}'
+        return f'{self.__id}, {self.__nombre}, {self.__contrasena}, {self.__telefono}, {self.__estado}, {self.__email}, {self.__image_perfil}, {self.__pais}, {self.__ciudad}, {self.__fecha_nacimiento}'
 
     # GETTERS AND SETTERS
 
@@ -43,25 +43,25 @@ class Usuario:
         self.__id = id_usuario
 
     @property
-    def nombres(self):
-        return self.__nombres
+    def nombre(self):
+        return self.__nombre
 
-    @nombres.setter
-    def nombres(self, nombres):
+    @nombre.setter
+    def nombre(self, nombre):
 
         # basic validation
-        if not isinstance(nombres, str):
-            raise ValueError("El nombre debe ser unas letras y espacios.")
-        if nombres == "":
-            raise ValueError("El nombre no puede estar vacío.")
+        if not isinstance(nombre, str):
+            raise ValueError("The name must be a string.")
+        if nombre == "":
+            raise ValueError("The name can't be empty.")
 
         # strip
-        nombres = nombres.strip()
+        nombreStrip = nombre.strip()
 
-        if (len(nombres) < 4):
-            raise ValueError("El nombre debe tener al menos 3 caracteres.")
+        if (len(nombreStrip) < 4):
+            raise ValueError("The name must have at least 3 characters.")
 
-        self.__nombres = nombres
+        self.__nombre = nombre
 
     @property
     def contrasena(self):
@@ -70,7 +70,7 @@ class Usuario:
     @contrasena.setter
     def contrasena(self, contrasena):
         if len(contrasena) < 8:
-            raise ValueError("La contraseña debe tener al menos 8 caracteres.")
+            raise ValueError("The password must have at least 8 characters.")
         self.__contrasena = contrasena
 
     @property
@@ -80,7 +80,7 @@ class Usuario:
     @telefono.setter
     def telefono(self, telefono):
         if not re.match(r'^\d{10}$', telefono):
-            raise ValueError("El teléfono debe ser un número de 10 dígitos.")
+            raise ValueError("The phone number must have 10 digits.")
         self.__telefono = telefono
 
     @property
@@ -90,7 +90,7 @@ class Usuario:
     @estado.setter
     def estado(self, estado):
         if estado not in ['activo', 'inactivo']:
-            raise ValueError("El estado debe ser 'activo' o 'inactivo'.")
+            raise ValueError("The state must be active or inactive.")
         self.__estado = estado
 
     @property
@@ -100,7 +100,7 @@ class Usuario:
     @email.setter
     def email(self, email):
         if not re.match(r'^[^@]+@[^@]+\.[^@]+$', email):
-            raise ValueError("El email no es válido.")
+            raise ValueError("The email must be a valid email.")
         self.__email = email
 
     @property
@@ -123,7 +123,7 @@ class Usuario:
 
         # validate image
         if not image_perfil:
-            raise ValueError("La imagen de perfil es requerida.")
+            raise ValueError("required image.")
 
         # validate extension
         extensions = ['png', 'jpg', 'jpeg', 'gif']
@@ -133,7 +133,7 @@ class Usuario:
 
         if extension not in extensions:
             raise ValueError(
-                f"La extensión de la imagen debe ser {', '.join(extensions)}.")
+                f"The extension of the image must be{', '.join(extensions)}.")
 
         # get filename and content type
         # in image profile we don't need filename and content type
@@ -153,12 +153,12 @@ class Usuario:
     @pais.setter
     def pais(self, pais):
         if not isinstance(pais, str):
-            raise ValueError("El país debe ser una cadena.")
+            raise ValueError("The country must be a string.")
 
         pais = pais.strip()
 
         if (len(pais) < 4):
-            raise ValueError("El país debe tener al menos 3 caracteres.")
+            raise ValueError("The country must have at least 3 characters.")
 
         self.__pais = pais
 
@@ -169,12 +169,12 @@ class Usuario:
     @ciudad.setter
     def ciudad(self, ciudad):
         if not isinstance(ciudad, str):
-            raise ValueError("La ciudad debe ser una cadena.")
+            raise ValueError("The city must be a string.")
 
         ciudad = ciudad.strip()
 
         if (len(ciudad) < 4):
-            raise ValueError("La ciudad debe tener al menos 3 caracteres.")
+            raise ValueError("The city must have at least 3 characters.")
 
         self.__ciudad = ciudad
 
@@ -186,7 +186,7 @@ class Usuario:
     def fecha_nacimiento(self, fecha_nacimiento):
         if not re.match(r'^\d{4}-\d{2}-\d{2}$', fecha_nacimiento):
             raise ValueError(
-                "La fecha de nacimiento debe estar en formato YYYY-MM-DD.")
+                "The date of birth must be in the format YYYY-MM-DD.")
         self.__fecha_nacimiento = fecha_nacimiento
 
     # METODOS

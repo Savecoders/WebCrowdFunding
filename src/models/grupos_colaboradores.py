@@ -39,16 +39,16 @@ class GruposColaboradores:
     def nombre(self, checknone):
 
         if not isinstance(checknone, str):
-            raise ValueError("El nombre debe ser unas letras y espacios.")
+            raise ValueError("The name must be a string.")
 
         # remove spaces
         checknone_strip = checknone.strip()
 
         if checknone_strip == "":
-            raise ValueError("El nombre no puede estar vacío.")
+            raise ValueError("The name can't be empty.")
 
         if (len(checknone) < 4):
-            raise ValueError("El nombre debe tener al menos 4 caracteres.")
+            raise ValueError("The name must have at least 3 characters.")
 
         self.__nombre = checknone
 
@@ -60,17 +60,17 @@ class GruposColaboradores:
     def descripcion(self, checknone):
 
         if not isinstance(checknone, str):
-            raise ValueError("La descripción debe ser unas letras y espacios.")
+            raise ValueError("The description must be a string.")
 
         # remove spaces
         checknone_strip = checknone.strip()
 
         if checknone_strip == "":
-            raise ValueError("La descripción no puede estar vacía.")
+            raise ValueError("The description can't be empty.")
 
         if (len(checknone) < 4):
             raise ValueError(
-                "La descripción debe tener al menos 4 caracteres.")
+                "The description must have at least 3 characters.")
 
         self.__descripcion = checknone
 
@@ -98,7 +98,7 @@ class GruposColaboradores:
     def usuario_grupos(self, usuario_grupos: list[Usuario]):
 
         if not isinstance(usuario_grupos, list):
-            raise ValueError("No se puede mostrar la lista de Usuarios.")
+            raise ValueError("The user must be a list.")
 
         self.__usuario_grupos = usuario_grupos
 
@@ -107,7 +107,7 @@ class GruposColaboradores:
     def add_usuario_grupo(self, usuario_grupo):
         if not isinstance(usuario_grupo, Usuario):
             raise ValueError(
-                "Error al agregar al usuario al grupo")
+                "The user must be an instance of the Usuario class.")
         self.__usuario_grupos.append(usuario_grupo)
 
     def generate_hash_id(self):
