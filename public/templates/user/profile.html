@@ -10,26 +10,29 @@
   <article class="main__article">
     <div class="profile__container">
       <img
-        src="{{g.user.image_perfil}}"
+        src="{{user.image_perfil}}"
         alt="profile picture"
         class="profile__picture"
       />
     </div>
+
     <div class="profile__info">
-      <h1>{{ g.user.nombres }}</h1>
-      <h2>{{ g.user.email }}</h2>
+      <h1>{{ user.nombres }}</h1>
+      <h2>{{ user.email }}</h2>
       <h4>
-        <i class="ti ti-location-filled"></i> {{ g.user.pais }} - {{
-        g.user.ciudad }}
+        <i class="ti ti-location-filled"></i> {{ user.pais }} - {{ user.ciudad
+        }}
       </h4>
-      <h4><i class="ti ti-phone-filled"></i> {{ g.user.telefono }}</h4>
+      <h4><i class="ti ti-phone-filled"></i> {{ user.telefono }}</h4>
       <h4 class="profile__fecha">
         <i class="ti ti-align-box-left-middle-filled"></i> {{
-        g.user.fecha_nacimiento }}
+        user.fecha_nacimiento }}
       </h4>
+      {% if g.user.id_usuario == user.id_usuario %}
       <a href="/user/edit" class="profile__edit__link"
         ><i class="ti ti-edit"></i> Editar Perfil</a
       >
+      {% endif %}
     </div>
   </article>
 
@@ -37,58 +40,49 @@
     <div class="profile__groups">
       <div class="title__container">
         <h2 class="profile__title">Grupos</h2>
-        <a href=""> <i class="ti ti-user-filled"></i> Agregar</a>
+        {% if g.user.id_usuario == user.id_usuario %}
+        <a href="/group/new"> <i class="ti ti-user-filled"></i> Agregar</a>
+        {% endif %}
       </div>
       <section class="profile__groups__list">
         <!-- <p>No hay grupos disponibles</p> -->
 
         <!-- <div class="card__group">
-          <a href="" class="card__title">Team Name</a>
+          <a href="" class="card__title"><i class="ti ti-external-link"></i> Team Name</a>
           <p class="card__date">Pablo Pincay</p>
           <p class="card__date">Miguel Nunez</p>
           <p class="card__date">Jeshua Naranjo</p>
           <p class="card__date">Samantha Mendoza</p>
-        </div>-->
+        </div> -->
 
+        {% if grupos %} {% for group in grupos %}
         <div class="card__group">
           <a href="" class="card__title"
-            ><i class="ti ti-external-link"></i> Team Name</a
+            ><i class="ti ti-external-link"></i> {{group.nombre}}</a
           >
-          <!-- Persons names -->
-          <p class="card__date">Pablo Pincay</p>
-          <p class="card__date">Miguel Nunez</p>
-          <p class="card__date">Jeshua Naranjo</p>
-          <p class="card__date">Samantha Mendoza</p>
-        </div>
 
-        <div class="card__group">
-          <a href="" class="card__title"
-            ><i class="ti ti-external-link"></i> Team Name</a
-          >
-          <!-- Persons names -->
-          <p class="card__date">Pablo Pincay</p>
-          <p class="card__date">Miguel Nunez</p>
-          <p class="card__date">Jeshua Naranjo</p>
-          <p class="card__date">Samantha Mendoza</p>
+          {% if group.usuario_grupos %} {% for user in group.usuario_grupos %}
+          <a href="/user/{{user.id_usuario}}" class="card__date"
+            ><i class="ti ti-user-filled"></i> {{user.nombres}}
+          </a>
+          {% endfor %} {% else %}
+          <p class="card__date">No hay usuarios</p>
+          {% endif %}
         </div>
+        {% endfor %} {% else %}
 
-        <div class="card__group">
-          <a href="" class="card__title"
-            ><i class="ti ti-external-link"></i> Team Name</a
-          >
-          <!-- Persons names -->
-          <p class="card__date">Pablo Pincay</p>
-          <p class="card__date">Miguel Nunez</p>
-          <p class="card__date">Jeshua Naranjo</p>
-          <p class="card__date">Samantha Mendoza</p>
-        </div>
+        <p>No hay grupos disponibles</p>
+
+        {% endif %}
       </section>
     </div>
 
     <div class="profile__projects">
       <div class="title__container">
         <h2 class="profile__title">Proyectos</h2>
+        {% if g.user.id_usuario == user.id_usuario %}
         <a href=""> <i class="ti ti-apps-filled"></i> Agregar </a>
+        {% endif %}
       </div>
 
       <section class="projects__container">
@@ -188,5 +182,23 @@
 
   <!-- groups and projects -->
 </main>
+
+<!-- flash messages -->
+
+<div class="notify-messages">
+  {% with messages = get_flashed_messages(with_categories=true) %} {% if
+  messages %} {% for category, message in messages %} {% if category ==
+  "success" %}
+  <div class="message success" role="alert">
+    {{ message }} <i class="ti ti-check"></i>
+  </div>
+  {% elif category == "error" %}
+  <div class="message error" role="alert">
+    {{ message }} <i class="ti ti-trash-filled"></i>
+  </div>
+  {% endif %} {% endfor %} {% endif %} {% endwith %}
+</div>
+
+<script src="{{ url_for('static', filename='js/messages.js') }}"></script>
 
 {% endblock %}

@@ -2,7 +2,7 @@ from oracledb import Connection, Cursor
 
 # user model
 
-from src.models import GruposColaboradores, Usuario
+from src.models import GruposColaboradores, Usuario, UsuarioGrupo
 
 
 class GruposColaboradoresDao:
@@ -37,57 +37,105 @@ class GruposColaboradoresDao:
 
     # INSERT GROUP QUERY
 
-    def insert(self, id, nombre):
-        self.cursor.execute(
-            f"""
-            INSERT INTO GRUPOSCOLABORADORES (IDGRUPO, NOMBREGRUPO)
-            VALUES ('{id}', '{nombre}')
-            """
-        )
+    def insert(self, grupo: GruposColaboradores):
+        sql = """
+        INSERT INTO GRUPOSCOLABORADORES (IDGRUPO, NOMBREGRUPO)
+        VALUES (:1, :2)
+        """
+
+        values = (grupo.id_grupo_colaboradores, grupo.nombre)
+
+        self.__cursor.execute(
+            sql, values)
         self.__conn.commit()
 
     # SELECT QUERY | WHERE IDGRUPO = '{id}'
     def get_by_id(self, id):
-        self.__cursor.execute(
-            f"""
-            SELECT * FROM GRUPOSCOLABORADORES
-            WHERE IDGRUPO = '{id}'
-            """
-        )
-        return self.__cursor.fetchone()
+
+        sql = "SELECT * FROM GRUPOSCOLABORADORES WHERE IDGRUPO = :1"
+
+        values = (id,)
+
+        self.__cursor.execute(sql, values)
+
+        # object Grupos Colaboradores
+
+        grupo = GruposColaboradores()
+
+        row = self.__cursor.fetchone()
+
+        if row:
+            grupo.id_grupo_colaboradores = row[0]
+            grupo.nombre = row[1]
+
+            return grupo
+        else:
+            return None
 
     # UPDATE QUERY | WHERE IDGRUPO = '{id}'
-    def update(self, id, nombre):
-        self.__cursor.execute(
-            f"""
-            UPDATE GRUPOSCOLABORADORES
-            SET NOMBREGRUPO = '{nombre}'
-            WHERE IDGRUPO = '{id}'
-            """
-        )
+
+    def update(self, grupo: GruposColaboradores):
+
+        sql = "UPDATE GRUPOSCOLABORADORES SET NOMBREGRUPO = :1 WHERE IDGRUPO = :2"
+
+        values = (grupo.nombre, grupo.id_grupo_colaboradores)
+
+        self.__cursor.execute(sql, values)
+
         self.__conn.commit()
 
     # DELETE QUERY | WHERE IDGRUPO = '{id}'
     def delete(self, id):
-        self.__cursor.execute(
-            f"""
-            DELETE FROM GRUPOSCOLABORADORES
-            WHERE IDGRUPO = '{id}'
-            """
-        )
+        sql = "DELETE FROM GRUPOSCOLABORADORES WHERE IDGRUPO = :1"
+
+        values = (id,)
+
+        self.__cursor.execute(sql, values)
+
         self.__conn.commit()
 
     # INSERT USER-GROUP QUERY
     def insert_user(self, id_usuario, id_grupo):
-        self.__cursor.execute(
-            f"""
-            INSERT INTO USUARIOSGRUPOS (IDUSUARIO, IDGRUPO)
-            VALUES ('{id_usuario}', '{id_grupo}')
-            """
-        )
+        sql = "INSERT INTO USUARIOSGRUPOS (IDUSUARIO, IDGRUPO) VALUES (:1, :2)"
+
+        values = (id_usuario, id_grupo)
+
+        self.__cursor.execute(sql, values)
         self.__conn.commit()
 
+    # SELECT QUERY
+    def get_groups(self, id_usuario):
+        sql = """
+        SELECT G.IDGRUPO, G.NOMBREGRUPO
+        FROM GRUPOSCOLABORADORES G, USUARIOSGRUPOS UG
+        WHERE G.IDGRUPO = UG.IDGRUPO AND UG.IDUSUARIO = :1
+        """
+        values = (id_usuario,)
+        self.__cursor.execute(sql, values)
+
+        data = self.__cursor.fetchall()
+
+        if data is None:
+            return None
+
+        grupos = []
+
+        for row in data:
+            grupo = GruposColaboradores()
+            grupo.id_grupo_colaboradores = row[0]
+            grupo.nombre = row[1]
+
+            # get users by group
+
+            usuarios = self.get_users_by_group(grupo.id_grupo_colaboradores)
+
+            grupo.usuario_grupos = usuarios
+            grupos.append(grupo)
+
+        return grupos
+
     # SELECT ALL USERS-GROUPS
+
     def get_users(self):
         self.__cursor.execute(
             f"""
@@ -98,16 +146,62 @@ class GruposColaboradoresDao:
         )
         return self.__cursor.fetchall()
 
+    # SELECT ALL USERS by IDGRUPO
+    def get_users_by_group(self, id_grupo) -> list[Usuario]:
+
+        sql = """
+                SELECT U.IDUSUARIO, U.NOMBRES, U.EMAIL, U.IMAGENPERFIL, G.IDGRUPO, G.NOMBREGRUPO
+                FROM USUARIOS U, GRUPOSCOLABORADORES G, USUARIOSGRUPOS UG
+                WHERE U.IDUSUARIO = UG.IDUSUARIO AND G.IDGRUPO = UG.IDGRUPO AND G.IDGRUPO = :1
+            """
+        values = (id_grupo,)
+
+        self.__cursor.execute(sql, values)
+
+        data = self.__cursor.fetchall()
+
+        if data is None:
+            return None
+
+        usuarios = []
+
+        for row in data:
+            usuario = Usuario()
+
+            usuario.id_usuario = row[0]
+            usuario.nombres = row[1]
+            usuario.email = row[2]
+            usuario.insert_binary_image(row[3])
+
+            # usuario image_perfil
+
+            usuario.load_image_perfil()
+
+            usuarios.append(usuario)
+
+        return usuarios
+
     # SELECT ALL USERS-NAMES-GROUPS
     def get_users_names(self):
-        self.__cursor.execute(
-            f"""
-            SELECT U.IDUSUARIO, U.NOMBRES, G.IDGRUPO, G.NOMBREGRUPO
-            FROM USUARIOS U, GRUPOSCOLABORADORES G, USUARIOSGRUPOS UG
-            WHERE U.IDUSUARIO = UG.IDUSUARIO AND G.IDGRUPO = UG.IDGRUPO
-            """
-        )
+        sql = """
+        SELECT U.IDUSUARIO, U.NOMBRES, G.IDGRUPO, G.NOMBREGRUPO
+        FROM USUARIOS U, GRUPOSCOLABORADORES G, USUARIOSGRUPOS UG
+        WHERE U.IDUSUARIO = UG.IDUSUARIO AND G.IDGRUPO = UG.IDGRUPO
+        """
+        self.__cursor.execute(sql)
         return self.__cursor.fetchall()
+
+    # SELECT ALL usernames by IDGRUPO
+
+    def get_usernames_by_group(self, id_grupo):
+        sql = """
+        SELECT U.NOMBRES
+        FROM USUARIOS U, GRUPOSCOLABORADORES G, USUARIOSGRUPOS UG
+        WHERE U.IDUSUARIO = UG.IDUSUARIO AND G.IDGRUPO = UG.IDGRUPO AND G.IDGRUPO = :1
+        """
+        values = (id_grupo,)
+        self.__cursor.execute(sql, values)
+        return [row[0] for row in self.__cursor.fetchall()]
 
     # REMOVE USER FROM GROUP
     def remove_user(self, id_usuario, id_grupo):
@@ -118,3 +212,13 @@ class GruposColaboradoresDao:
             """
         )
         self.__conn.commit()
+
+    def load_grupo_colaboradores(self, id_grupo):
+        grupo = self.get_by_id(id_grupo)
+        usuarios = self.get_users_by_group(id_grupo)
+
+        for usuario in usuarios:
+            usuario_grupo = UsuarioGrupo(usuario, grupo)
+            grupo.add_usuario_grupo(usuario_grupo)
+
+        return grupo

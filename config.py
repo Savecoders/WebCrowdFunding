@@ -2,7 +2,7 @@ import os
 from flask import Flask, render_template
 from dotenv import load_dotenv
 
-from src.routes import user, projects
+from src.routes import user, projects, group, donation
 
 # Load the environment variables from the .env file
 load_dotenv()
@@ -32,6 +32,8 @@ def create_app():
     # Register the blueprints
     app.register_blueprint(user.bp)
     app.register_blueprint(projects.bp)
+    app.register_blueprint(group.bp)
+    app.register_blueprint(donation.bp)
 
     # app / route
 

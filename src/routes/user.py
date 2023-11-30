@@ -11,6 +11,8 @@ from flask import (Blueprint, flash, g, render_template,
                    request, url_for, jsonify,
                    session, redirect
                    )
+
+# flask current app
 from flask import current_app as app
 
 # hash uid
@@ -23,6 +25,10 @@ import functools
 from src.models import Usuario
 
 from src.schema import UsuarioDao
+
+from src.models import GruposColaboradores
+
+from src.schema import GruposColaboradoresDao
 
 # Create the user blueprint
 # routes for user registration, login, and profile
@@ -62,6 +68,10 @@ def register():
 
             # close database connection
             database.close()
+
+            # flash message
+
+            flash("User created successfully", "success")
 
             return redirect(url_for('user.login'))
 
@@ -106,6 +116,10 @@ def login():
         if error is None:
             session.clear()
             session['id_usuario'] = user.id_usuario
+
+            # flash message
+            flash("User logged successfully", "success")
+
             return redirect(url_for('user.profile'))
         flash(error, "error")
     return render_template('user/login.html')
@@ -185,9 +199,14 @@ def update():
 
                 session.clear()
                 session['id_usuario'] = last_user.id_usuario
+
+                # flash message
+
+                flash("User updated successfully", "success")
+
                 return redirect(url_for('user.profile'))
 
-            flash(error)
+            flash(error, "error")
 
         except ValueError as error:
             # imprimir error
@@ -202,10 +221,49 @@ def update():
     return render_template('user/update.html')
 
 
-@bp.route('/profile', methods=['GET'])
+@bp.route('/<string:id>/', methods=['GET'])
+def profile_by_id(id):
+
+    # database connection
+    database = DataBase()
+
+    # show GruposColaboradores
+
+    grupos_dao = GruposColaboradoresDao(
+        database.connection, database.cursor)
+
+    # get user by id
+
+    usuario_dao = UsuarioDao(database.connection, database.cursor)
+
+    user = usuario_dao.get_by_id(id)
+
+    user.load_image_perfil()
+
+    grupos = grupos_dao.get_groups(id)
+
+    print(grupos)
+
+    return render_template('user/profile.html', user=user, grupos=grupos)
+
+
+@bp.route('/', methods=['GET'])
 @login_required
 def profile():
-    return render_template('user/profile.html')
+
+    # database connection
+    database = DataBase()
+
+    # show GruposColaboradores
+
+    grupos_dao = GruposColaboradoresDao(
+        database.connection, database.cursor)
+
+    grupos = grupos_dao.get_groups(g.user.id_usuario)
+
+    print(grupos)
+
+    return render_template('user/profile.html', user=g.user, grupos=grupos)
 
 
 @bp.route('/logout')

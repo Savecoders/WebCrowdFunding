@@ -143,6 +143,9 @@ class Usuario:
         # get read image
         self.__image_perfil = image_perfil.read()
 
+    def insert_binary_image(self, image):
+        self.__image_perfil = image
+
     @property
     def pais(self):
         return self.__pais
