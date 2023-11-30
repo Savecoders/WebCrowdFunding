@@ -1,10 +1,10 @@
 // selectors
-const $ = document.querySelector.bind(document);
-const inputFile = $(".file-upload-input");
+const $QS = document.querySelector.bind(document);
+const inputFile = $QS(".file-upload-input");
 
 const checkSubmitFile = () => {
   // label upload image
-  const label = $(".file-upload-label");
+  const label = $QS(".file-upload-label");
 
   // check if file/image is selected
   if (inputFile && inputFile.files.length) {
@@ -17,7 +17,7 @@ const checkSubmitFile = () => {
   }
 };
 
-const plusIcon = $(".image-plus__icon");
+const plusIcon = $QS(".image-plus__icon");
 plusIcon.addEventListener("click", () => {
   inputFile.click();
 });
