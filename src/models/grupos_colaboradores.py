@@ -4,6 +4,10 @@ import re
 import hashlib
 import uuid
 
+# secure_filename: Valida el nombre de un archivo
+from werkzeug.utils import secure_filename
+import base64
+
 # usuario grupos
 from .user import Usuario
 
@@ -76,11 +80,39 @@ class GruposColaboradores:
 
     @property
     def imagen(self):
-        return self.__imagen
+        if self.__imagen:
+            # Read bytes from LOB
+            image_bytes = self.__imagen
+            # Convert bytes to base64
+            image_encoded = base64.b64encode(image_bytes).decode('utf-8')
+            # Create data URL
+            image_data_url = f"data:image/png;base64,{image_encoded}"
+            return image_data_url
+        else:
+            return None
 
     @imagen.setter
     def imagen(self, imagen):
-        self.__imagen = imagen
+
+        # validate image
+        if not imagen:
+            raise ValueError("required image.")
+
+        # validate extension
+        extensions = ['png', 'jpg', 'jpeg', 'gif']
+
+        # get extension
+        extension = imagen.filename.split('.')[-1]
+
+        if extension not in extensions:
+            raise ValueError(
+                f"The extension of the image must be{', '.join(extensions)}.")
+
+        # get filename and content type
+        filename = secure_filename(imagen.filename)
+        content_type = imagen.content_type
+
+        self.__imagen = imagen.read()
 
     @property
     def fecha_creacion(self):
@@ -113,3 +145,9 @@ class GruposColaboradores:
     def generate_hash_id(self):
         self.id_grupo_colaboradores = hashlib.sha256(
             uuid.uuid4().bytes).hexdigest()
+
+    def load_image(self):
+        self.__imagen = self.__imagen.read()
+
+    def get_binary_image(self):
+        return self.__imagen

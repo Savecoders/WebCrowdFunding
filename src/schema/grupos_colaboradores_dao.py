@@ -17,8 +17,11 @@ class GruposColaboradoresDao:
 
     # ---------SQL SYNTAX--------
     # CREATE TABLE GRUPOSCOLABORADORES (
-    #   IDGRUPO NUMBER PRIMARY KEY,
-    #   NOMBREGRUPO VARCHAR2(50 CHAR)
+    #   IDGRUPO VARCHAR2(255 CHAR) PRIMARY KEY,
+    #   NOMBREGRUPO VARCHAR2(80 CHAR),
+    #   DESCRIPCION VARCHAR2(120 CHAR),
+    #   IMAGEN BLOB,
+    #   FECHACREACION VARCHAR2(120 CHAR),
     # );
     # --------------------------
     # * Relation Table "USUARIOSGRUPOS"
@@ -38,15 +41,27 @@ class GruposColaboradoresDao:
     # INSERT GROUP QUERY
 
     def insert(self, grupo: GruposColaboradores):
+
+        # grupo exists ?
+
+        if self.get_by_id(grupo.id_grupo_colaboradores):
+            raise ValueError("The group already exists.")
+
+        # name in use ?
+
+        if self.get_by_name(grupo.nombre):
+            raise ValueError("The name is already in use.")
+
         sql = """
-        INSERT INTO GRUPOSCOLABORADORES (IDGRUPO, NOMBREGRUPO)
-        VALUES (:1, :2)
+        INSERT INTO GRUPOSCOLABORADORES (IDGRUPO, NOMBREGRUPO, DESCRIPCION, IMAGEN, FECHACREACION)
+        VALUES (:1, :2, :3, :4, :5)
         """
 
-        values = (grupo.id_grupo_colaboradores, grupo.nombre)
+        values = (grupo.id_grupo_colaboradores, grupo.nombre, grupo.descripcion,
+                  grupo.get_binary_image(), grupo.fecha_creacion)
 
-        self.__cursor.execute(
-            sql, values)
+        self.__cursor.execute(sql, values)
+
         self.__conn.commit()
 
     # SELECT QUERY | WHERE IDGRUPO = '{id}'
@@ -60,6 +75,26 @@ class GruposColaboradoresDao:
 
         # object Grupos Colaboradores
 
+        row = self.__cursor.fetchone()
+
+        if row:
+            grupo = GruposColaboradores(row[0], row[1], row[2], row[3], row[4])
+            return grupo
+        else:
+            return None
+
+    # SELECT QUERY | WHERE NOMBREGRUPO = '{nombre}'
+
+    def get_by_name(self, nombre):
+
+        sql = "SELECT * FROM GRUPOSCOLABORADORES WHERE NOMBREGRUPO = :1"
+
+        values = (nombre,)
+
+        self.__cursor.execute(sql, values)
+
+        # object Grupos Colaboradores
+
         grupo = GruposColaboradores()
 
         row = self.__cursor.fetchone()
@@ -67,6 +102,9 @@ class GruposColaboradoresDao:
         if row:
             grupo.id_grupo_colaboradores = row[0]
             grupo.nombre = row[1]
+            grupo.descripcion = row[2]
+            grupo.imagen = row[3]
+            grupo.fecha_creacion = row[4]
 
             return grupo
         else:
@@ -76,9 +114,10 @@ class GruposColaboradoresDao:
 
     def update(self, grupo: GruposColaboradores):
 
-        sql = "UPDATE GRUPOSCOLABORADORES SET NOMBREGRUPO = :1 WHERE IDGRUPO = :2"
+        sql = "UPDATE GRUPOSCOLABORADORES SET NOMBREGRUPO = :1, DESCRIPCION = :2, IMAGEN = :3, FECHACREACION = :4 WHERE IDGRUPO = :5"
 
-        values = (grupo.nombre, grupo.id_grupo_colaboradores)
+        values = (grupo.nombre, grupo.descripcion, grupo.imagen,
+                  grupo.fecha_creacion, grupo.id_grupo_colaboradores)
 
         self.__cursor.execute(sql, values)
 
@@ -96,6 +135,12 @@ class GruposColaboradoresDao:
 
     # INSERT USER-GROUP QUERY
     def insert_user(self, id_usuario, id_grupo):
+
+        # user in group ?
+
+        if self.check_user_in_group(id_usuario, id_grupo):
+            raise ValueError("The user is already in the group.")
+
         sql = "INSERT INTO USUARIOSGRUPOS (IDUSUARIO, IDGRUPO) VALUES (:1, :2)"
 
         values = (id_usuario, id_grupo)
@@ -106,7 +151,7 @@ class GruposColaboradoresDao:
     # SELECT QUERY
     def get_groups(self, id_usuario):
         sql = """
-        SELECT G.IDGRUPO, G.NOMBREGRUPO
+        SELECT G.IDGRUPO, G.NOMBREGRUPO, G.DESCRIPCION, G.IMAGEN, G.FECHACREACION
         FROM GRUPOSCOLABORADORES G, USUARIOSGRUPOS UG
         WHERE G.IDGRUPO = UG.IDGRUPO AND UG.IDUSUARIO = :1
         """
@@ -121,10 +166,7 @@ class GruposColaboradoresDao:
         grupos = []
 
         for row in data:
-            grupo = GruposColaboradores()
-            grupo.id_grupo_colaboradores = row[0]
-            grupo.nombre = row[1]
-
+            grupo = GruposColaboradores(row[0], row[1], row[2], row[3], row[4])
             # get users by group
 
             usuarios = self.get_users_by_group(grupo.id_grupo_colaboradores)
@@ -169,7 +211,7 @@ class GruposColaboradoresDao:
             usuario = Usuario()
 
             usuario.id_usuario = row[0]
-            usuario.nombres = row[1]
+            usuario.nombre = row[1]
             usuario.email = row[2]
             usuario.insert_binary_image(row[3])
 
@@ -212,6 +254,25 @@ class GruposColaboradoresDao:
             """
         )
         self.__conn.commit()
+
+    # CHECK USER IN GROUP
+
+    def check_user_in_group(self, id_usuario, id_grupo):
+
+        sql = """
+        SELECT * FROM USUARIOSGRUPOS
+        WHERE IDUSUARIO = :1 AND IDGRUPO = :2
+        """
+        values = (id_usuario, id_grupo)
+
+        self.__cursor.execute(sql, values)
+
+        data = self.__cursor.fetchone()
+
+        if data is None:
+            return False
+        else:
+            return True
 
     def load_grupo_colaboradores(self, id_grupo):
         grupo = self.get_by_id(id_grupo)
