@@ -23,7 +23,7 @@
       <input
         type="text"
         name="username"
-        placeholder="Nombre Completo"
+        placeholder="Nombre De Usuario"
         autocomplete="off"
         oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '')"
         required
@@ -65,6 +65,7 @@
         placeholder="Numero de Telefono"
         autocomplete="off"
         oninput="this.value = this.value.replace(/[^0-9 ]/g, '')"
+        maxlength="10"
         required
       />
 
@@ -80,7 +81,7 @@
           />
         </label>
         <!-- input perfil image -->
-        <button class="file-upload">
+        <button class="file-upload" type="button">
           <span class="file-upload-label">Subir Foto de Perfil</span>
           <label for="profile"></label>
           <input

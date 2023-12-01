@@ -17,7 +17,7 @@
     </div>
 
     <div class="profile__info">
-      <h1>{{ user.nombres }}</h1>
+      <h1>{{ user.nombre }}</h1>
       <h2>{{ user.email }}</h2>
       <h4>
         <i class="ti ti-location-filled"></i> {{ user.pais }} - {{ user.ciudad
@@ -57,13 +57,13 @@
 
         {% if grupos %} {% for group in grupos %}
         <div class="card__group">
-          <a href="" class="card__title"
-            ><i class="ti ti-external-link"></i> {{group.nombre}}</a
-          >
+          <a href="/group/{{group.id_grupo_colaboradores}}" class="card__title"
+            >{{group.nombre}} <i class="ti ti-external-link"></i>
+          </a>
 
           {% if group.usuario_grupos %} {% for user in group.usuario_grupos %}
-          <a href="/user/{{user.id_usuario}}" class="card__date"
-            ><i class="ti ti-user-filled"></i> {{user.nombres}}
+          <a href="/user/{{user.nombre}}" class="card__date"
+            ><i class="ti ti-user-filled"></i> {{user.nombre}}
           </a>
           {% endfor %} {% else %}
           <p class="card__date">No hay usuarios</p>

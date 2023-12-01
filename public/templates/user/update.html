@@ -13,7 +13,7 @@
 <div class="flex container">
   <div class="flex register-card">
     <h1>YStart<span>Up</span></h1>
-    <h4>Su Cuenta: {{ g.user.nombres }}</h4>
+    <h4>Su Cuenta: {{ g.user.nombre }}</h4>
     <form
       method="post"
       name="formRegister"
@@ -26,7 +26,7 @@
         placeholder="Nombre Completo"
         autocomplete="off"
         oninput="this.value = this.value.replace(/[^a-zA-Z ]/g, '')"
-        value="{{ g.user.nombres }}"
+        value="{{ g.user.nombre }}"
         required
       />
       <input

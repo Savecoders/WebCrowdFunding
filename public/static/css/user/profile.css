@@ -197,6 +197,13 @@
   text-decoration: none;
 }
 
+.card__group .card__title:hover {
+  text-decoration-thickness: underline;
+  color: var(--accent-color);
+  font-weight: bolder;
+  font-weight: 900;
+}
+
 .card__group .card__date {
   text-decoration: none;
   font-size: 1.7ch;

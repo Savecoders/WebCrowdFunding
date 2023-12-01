@@ -10,15 +10,16 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  gap: 1rem;
+  gap: 2rem;
   box-shadow: 0 0 2px var(--accent-color-transparent);
-  padding: 3rem 2rem;
+  padding: 3rem 2rem 1rem 2rem;
   border-radius: 5px;
 }
 
 .main__container h1 {
   font-size: 2.8ch;
   font-weight: 700;
+  text-align: center;
   font-family: "Inter", sans-serif;
   color: var(--text-color);
 }
@@ -27,7 +28,7 @@
   padding: 2rem 0;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1rem;
   width: 100%;
   margin: 0 auto;
 }
@@ -107,7 +108,8 @@
   width: 100%;
   flex-direction: row;
   overflow: hidden;
-  gap: 0.5em;
+  gap: 1em;
+  padding-bottom: 1rem;
 }
 
 .image-upload__icon {
@@ -154,6 +156,10 @@
   color: var(--text-color);
 }
 
+.file-upload:hover {
+  border: 1px solid #79a6fe;
+}
+
 .file-upload label {
   display: block;
   position: absolute;
@@ -178,7 +184,7 @@
     margin: 0 auto;
     padding: 0 2rem;
     margin-top: 6rem;
-    max-width: 700px;
+    max-width: 600px;
     flex-direction: row;
     justify-content: space-around;
     gap: 3rem;
