@@ -37,7 +37,9 @@
       />
       <input type="submit" value="Iniciar Sesion" class="btn1" />
     </form>
-    <a href="/user/register" class="havent">No tienes una cuenta? Registrate</a>
+    <a href="{{ url_for('user.register') }}" class="havent"
+      >No tienes una cuenta? Registrate</a
+    >
   </div>
 </div>
 

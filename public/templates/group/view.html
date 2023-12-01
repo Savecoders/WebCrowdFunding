@@ -30,12 +30,14 @@
       <div class="form__container" id="formContainer">
         <form
           id="formulate__user"
-          action="/group/adduser/{{ grupo.id_grupo_colaboradores}}"
+          action="/group/adduser/{{ grupo.id_grupo_colaboradores }}"
           method="post"
         ></form>
       </div>
       {% endif %} {% for user in grupo.usuario_grupos %}
-      <a href="/user/{{user.name}}" class="card__date"
+      <a
+        href="{{ url_for('user.profile_by_id', username=user.nombre) }}"
+        class="card__date"
         ><i class="ti ti-user-filled"></i> {{ user.nombre }}</a
       >
       {% endfor %}
