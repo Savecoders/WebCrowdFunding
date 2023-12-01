@@ -31,11 +31,25 @@ class UsuarioDao:
     # INTO QUERY
     def insert(self, usuario: Usuario) -> None:
 
+        # check if the user is valid
+
+        if usuario is None:
+            raise ValueError("The Error al insertar el usuario")
+
+        # valid if the user already exists | email
+
+        if self.get_by_email(usuario.email) is not None:
+            raise ValueError("The email already exists")
+
+        # | nombres/username
+        if self.get_by_username(usuario.nombre) is not None:
+            raise ValueError("The username already exists")
+
         sql = """
         INSERT INTO USUARIOS (IDUSUARIO, NOMBRES, CONTRASENA, TELEFONO, ESTADO, EMAIL, IMAGENPERFIL, PAIS, CIUDAD, FECHANACIMIENTO)
         VALUES (:1, :2, :3, :4, :5, :6, :7, :8, :9, :10)
         """
-        values = (usuario.id_usuario, usuario.nombres, usuario.contrasena,
+        values = (usuario.id_usuario, usuario.nombre, usuario.contrasena,
                   usuario.telefono, usuario.estado,
                   usuario.email, usuario.get_binary_image_perfil(), usuario.pais,
                   usuario.ciudad, usuario.fecha_nacimiento)
@@ -73,6 +87,9 @@ class UsuarioDao:
         self.__cursor.execute(sql, values)
         data = self.__cursor.fetchone()
 
+        if data is None:
+            return None
+
         usuario = Usuario(data[0], data[1], data[2], data[3],
                           data[4], data[5], data[6], data[7],
                           data[8], data[9]
@@ -99,6 +116,26 @@ class UsuarioDao:
 
         return usuario
 
+    # SELECT USER BY USERNAME
+    def get_by_username(self, username) -> Usuario:
+        sql = """
+        SELECT * FROM USUARIOS
+        WHERE NOMBRES = :1
+        """
+        values = (username,)
+        self.__cursor.execute(sql, values)
+        data = self.__cursor.fetchone()
+
+        if data is None:
+            return None
+
+        usuario = Usuario(data[0], data[1], data[2], data[3],
+                          data[4], data[5], data[6], data[7],
+                          data[8], data[9]
+                          )
+
+        return usuario
+
     # UPDATE QUERY
 
     # UPDATE ALL INFO
@@ -109,7 +146,7 @@ class UsuarioDao:
         SET NOMBRES = :1, CONTRASENA = :2, TELEFONO = :3, ESTADO = :4, EMAIL = :5, IMAGENPERFIL = :6, PAIS = :7, CIUDAD = :8, FECHANACIMIENTO = :9
         WHERE IDUSUARIO = :10
         """
-        values = (usuario.nombres, usuario.contrasena, usuario.telefono, usuario.estado, usuario.email,
+        values = (usuario.nombre, usuario.contrasena, usuario.telefono, usuario.estado, usuario.email,
                   usuario.get_binary_image_perfil(), usuario.pais, usuario.ciudad, usuario.fecha_nacimiento, usuario.id_usuario)
         self.__cursor.execute(sql, values)
         self.__conn.commit()
@@ -121,7 +158,7 @@ class UsuarioDao:
         SET NOMBRES = :1, TELEFONO = :2, EMAIL = :3, IMAGENPERFIL = :4, PAIS = :5, CIUDAD = :6, FECHANACIMIENTO = :7
         WHERE IDUSUARIO = :8
         """
-        values = (usuario.nombres, usuario.telefono, usuario.email, usuario.get_binary_image_perfil(),
+        values = (usuario.nombre, usuario.telefono, usuario.email, usuario.get_binary_image_perfil(),
                   usuario.pais, usuario.ciudad, usuario.fecha_nacimiento, usuario.id_usuario)
         self.__cursor.execute(sql, values)
         self.__conn.commit()

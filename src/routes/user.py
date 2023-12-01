@@ -45,7 +45,7 @@ def register():
         try:
             # create user object
             usuario = Usuario()
-            usuario.nombres = request.form['username']
+            usuario.nombre = request.form['username']
             usuario.email = request.form['email']
             usuario.fecha_nacimiento = request.form['date_born']
             usuario.pais = request.form['country']
@@ -77,12 +77,10 @@ def register():
 
         except ValueError as error:
             # imprimir error
-            print(error)
             flash(str(error), "error")
 
         except Exception as error:
             # imprimir error
-            print(error)
             flash(str(error), "error")
 
     return render_template('user/register.html')
@@ -124,6 +122,8 @@ def login():
         flash(error, "error")
     return render_template('user/login.html')
 
+# load user
+
 
 @bp.before_app_request
 def load_logged_in_user():
@@ -139,9 +139,9 @@ def load_logged_in_user():
 
         user = usuario_dao.get_by_id(id_usuario)
 
-        user.load_image_perfil()
-
-        g.user = user
+        if user:
+            user.load_image_perfil()
+            g.user = user
 
 
 def login_required(view):
@@ -175,7 +175,7 @@ def update():
 
                 # using the last user
 
-                last_user.nombres = request.form['username']
+                last_user.nombre = request.form['username']
                 last_user.email = request.form['email']
                 last_user.fecha_nacimiento = request.form['date_born']
                 last_user.pais = request.form['country']
@@ -210,41 +210,50 @@ def update():
 
         except ValueError as error:
             # imprimir error
-            print(error)
             flash(str(error), "error")
 
         except Exception as error:
             # imprimir error
-            print(error)
             flash(str(error), "error")
 
     return render_template('user/update.html')
 
 
-@bp.route('/<string:id>/', methods=['GET'])
-def profile_by_id(id):
+@bp.route('/<string:username>/', methods=['GET'])
+def profile_by_id(username):
 
-    # database connection
-    database = DataBase()
+    try:
+        # database connection
+        database = DataBase()
 
-    # show GruposColaboradores
+        # show GruposColaboradores
 
-    grupos_dao = GruposColaboradoresDao(
-        database.connection, database.cursor)
+        grupos_dao = GruposColaboradoresDao(
+            database.connection, database.cursor)
 
-    # get user by id
+        # get user by id
 
-    usuario_dao = UsuarioDao(database.connection, database.cursor)
+        usuario_dao = UsuarioDao(database.connection, database.cursor)
 
-    user = usuario_dao.get_by_id(id)
+        user = usuario_dao.get_by_username(username)
 
-    user.load_image_perfil()
+        if user is None:
+            flash("User not found", "error")
+        else:
+            user.load_image_perfil()
 
-    grupos = grupos_dao.get_groups(id)
+            grupos = grupos_dao.get_groups(user.id_usuario)
 
-    print(grupos)
+            return render_template('user/profile.html', user=user, grupos=grupos)
 
-    return render_template('user/profile.html', user=user, grupos=grupos)
+    except ValueError as error:
+        flash(str(error), "error")
+
+    except Exception as error:
+        flash(str(error), "error")
+
+    # show error 404
+    return render_template('notFindPage.html', title='404 Profile', message='Usuario no existe')
 
 
 @bp.route('/', methods=['GET'])
@@ -260,8 +269,6 @@ def profile():
         database.connection, database.cursor)
 
     grupos = grupos_dao.get_groups(g.user.id_usuario)
-
-    print(grupos)
 
     return render_template('user/profile.html', user=g.user, grupos=grupos)
 
