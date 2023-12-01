@@ -6,7 +6,8 @@ from src.db.database import DataBase, get_db, close_db
 import datetime
 
 # flask imports
-from flask import Blueprint, request, render_template, url_for, session, g, flash
+from flask import (Blueprint, request, render_template,
+                   url_for, session, g, flash, redirect)
 
 # imports models and schemas dao
 
@@ -63,6 +64,9 @@ def index(id):
 
             grupo.usuario_grupos = grupo_dao.get_users_by_group(
                 grupo.id_grupo_colaboradores)
+
+            # close database connection
+            database.close()
 
             return render_template('group/view.html', grupo=grupo, user_in_group=user_in_group)
 
@@ -122,65 +126,69 @@ def create():
 
             g.last_inserted_id = grupo.id_grupo_colaboradores
 
+            # close database connection
+            database.close()
+
             flash('The group was created successfully.', 'success')
 
-            return render_template(url_for('user.profile'))
+            return redirect(url_for('user.profile'))
 
-        except ValueError as e:
-            flash(e, 'error')
+        except ValueError as error:
+            flash(str(error), "error")
 
-        except Exception as e:
-            flash(e, 'error')
+        except Exception as error:
+            flash(str(error), "error")
 
     return render_template('group/create.html')
 
 
+@bp.route('/adduser/<string:id>', methods=['POST'])
 @login_required
-@bp.route('/<string:name>/add-users', methods=['GET', 'POST'])
-def add_user(name):
+def add_user(id):
     if request.method == 'POST':
-
         try:
-            # get from data
-            mail = request.form['email']
-
-            # validate form data
+            email = request.form['email']
 
             # database connection
             database = DataBase()
 
-            # user dao
-            user_dao = UsuarioDao(database.connection, database.cursor)
+            # user exists
 
-            # get user by mail
-            user = user_dao.get_by_email(mail)
+            usuario_dao = UsuarioDao(database.connection, database.cursor)
 
-            # group dao
+            usuario = usuario_dao.get_by_email(email)
 
-            if g.last_inserted_id != None:
+            if usuario is None:
+                raise ValueError("The user does not exist.")
 
-                grupo_dao = GruposColaboradoresDao(
-                    database.connection, database.cursor)
+            # get group
 
-                grupo = grupo_dao.get_by_id(g.last_inserted_id)
+            grupo_dao = GruposColaboradoresDao(
+                database.connection, database.cursor)
 
-                if grupo is None:
-                    flash('Not create a group', 'error')
+            grupo = grupo_dao.get_by_id(id)
 
-                # insert user to group
+            if grupo is None:
+                raise ValueError("The group does not exist.")
 
-                grupo_dao.insert_user(
-                    user.id_usuario, grupo.id_grupo_colaboradores)
+            # add user to group
 
-            else:
-                flash('Not create a group', 'error')
+            grupo_dao.insert_user(usuario.id_usuario,
+                                  grupo.id_grupo_colaboradores)
 
-        except ValueError as e:
+            # close database connection
+            database.close()
 
-            flash(e, 'error')
+            flash("The user was added to the group successfully.", "success")
+
+            return redirect(url_for('group.index', id=id))
+
+        except ValueError as error:
+
+            flash(str(error), "error")
 
         except Exception as e:
 
-            flash(e, 'error')
+            flash(str(error), "error")
 
-    return render_template('group/create.html')
+    return redirect(url_for('group.index', id=id))

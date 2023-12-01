@@ -93,7 +93,7 @@ def init_db():
     db, c = get_db()
 
     # path: src/db/tables.sql
-    with open('tables.sql', 'r') as file:
+    with open('src/db/tables.sql', 'r') as file:
         sql_commands = file.read().split(';')
         for command in sql_commands:
             if command.strip() != '':

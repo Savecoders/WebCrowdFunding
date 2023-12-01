@@ -19,15 +19,22 @@
     <div class="grupo__info">
       <h1>{{ grupo.nombre }}</h1>
       <h2>{{ grupo.descripcion }}</h2>
-      <h4><i class="ti ti-phone-filled"></i> {{ grupo.fecha_creacion }}</h4>
+      <h4><i class="ti ti-calendar-month"></i> {{ grupo.fecha_creacion }}</h4>
       <section class="grup__info__integrants">
         <h2 class="title__group">Integrantes</h2>
+        {% if user_in_group %}
         <p id="addButton"><i class="ti ti-plus"></i></p>
+        {% endif %}
       </section>
-
-      <div class="form__container" id="formContainer"></div>
-
-      {% for user in grupo.usuario_grupos %}
+      {% if user_in_group %}
+      <div class="form__container" id="formContainer">
+        <form
+          id="formulate__user"
+          action="/group/adduser/{{ grupo.id_grupo_colaboradores}}"
+          method="post"
+        ></form>
+      </div>
+      {% endif %} {% for user in grupo.usuario_grupos %}
       <a href="/user/{{user.name}}" class="card__date"
         ><i class="ti ti-user-filled"></i> {{ user.nombre }}</a
       >

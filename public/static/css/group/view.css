@@ -56,17 +56,17 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 1.1em;
+  gap: 1em;
 }
 
 .grup__info__integrants p {
   color: var(--text-color2);
   background: var(--check-color);
-  border-radius: 50%;
+  border-radius: 4px;
   cursor: pointer;
-  font-size: 1.8ch;
+  font-size: 2ch;
   font-weight: 800;
-  padding: 0.5rem;
+  padding: 0.4rem;
   transition: 0.3s;
 }
 

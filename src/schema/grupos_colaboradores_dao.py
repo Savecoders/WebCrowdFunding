@@ -136,6 +136,11 @@ class GruposColaboradoresDao:
     # INSERT USER-GROUP QUERY
     def insert_user(self, id_usuario, id_grupo):
 
+        # check user in group
+
+        if self.check_user_in_group(id_usuario, id_grupo):
+            raise ValueError("The user is already in the group.")
+
         # user in group ?
 
         if self.check_user_in_group(id_usuario, id_grupo):

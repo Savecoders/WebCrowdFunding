@@ -1,5 +1,14 @@
+// class formulate
+const form = document.getElementById("formulate__user");
+
 document.getElementById("addButton").addEventListener("click", function () {
-  let form = document.createElement("form");
+  // the input and button exists?
+
+  if (document.querySelector(".send__email")) {
+    document.querySelector(".send__email").focus();
+    return;
+  }
+
   let input = document.createElement("input");
   let button = document.createElement("button");
 
@@ -16,10 +25,6 @@ document.getElementById("addButton").addEventListener("click", function () {
 
   input.type = "email";
   button.textContent = "Agregar";
-
-  // add attributes
-  form.action = "/addMember";
-  form.method = "POST";
 
   // add input and button
   form.appendChild(input);

@@ -143,11 +143,17 @@ def load_logged_in_user():
             user.load_image_perfil()
             g.user = user
 
+        # close database connection
+        database.close()
+
 
 def login_required(view):
     @functools.wraps(view)
     def wrapper_view(**kwargs):
-        if g.user is None:
+        try:
+            if g.user is None:
+                return redirect(url_for('user.login'))
+        except Exception as error:
             return redirect(url_for('user.login'))
 
         return view(**kwargs)
@@ -204,6 +210,9 @@ def update():
 
                 flash("User updated successfully", "success")
 
+                # close database connection
+                database.close()
+
                 return redirect(url_for('user.profile'))
 
             flash(error, "error")
@@ -244,6 +253,9 @@ def profile_by_id(username):
 
             grupos = grupos_dao.get_groups(user.id_usuario)
 
+            # close database connection
+            database.close()
+
             return render_template('user/profile.html', user=user, grupos=grupos)
 
     except ValueError as error:
@@ -269,6 +281,9 @@ def profile():
         database.connection, database.cursor)
 
     grupos = grupos_dao.get_groups(g.user.id_usuario)
+
+    # close database connection
+    database.close()
 
     return render_template('user/profile.html', user=g.user, grupos=grupos)
 
