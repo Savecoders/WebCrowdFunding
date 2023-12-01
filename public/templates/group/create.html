@@ -9,7 +9,12 @@
   <section>
     <h1>Crear Grupo</h1>
 
-    <form class="formulate__container" action="/group/new" method="post">
+    <form
+      class="formulate__container"
+      method="post"
+      name="formCreateGroup"
+      enctype="multipart/form-data"
+    >
       <label for="nombregrupos">Nombre del Grupo:</label>
       <input type="text" id="nombregrupos" name="name" required />
 
@@ -28,8 +33,8 @@
           />
         </label>
         <!-- input perfil image -->
-        <button class="file-upload">
-          <span class="file-upload-label">Subir Foto de Perfil</span>
+        <button class="file-upload" type="button">
+          <span class="file-upload-label">Subir Foto del Grupo</span>
           <label for="profile"></label>
           <input
             type="file"

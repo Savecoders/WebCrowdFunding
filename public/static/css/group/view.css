@@ -19,31 +19,95 @@
   gap: 2.5em;
 }
 
-.profile__info {
+.grupo__info {
   display: flex;
   width: 80%;
   flex-direction: column;
   gap: 1.8em;
 }
 
-.profile__info h1 {
+.grupo__info h1 {
   font-size: 3.2ch;
   font-weight: 700;
   font-family: "Inter", sans-serif;
   color: var(--text-color);
 }
 
-.profile__info h2 {
+.grupo__info h2 {
   font-size: 2.3ch;
   font-weight: 500;
   color: var(--text-color);
 }
 
-.profile__info h4 {
+.grupo__info .title__group {
+  font-size: 2.4ch;
+  font-weight: 700;
+  color: var(--text-color);
+}
+
+.grupo__info h4 {
   font-size: 1.8ch;
   font-weight: 500;
   font-family: "Inter", sans-serif;
   color: var(--text-color);
+}
+
+.grup__info__integrants {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1.1em;
+}
+
+.grup__info__integrants p {
+  color: var(--text-color2);
+  background: var(--check-color);
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.8ch;
+  font-weight: 800;
+  padding: 0.5rem;
+  transition: 0.3s;
+}
+
+.form__container form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1em;
+}
+
+.form__container .send__email {
+  border-radius: 3px;
+  padding: 0.5rem;
+  outline: none;
+  color: var(--text-color);
+  width: 60%;
+  font-size: 1rem;
+  background-color: var(--bg);
+  -webkit-transition: all 0.2s ease-out;
+  -moz-transition: all 0.2s ease-out;
+  -ms-transition: all 0.2s ease-out;
+  -o-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
+  border: 1px solid var(--accent-color-transparent);
+}
+
+.btn {
+  color: var(--text-color2);
+  background: var(--accent-color);
+  font-family: "Inter", sans-serif;
+  font-size: 1.8ch;
+  font-weight: 500;
+  border-radius: 3px;
+  transition: 0.3s;
+  padding: 0.5rem;
+  cursor: pointer;
+  border: none;
+}
+
+.btn:hover {
+  background: var(--hover-color);
 }
 
 .profile__container {
@@ -206,7 +270,7 @@
 
 .card__date {
   text-decoration: none;
-  font-size: 1.8ch;
+  font-size: 2ch;
   color: var(--text-color);
   text-decoration: none;
 }

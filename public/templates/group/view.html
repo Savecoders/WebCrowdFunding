@@ -1,0 +1,149 @@
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/group/view.css') }}"
+/>
+
+{% extends "base.html" %} {% block content %} {% include "navbar.html" %}
+
+<main class="main__grid">
+  <!-- profile sidebar -->
+  <article class="main__article">
+    <div class="profile__container">
+      <img
+        src="{{ grupo.imagen }}"
+        alt="profile picture"
+        class="profile__picture"
+      />
+    </div>
+
+    <div class="grupo__info">
+      <h1>{{ grupo.nombre }}</h1>
+      <h2>{{ grupo.descripcion }}</h2>
+      <h4><i class="ti ti-phone-filled"></i> {{ grupo.fecha_creacion }}</h4>
+      <section class="grup__info__integrants">
+        <h2 class="title__group">Integrantes</h2>
+        <p id="addButton"><i class="ti ti-plus"></i></p>
+      </section>
+
+      <div class="form__container" id="formContainer"></div>
+
+      {% for user in grupo.usuario_grupos %}
+      <a href="/user/{{user.name}}" class="card__date"
+        ><i class="ti ti-user-filled"></i> {{ user.nombre }}</a
+      >
+      {% endfor %}
+    </div>
+  </article>
+
+  <aside class="main__aside">
+    <div class="profile__projects">
+      <div class="title__container">
+        <h2 class="profile__title">Proyectos</h2>
+      </div>
+
+      <section class="projects__container">
+        <article class="card__article">
+          <img
+            class="media"
+            src="{{ url_for('static', filename='img/project.png')  }}"
+            alt="image this project"
+          />
+          <div class="card__data">
+            <span class="card__date">21-05-2023</span>
+            <h2 class="card__title">The best Project</h2>
+            <a href="#" class="card__button">Ver mas</a>
+          </div>
+        </article>
+
+        <article class="card__article">
+          <img
+            class="media"
+            src="{{ url_for('static', filename='img/project.png')  }}"
+            alt="image this project"
+          />
+          <div class="card__data">
+            <span class="card__date">21-05-2023</span>
+            <h2 class="card__title">The best Project</h2>
+            <a href="#" class="card__button">Ver mas</a>
+          </div>
+        </article>
+
+        <article class="card__article">
+          <img
+            class="media"
+            src="{{ url_for('static', filename='img/project.png')  }}"
+            alt="image this project"
+          />
+          <div class="card__data">
+            <span class="card__date">21-05-2023</span>
+            <h2 class="card__title">The best Project</h2>
+            <a href="#" class="card__button">Ver mas</a>
+          </div>
+        </article>
+
+        <article class="card__article">
+          <img
+            class="media"
+            src="{{ url_for('static', filename='img/project.png')  }}"
+            alt="image this project"
+          />
+          <div class="card__data">
+            <span class="card__date">21-05-2023</span>
+            <h2 class="card__title">The best Project</h2>
+            <a href="#" class="card__button">Ver mas</a>
+          </div>
+        </article>
+
+        <article class="card__article">
+          <img
+            class="media"
+            src="{{ url_for('static', filename='img/project.png')  }}"
+            alt="image this project"
+          />
+          <div class="card__data">
+            <span class="card__date">21-05-2023</span>
+            <h2 class="card__title">The best Project</h2>
+            <a href="#" class="card__button">Ver mas</a>
+          </div>
+        </article>
+
+        <article class="card__article">
+          <img
+            class="media"
+            src="{{ url_for('static', filename='img/project.png')  }}"
+            alt="image this project"
+          />
+          <div class="card__data">
+            <span class="card__date">21-05-2023</span>
+            <h2 class="card__title">The best Project</h2>
+            <a href="#" class="card__button">Ver mas</a>
+          </div>
+        </article>
+      </section>
+    </div>
+  </aside>
+
+  <!-- groups and projects -->
+</main>
+
+<!-- flash messages -->
+
+<div class="notify-messages">
+  {% with messages = get_flashed_messages(with_categories=true) %} {% if
+  messages %} {% for category, message in messages %} {% if category ==
+  "success" %}
+  <div class="message success" role="alert">
+    {{ message }} <i class="ti ti-check"></i>
+  </div>
+  {% elif category == "error" %}
+  <div class="message error" role="alert">
+    {{ message }} <i class="ti ti-trash-filled"></i>
+  </div>
+  {% endif %} {% endfor %} {% endif %} {% endwith %}
+</div>
+
+<script src="{{ url_for('static', filename='js/messages.js') }}"></script>
+
+<script src="{{ url_for('static', filename='js/addMember.js') }}"></script>
+
+{% endblock %}
