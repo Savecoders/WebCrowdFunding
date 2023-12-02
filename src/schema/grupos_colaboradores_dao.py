@@ -114,10 +114,10 @@ class GruposColaboradoresDao:
 
     def update(self, grupo: GruposColaboradores):
 
-        sql = "UPDATE GRUPOSCOLABORADORES SET NOMBREGRUPO = :1, DESCRIPCION = :2, IMAGEN = :3, FECHACREACION = :4 WHERE IDGRUPO = :5"
+        sql = "UPDATE GRUPOSCOLABORADORES SET NOMBREGRUPO = :1, DESCRIPCION = :2, IMAGEN = :3 WHERE IDGRUPO = :4"
 
-        values = (grupo.nombre, grupo.descripcion, grupo.imagen,
-                  grupo.fecha_creacion, grupo.id_grupo_colaboradores)
+        values = (grupo.nombre, grupo.descripcion, grupo.get_binary_image(),
+                  grupo.id_grupo_colaboradores)
 
         self.__cursor.execute(sql, values)
 
@@ -252,6 +252,12 @@ class GruposColaboradoresDao:
 
     # REMOVE USER FROM GROUP
     def remove_user(self, id_usuario, id_grupo):
+
+        # how many users in group ?
+
+        if len(self.get_users_by_group(id_grupo)) == 1:
+            raise ValueError("The group must have at least one user.")
+
         self.__cursor.execute(
             f"""
             DELETE FROM USUARIOSGRUPOS

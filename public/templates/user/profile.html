@@ -29,9 +29,16 @@
         user.fecha_nacimiento }}
       </h4>
       {% if g.user.id_usuario == user.id_usuario %}
-      <a href="{{ url_for('user.update') }}" class="profile__edit__link"
-        ><i class="ti ti-edit"></i> Editar Perfil</a
-      >
+      <section class="profile__methods">
+        <a href="{{ url_for('user.update') }}" class="profile__edit__link"
+          ><i class="ti ti-edit"></i> Editar Perfil</a
+        >
+        <form method="POST" action="{{ url_for('user.delete_session') }}">
+          <button class="btn__delete" type="submit">
+            <i class="ti ti-trash-filled"></i>
+          </button>
+        </form>
+      </section>
       {% endif %}
     </div>
   </article>

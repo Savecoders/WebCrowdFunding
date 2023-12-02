@@ -142,6 +142,52 @@ def create():
     return render_template('group/create.html')
 
 
+@bp.route('/edit/<string:id>', methods=['GET', 'POST'])
+@login_required
+def edit(id):
+    try:
+
+        # get group by id
+        database = DataBase()
+
+        grupo_dao = GruposColaboradoresDao(
+            database.connection, database.cursor)
+
+        grupo = grupo_dao.get_by_id(id)
+
+        if grupo is None:
+            raise ValueError("The group does not exist.", "error")
+
+        if request.method == 'POST':
+            # get form data
+
+            name = request.form['name']
+            description = request.form['descripcion']
+            image = request.files['image_profile']
+
+            # create group object
+            grupo.nombre = name
+            grupo.descripcion = description
+            grupo.imagen = image
+
+            # update group
+            grupo_dao.update(grupo)
+
+            # close database connection
+            database.close()
+
+            flash('The group was updated successfully.', 'success')
+
+            return redirect(url_for('group.index', id=id))
+
+        # close database connection
+        database.close()
+        return render_template('group/edit.html', grupo=grupo)
+
+    except ValueError as error:
+        flash(str(error), "error")
+
+
 @bp.route('/adduser/<string:id>', methods=['POST'])
 @login_required
 def add_user(id):
@@ -192,3 +238,52 @@ def add_user(id):
             flash(str(error), "error")
 
     return redirect(url_for('group.index', id=id))
+
+
+@bp.route('/removeuser/<string:id_grupo>/<string:id_usuario>', methods=['POST'])
+@login_required
+def remove_user(id_grupo, id_usuario):
+    if request.method == 'POST':
+        try:
+
+            database = DataBase()
+            usuario_dao = UsuarioDao(database.connection, database.cursor)
+
+            # user exists
+
+            usuario = usuario_dao.get_by_id(id_usuario)
+
+            if usuario is None:
+                raise ValueError("The user does not exist.")
+
+            # get group
+
+            grupo_dao = GruposColaboradoresDao(
+                database.connection, database.cursor)
+
+            grupo = grupo_dao.get_by_id(id_grupo)
+
+            if grupo is None:
+                raise ValueError("The group does not exist.")
+
+            # remove user to group
+
+            grupo_dao.remove_user(usuario.id_usuario,
+                                  grupo.id_grupo_colaboradores)
+
+            # close database connection
+            database.close()
+
+            flash("The user was removed to the group successfully.", "success")
+
+            return redirect(url_for('group.index', id=id_grupo))
+
+        except ValueError as error:
+
+            flash(str(error), "error")
+
+        except Exception as e:
+
+            flash(str(error), "error")
+
+    return redirect(url_for('group.index', id=id_grupo))

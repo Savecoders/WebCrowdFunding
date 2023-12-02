@@ -25,7 +25,7 @@ class TestUsuarioDao(unittest.TestCase):
     def test_insert(self):
         with self.app.app_context():
             user = Usuario()
-            user.nombres = 'testing'
+            user.nombre = 'testing'
             user.email = 'test@gmail.com'
             user.fecha_nacimiento = '2003/05/05'
             user.pais = 'ecuador'

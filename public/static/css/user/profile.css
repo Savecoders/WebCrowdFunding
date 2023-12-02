@@ -88,22 +88,61 @@
   gap: 3em;
 }
 
-.profile__edit__link {
-  color: var(--text-color2);
-  background: var(--accent-color);
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 2.2ch;
-  font-weight: 600;
-  padding: 0.8rem;
-  transition: 0.3s;
-  text-align: center;
-  text-decoration: none;
+.profile__methods {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap: 1em;
 }
 
-.profile__edit__link:hover {
-  background: var(--hover-color);
+.profile__methods .profile__edit__link {
+  background-color: var(--bg-actions);
+  color: var(--text-color2);
+  display: inline-block;
+  width: 100%;
+  padding: 0.8rem;
+  border-radius: 3px;
+  text-decoration: none;
+  font-size: 2.2ch;
+  border: 0.1px solid var(--bg-actions);
+  font-weight: 700;
+  transition: 0.3s;
+  text-align: center;
+}
+
+.profile__methods .profile__edit__link:hover {
+  background-color: var(--text-color2);
+  font-weight: 900;
+  color: var(--bg-actions);
+  transition: 0.3s;
+}
+
+.profile__methods form {
+  display: flex;
+  flex-direction: row;
+  width: 20%;
+}
+
+.profile__methods form .btn__delete {
   color: var(--bg);
+  background: var(--accent-color);
+  font-family: "Inter", sans-serif;
+  font-size: 2ch;
+  font-weight: 500;
+  width: 100%;
+  border: 0.1px solid var(--bg);
+  border-radius: 3px;
+  transition: 0.3s;
+  padding: 0.3rem;
+  cursor: pointer;
+  border: none;
+  transition: 0.3s;
+}
+
+.profile__methods form .btn__delete:hover {
+  background: var(--bg);
+  color: var(--accent-color);
+  border: 0.1px solid var(--accent-color);
   transition: 0.3s;
 }
 

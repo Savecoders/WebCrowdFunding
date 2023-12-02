@@ -51,7 +51,7 @@ body {
   gap: 1.4rem;
 }
 
-.box input[type="email"],
+.box input[type="text"],
 .box input[type="password"] {
   border-radius: 5px;
   padding: 1rem 1rem;
@@ -71,7 +71,7 @@ body {
   color: var(--text-color);
 }
 
-.box input[type="email"]:focus,
+.box input[type="text"]:focus,
 .box input[type="password"]:focus {
   border: 1px solid #79a6fe;
 }

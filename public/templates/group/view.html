@@ -20,26 +20,43 @@
       <h1>{{ grupo.nombre }}</h1>
       <h2>{{ grupo.descripcion }}</h2>
       <h4><i class="ti ti-calendar-month"></i> {{ grupo.fecha_creacion }}</h4>
+      <a
+        href="{{ url_for('group.edit', id=grupo.id_grupo_colaboradores) }}"
+        class="profile__edit__link"
+        ><i class="ti ti-edit"></i> Editar Grupo</a
+      >
       <section class="grup__info__integrants">
         <h2 class="title__group">Integrantes</h2>
         {% if user_in_group %}
-        <p id="addButton"><i class="ti ti-plus"></i></p>
+        <p id="addButton"><i class="ti ti-users-plus"> </i></p>
         {% endif %}
       </section>
+
       {% if user_in_group %}
       <div class="form__container" id="formContainer">
         <form
           id="formulate__user"
-          action="/group/adduser/{{ grupo.id_grupo_colaboradores }}"
+          action="{{ url_for('group.add_user', id=grupo.id_grupo_colaboradores) }}}"
           method="post"
         ></form>
       </div>
       {% endif %} {% for user in grupo.usuario_grupos %}
-      <a
-        href="{{ url_for('user.profile_by_id', username=user.nombre) }}"
-        class="card__date"
-        ><i class="ti ti-user-filled"></i> {{ user.nombre }}</a
-      >
+      <div class="container__username">
+        <a
+          href="{{ url_for('user.profile_by_id', username=user.nombre) }}"
+          class="card__date"
+          ><i class="ti ti-user-filled"></i> {{ user.nombre }}</a
+        >
+
+        <form
+          method="POST"
+          action="{{ url_for('group.remove_user', id_grupo=grupo.id_grupo_colaboradores , id_usuario=user.id_usuario) }}"
+        >
+          <button class="btn__delete" type="submit">
+            <i class="ti ti-trash-filled"></i>
+          </button>
+        </form>
+      </div>
       {% endfor %}
     </div>
   </article>

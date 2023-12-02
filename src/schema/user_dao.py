@@ -38,11 +38,11 @@ class UsuarioDao:
 
         # valid if the user already exists | email
 
-        if self.get_by_email(usuario.email) is not None:
+        if self.check_email(usuario.email):
             raise ValueError("The email already exists")
 
         # | nombres/username
-        if self.get_by_username(usuario.nombre) is not None:
+        if self.check_username(usuario.nombre):
             raise ValueError("The username already exists")
 
         sql = """
@@ -116,6 +116,38 @@ class UsuarioDao:
 
         return usuario
 
+    # CHECK IF EMAIL EXISTS
+
+    def check_email(self, email) -> bool:
+        sql = """
+        SELECT * FROM USUARIOS
+        WHERE EMAIL = :1
+        """
+        values = (email,)
+        self.__cursor.execute(sql, values)
+        data = self.__cursor.fetchone()
+
+        if data is None:
+            return False
+
+        return True
+
+    # CHECK IF USERNAME EXISTS
+
+    def check_username(self, username) -> bool:
+        sql = """
+        SELECT * FROM USUARIOS
+        WHERE NOMBRES = :1
+        """
+        values = (username,)
+        self.__cursor.execute(sql, values)
+        data = self.__cursor.fetchone()
+
+        if data is None:
+            return False
+
+        return True
+
     # SELECT USER BY USERNAME
     def get_by_username(self, username) -> Usuario:
         sql = """
@@ -165,6 +197,25 @@ class UsuarioDao:
 
     # DELETE QUERY | WHERE IDUSUARIO = '{id}'
     def delete(self, id):
+
+        # check if user includes in a group
+
+        sqlCheck = """
+        SELECT * FROM USUARIOSGRUPOS
+        WHERE IDUSUARIO = :1
+        """
+
+        valuesCheck = (id,)
+
+        self.__cursor.execute(sqlCheck, valuesCheck)
+        data = self.__cursor.fetchone()
+
+        if data is not None:
+            raise ValueError(
+                "Sorry the user includes in a group and can't be deleted")
+
+        # delete user
+
         sql = """
         DELETE FROM USUARIOS
         WHERE IDUSUARIO = :1

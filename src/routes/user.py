@@ -90,7 +90,7 @@ def register():
 def login():
     if request.method == 'POST':
         # get form data
-        email = request.form['email']
+        email_or_username = request.form['email_or_username']
         password = request.form['password']
 
         database = DataBase()
@@ -99,9 +99,14 @@ def login():
 
         error = None
 
+        user = None
+
         usuario_dao = UsuarioDao(database.connection, database.cursor)
 
-        user = usuario_dao.get_by_email(email)
+        if usuario_dao.check_email(email_or_username):
+            user = usuario_dao.get_by_email(email_or_username)
+        elif usuario_dao.check_username(email_or_username):
+            user = usuario_dao.get_by_username(email_or_username)
 
         # close database connection
         database.close()
@@ -286,6 +291,42 @@ def profile():
     database.close()
 
     return render_template('user/profile.html', user=g.user, grupos=grupos)
+
+
+@bp.route('/delete', methods=['POST'])
+@login_required
+def delete_session():
+    if request.method == 'POST':
+        try:
+            # database connection
+            database = DataBase()
+
+            # user dao
+            usuario_dao = UsuarioDao(database.connection, database.cursor)
+
+            # delete user
+            usuario_dao.delete(g.user.id_usuario)
+
+            # close database connection
+            database.close()
+
+            # flash message
+            flash("User deleted successfully", "success")
+
+            # close session
+            session.clear()
+
+            return redirect(url_for('index'))
+
+        except ValueError as error:
+            # imprimir error
+            flash(str(error), "error")
+
+        except Exception as error:
+            # imprimir error
+            flash(str(error), "error")
+
+    return redirect(url_for('index'))
 
 
 @bp.route('/logout')
