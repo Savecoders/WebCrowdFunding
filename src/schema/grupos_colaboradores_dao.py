@@ -64,6 +64,28 @@ class GruposColaboradoresDao:
 
         self.__conn.commit()
 
+    # SELECT QUERY | ALL
+
+    def get_all(self):
+
+        sql = "SELECT * FROM GRUPOSCOLABORADORES"
+
+        self.__cursor.execute(sql)
+
+        data = self.__cursor.fetchall()
+
+        if data is None:
+            return None
+
+        grupos = []
+
+        for row in data:
+            grupo = GruposColaboradores(row[0], row[1], row[2], row[3], row[4])
+            grupo.load_image()
+            grupos.append(grupo)
+
+        return grupos
+
     # SELECT QUERY | WHERE IDGRUPO = '{id}'
     def get_by_id(self, id):
 
@@ -267,7 +289,6 @@ class GruposColaboradoresDao:
         self.__conn.commit()
 
     # CHECK USER IN GROUP
-
     def check_user_in_group(self, id_usuario, id_grupo):
 
         sql = """

@@ -1,0 +1,50 @@
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/group/index.css') }}"
+/>
+
+{% extends "base.html" %} {% block content %} {% include "navbar.html" %}
+
+<main class="main__grid">
+  <!-- profile sidebar -->
+  <article class="main__article"></article>
+
+  <aside class="main__aside">
+    <section class="profile__projects">
+      <div class="title__container">
+        <h2 class="profile__title">Grupos</h2>
+      </div>
+
+      <div class="profile__group__list">
+        <!-- <p>No hay grupos disponibles</p> -->
+        {% for group in groups %}
+
+        <div class="card__group">
+          <div class="profile__container">
+            <img
+              src="{{ group.imagen }}"
+              alt="profile picture"
+              class="profile__picture"
+            />
+          </div>
+
+          <article class="card__group__info">
+            <a
+              href="{{ url_for('group.index', id=group.id_grupo_colaboradores) }}"
+              class="card__title"
+              ><i class="ti ti-external-link"></i> {{ group.nombre }}</a
+            >
+            <p class="card__date">
+              <i class="ti ti-calendar-month"></i> {{ group.fecha_creacion }}
+            </p>
+            <p class="card__description">{{ group.descripcion }}</p>
+          </article>
+        </div>
+
+        {% endfor %}
+      </div>
+    </section>
+  </aside>
+</main>
+
+{% endblock %}

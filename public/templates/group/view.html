@@ -20,11 +20,13 @@
       <h1>{{ grupo.nombre }}</h1>
       <h2>{{ grupo.descripcion }}</h2>
       <h4><i class="ti ti-calendar-month"></i> {{ grupo.fecha_creacion }}</h4>
+      {% if user_in_group %}
       <a
         href="{{ url_for('group.edit', id=grupo.id_grupo_colaboradores) }}"
         class="profile__edit__link"
         ><i class="ti ti-edit"></i> Editar Grupo</a
       >
+      {% endif %}
       <section class="grup__info__integrants">
         <h2 class="title__group">Integrantes</h2>
         {% if user_in_group %}
@@ -36,7 +38,7 @@
       <div class="form__container" id="formContainer">
         <form
           id="formulate__user"
-          action="{{ url_for('group.add_user', id=grupo.id_grupo_colaboradores) }}}"
+          action="{{ url_for('group.add_user', id=grupo.id_grupo_colaboradores) }}"
           method="post"
         ></form>
       </div>
@@ -47,7 +49,7 @@
           class="card__date"
           ><i class="ti ti-user-filled"></i> {{ user.nombre }}</a
         >
-
+        {% if user_in_group %}
         <form
           method="POST"
           action="{{ url_for('group.remove_user', id_grupo=grupo.id_grupo_colaboradores , id_usuario=user.id_usuario) }}"
@@ -56,6 +58,7 @@
             <i class="ti ti-trash-filled"></i>
           </button>
         </form>
+        {% endif %}
       </div>
       {% endfor %}
     </div>
@@ -151,24 +154,6 @@
 
   <!-- groups and projects -->
 </main>
-
-<!-- flash messages -->
-
-<div class="notify-messages">
-  {% with messages = get_flashed_messages(with_categories=true) %} {% if
-  messages %} {% for category, message in messages %} {% if category ==
-  "success" %}
-  <div class="message success" role="alert">
-    {{ message }} <i class="ti ti-check"></i>
-  </div>
-  {% elif category == "error" %}
-  <div class="message error" role="alert">
-    {{ message }} <i class="ti ti-trash-filled"></i>
-  </div>
-  {% endif %} {% endfor %} {% endif %} {% endwith %}
-</div>
-
-<script src="{{ url_for('static', filename='js/messages.js') }}"></script>
 
 <script src="{{ url_for('static', filename='js/addMember.js') }}"></script>
 
