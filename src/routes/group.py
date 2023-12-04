@@ -29,11 +29,6 @@ bp = Blueprint('group', __name__, url_prefix='/group')
 # create a route for the group blueprint
 
 
-@bp.route('/', methods=['GET'])
-def all_group():
-    return 'show all groups'
-
-
 @bp.route('/<string:id>', methods=['GET'])
 def index(id):
     try:
@@ -78,6 +73,26 @@ def index(id):
 
     # show error 404
     return render_template('notFindPage.html', title='404 Group', message='Grupo No Existe'), 404
+
+@bp.route('/', methods=['GET'])
+def all_group():
+
+    # database connection
+    database = DataBase()
+
+    # group dao
+
+    grupo_dao = GruposColaboradoresDao(
+        database.connection, database.cursor)
+
+    # get all groups
+
+    grupos = grupo_dao.get_all()
+
+    # close database connection
+    database.close()
+
+    return render_template('group/index.html', groups=grupos)
 
 
 @bp.route('/new', methods=['GET', 'POST'])
