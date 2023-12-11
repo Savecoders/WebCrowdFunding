@@ -207,3 +207,6 @@ class Usuario:
 
     def get_binary_image_perfil(self):
         return self.__image_perfil
+
+    def inserdao(self):
+        return (self.__id, self.__nombre, self.__contrasena, self.__telefono, self.__estado, self.__email, self.get_binary_image_perfil(), self.__pais, self.__ciudad, self.__fecha_nacimiento)
