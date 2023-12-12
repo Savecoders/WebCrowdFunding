@@ -1,5 +1,7 @@
 # secure_filename: Valida el nombre de un archivo
 from werkzeug.utils import secure_filename
+import hashlib
+import uuid
 import os
 import base64
 import re
@@ -136,3 +138,9 @@ class Proyecto:
         if (len(estado) < 5):
             raise ValueError("The name must have at least 5 characters.")
         self.__estado = estado
+    def generateHashId(self):
+        self.__id = hashlib.sha256(uuid.uuid4().bytes).hexdigest()
+    def get_binary_presentacion(self):
+        return self.__presentacion
+    def inserdao(self):
+        return (self.__id, self.__idea, self.__nombre, self.__fechaLimite,self.get_binary_presentacion(), self.__presupuesto, self.__recompensa, self.__metaAlcanzada, self.__estado)
