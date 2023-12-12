@@ -37,6 +37,15 @@ git clone https://github.com/Savecoders/WebCrowdFunding.git
 cd WebCrowdFunding
 ```
 
+## Config git user
+
+```sh
+git config --global user.name "username"
+git config --global user.email "email@gmail.com"
+```
+
+please using your username and email from github
+
 ## Create Virtual Environment
 
 ```sh
@@ -47,6 +56,13 @@ py -m venv venv.
 
 ```sh
 .\venv\Scripts\activate
+```
+
+## update pip
+
+```sh
+python.exe -m pip install --upgrade pip
+
 ```
 
 ## Dependencies Environment
@@ -65,7 +81,7 @@ DATABASE_USER='user'
 DATABASE_PORT=1521
 ```
 
-## Run
+## Run Project in normal mode
 
 ```sh
 py app.py
@@ -77,8 +93,24 @@ or
 python app.py
 ```
 
+or
+
+```sh
+set FLASK_APP=app.py 
+set FLASK_ENV=development 
+flask run
+python3 -m flask run
+```
+
 ## Open Browser
 
 ```sh
 http://localhost:5000/
+```
+
+## Push and pull changes
+
+```sh
+git pull --set-upstream origin main
+git push --set-upstream origin main
 ```
