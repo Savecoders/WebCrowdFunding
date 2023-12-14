@@ -49,8 +49,8 @@ class UsuarioDao:
         INSERT INTO USUARIOS (IDUSUARIO, NOMBRES, CONTRASENA, TELEFONO, ESTADO, EMAIL, IMAGENPERFIL, PAIS, CIUDAD, FECHANACIMIENTO)
         VALUES (:1, :2, :3, :4, :5, :6, :7, :8, :9, :10)
         """
-        
-        self.__cursor.execute(sql, usuario.inserdao)
+
+        self.__cursor.execute(sql, usuario.inserdao())
         self.__conn.commit()
 
     # SELECT QUERY

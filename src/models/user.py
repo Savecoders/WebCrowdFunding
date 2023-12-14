@@ -126,7 +126,7 @@ class Usuario:
             raise ValueError("required image.")
 
         # validate extension
-        extensions = ['png', 'jpg', 'jpeg', 'gif']
+        extensions = ['png', 'jpg', 'jpeg', 'gif', 'svg', 'webp', "jfif"]
 
         # get extension
         extension = image_perfil.filename.split('.')[-1]

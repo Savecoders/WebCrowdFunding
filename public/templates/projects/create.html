@@ -7,10 +7,12 @@
 
 <section class="section__form">
   <h1 class="main__title">Crear Proyecto</h1>
+
   <h3 class="sub_title">
     Crea tu proyecto en YStartUp y cuentanos Que es lo que esas manos desean
     crear!
   </h3>
+
   <form action="" method="post" class="container__form">
     <label for="titleProject">Titulo del Proyecto:</label>
     <input
@@ -19,6 +21,20 @@
       placeholder="Titulo del Proyecto"
       autocomplete="off"
       id="titleProject"
+      oninput="this.value = this.value.replace(/[^a-zA-Z0-9 ]/g, '')"
+      required
+    />
+
+    <label for="nameGroup">
+      Grupo del Proyecto (Existente o nuevo Grupo):</label
+    >
+
+    <input
+      type="text"
+      name="nameGroup"
+      placeholder="Titulo del Proyecto"
+      autocomplete="off"
+      id="nameGroup"
       oninput="this.value = this.value.replace(/[^a-zA-Z0-9 ]/g, '')"
       required
     />
