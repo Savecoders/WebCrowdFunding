@@ -9,10 +9,9 @@
   <section class="nav__overlay">
     <ul class="nav__menu">
       <li class="nav__item">
-        <span class="nav__parent can__open"
-          >Descubre Proyectos
-          <div class="arrow__down"></div
-        ></span>
+        <span class="nav__parent can__open">Descubre Proyectos
+          <div class="arrow__down"></div>
+        </span>
 
         <ul class="nav__inner">
           <li class="nav__dropdown">
@@ -39,28 +38,23 @@
       </li>
 
       <li class="nav__item">
-        <span class="nav__parent can__open"
-          >Nosotros
-          <div class="arrow__down"></div
-        ></span>
+        <span class="nav__parent can__open">Nosotros
+          <div class="arrow__down"></div>
+        </span>
 
         <ul class="nav__inner">
           <li class="nav__dropdown">
-            <a href="/projects" class="nav__link"
-              ><i class="ti ti-database"></i> Proyecto Datos</a
-            >
+            <a href="/projects" class="nav__link"><i class="ti ti-database"></i> Proyecto Datos</a>
           </li>
 
           <li class="nav__dropdown">
-            <a href="/projects" class="nav__link"
-              ><i class="ti ti-box"></i> Nuestro Equipo</a
-            >
+            <a href="/projects" class="nav__link"><i class="ti ti-box"></i> Nuestro Equipo</a>
           </li>
         </ul>
       </li>
 
       <li class="nav__item">
-        <a href="/projects/create" class="nav__link">Empieza Tu Proyecto</a>
+        <a href="{{ url_for('projects.create') }}" class="nav__link">Empieza Tu Proyecto</a>
       </li>
 
       <li class="nav__item">
@@ -71,31 +65,22 @@
 
       <li class="nav__item">
         <span class="nav__parent can__open">
-          <img
-            src="{{g.user.image_perfil}}"
-            class="nav__image-perfil"
-            alt="Perfil" />
+          <img src="{{g.user.image_perfil}}" class="nav__image-perfil" alt="Perfil" />
           {{ g.user.nombre }}
-          <div class="arrow__down"></div
-        ></span>
+          <div class="arrow__down"></div>
+        </span>
 
         <ul class="nav__inner">
           <li class="nav__dropdown">
-            <a href="{{ url_for('user.profile') }}" class="nav__link"
-              ><i class="ti ti-user"></i> Perfil</a
-            >
+            <a href="{{ url_for('user.profile') }}" class="nav__link"><i class="ti ti-user"></i> Perfil</a>
           </li>
 
           <li class="nav__dropdown">
-            <a href="{{ url_for('user.update') }}" class="nav__link"
-              ><i class="ti ti-settings"></i> Editar Perfil</a
-            >
+            <a href="{{ url_for('user.update') }}" class="nav__link"><i class="ti ti-settings"></i> Editar Perfil</a>
           </li>
 
           <li class="nav__dropdown">
-            <a href="{{ url_for('user.logout') }}" class="nav__link"
-              ><i class="ti ti-logout"></i> Cerrar Sesion</a
-            >
+            <a href="{{ url_for('user.logout') }}" class="nav__link"><i class="ti ti-logout"></i> Cerrar Sesion</a>
           </li>
         </ul>
       </li>
@@ -106,9 +91,7 @@
         <a href="{{ url_for('user.login') }}" class="">Iniciar Sesion</a>
       </li>
       <li class="nav__contain_sign">
-        <a href="{{ url_for('user.register') }}" class="nav__sign"
-          >Registrate</a
-        >
+        <a href="{{ url_for('user.register') }}" class="nav__sign">Registrate</a>
       </li>
 
       {% endif %}

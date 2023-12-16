@@ -1,7 +1,4 @@
-<link
-  rel="stylesheet"
-  href="{{ url_for('static', filename='css/project.css') }}"
-/>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/project.css') }}" />
 
 {% extends "base.html" %} {% block content %} {% include "navbar.html" %}
 
@@ -14,43 +11,20 @@
   </h3>
 
   <form action="" method="post" class="container__form">
-    <label for="titleProject">Titulo del Proyecto:</label>
-    <input
-      type="text"
-      name="titleProject"
-      placeholder="Titulo del Proyecto"
-      autocomplete="off"
-      id="titleProject"
-      oninput="this.value = this.value.replace(/[^a-zA-Z0-9 ]/g, '')"
-      required
-    />
+    <label for="titleProject">Nombre del Proyecto:</label>
+    <input type="text" name="nameProject" placeholder="Nombre del Proyecto" autocomplete="off" id="titleProject"
+      oninput="this.value = this.value.replace(/[^a-zA-Z0-9 ]/g, '')" required />
 
     <label for="nameGroup">
-      Grupo del Proyecto (Existente o nuevo Grupo):</label
-    >
+      Nombre del grupo (Existente o nuevo Grupo):</label>
 
-    <input
-      type="text"
-      name="nameGroup"
-      placeholder="Titulo del Proyecto"
-      autocomplete="off"
-      id="nameGroup"
-      oninput="this.value = this.value.replace(/[^a-zA-Z0-9 ]/g, '')"
-      required
-    />
+    <input type="text" name="nameGroup" placeholder="Nombre del Grupo del Proyecto" autocomplete="off" id="nameGroup"
+      oninput="this.value = this.value.replace(/[^a-zA-Z0-9 ]/g, '')" required />
 
     <label for="ideaProject"> Idea del Proyecto:</label>
 
-    <input
-      type="text"
-      name="ideaProject"
-      placeholder="Idea del Proyecto"
-      autocomplete="off"
-      id="ideaProject"
-      oninput="this.value =
-        this.value.replace(/[^a-zA-Z0-9 ]/g, '')"
-      required
-    />
+    <input type="text" name="ideaProject" placeholder="Idea del Proyecto" autocomplete="off" id="ideaProject" oninput="this.value =
+        this.value.replace(/[^a-zA-Z0-9 ]/g, '')" required />
 
     <label for="descriptionProject">
       Ingresa tus prototipos en formato png, jpg:
@@ -58,34 +32,19 @@
 
     <label for="images" class="drop-container" id="dropcontainer">
       <span class="drop-title">Arrastra tus imagenes</span>
-      <input type="file" id="images" accept="image/*" required />
+      <input type="file" name="s" id="images" accept="image/*" required />
     </label>
 
     <label for="descriptionProject">
-      Escribe la descriptcion del Proyecto:</label
-    >
-    <textarea
-      name="DescriptionProject"
-      id="descriptionProject"
-      cols="30"
-      rows="10"
-      contenteditable="true"
-    >
+      Escribe la descriptcion del Proyecto:</label>
+    <textarea name="DescriptionProject" id="descriptionProject" cols="30" rows="10" contenteditable="true">
 Descripcion....
-        </textarea
-    >
+        </textarea>
 
     <label for="planProject"> Escribe El plan del Proyecto:</label>
-    <textarea
-      name="planProject"
-      id="planProject"
-      cols="30"
-      rows="10"
-      contenteditable="true"
-    >
+    <textarea name="planProject" id="planProject" cols="30" rows="10" contenteditable="true">
 Plan de contingencia....
-        </textarea
-    >
+        </textarea>
     <input type="submit" value="Guardar Proyecto" class="btn" />
   </form>
 </section>

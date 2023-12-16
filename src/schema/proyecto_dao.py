@@ -16,11 +16,7 @@ class ProyectoDao:
         VALUES (:1, :2, :3, :4, :5, :6, :7, :8, :9, :10, :11 )
         """
 
-<<<<<<< HEAD
         self.__cursor.execute(sql, proyecto.inserdao())
-=======
-        self.__cursor.execute(sql, proyecto.inserdao)
->>>>>>> 98be15e07bff7f57766739b3eabca029bdeec9fa
         self.__conn.commit()
         values = (proyecto.idProyecto, proyecto.idea, proyecto.nombre,
                   proyecto.fechaLimite, proyecto.get_binary_presentacion(),
