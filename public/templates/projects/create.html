@@ -1,4 +1,7 @@
-<link rel="stylesheet" href="{{ url_for('static', filename='css/project.css') }}" />
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/project/project.css') }}"
+/>
 
 {% extends "base.html" %} {% block content %} {% include "navbar.html" %}
 
@@ -12,19 +15,40 @@
 
   <form action="" method="post" class="container__form">
     <label for="titleProject">Nombre del Proyecto:</label>
-    <input type="text" name="nameProject" placeholder="Nombre del Proyecto" autocomplete="off" id="titleProject"
-      oninput="this.value = this.value.replace(/[^a-zA-Z0-9 ]/g, '')" required />
+    <input
+      type="text"
+      name="nameProject"
+      placeholder="Nombre del Proyecto"
+      autocomplete="off"
+      id="titleProject"
+      oninput="this.value = this.value.replace(/[^a-zA-Z0-9 ]/g, '')"
+      required
+    />
 
-    <label for="nameGroup">
-      Nombre del grupo (Existente o nuevo Grupo):</label>
+    <label for="nameGroup"> Nombre del grupo (Existente o nuevo Grupo):</label>
 
-    <input type="text" name="nameGroup" placeholder="Nombre del Grupo del Proyecto" autocomplete="off" id="nameGroup"
-      oninput="this.value = this.value.replace(/[^a-zA-Z0-9 ]/g, '')" required />
+    <input
+      type="text"
+      name="nameGroup"
+      placeholder="Nombre del Grupo del Proyecto"
+      autocomplete="off"
+      id="nameGroup"
+      oninput="this.value = this.value.replace(/[^a-zA-Z0-9 ]/g, '')"
+      required
+    />
 
     <label for="ideaProject"> Idea del Proyecto:</label>
 
-    <input type="text" name="ideaProject" placeholder="Idea del Proyecto" autocomplete="off" id="ideaProject" oninput="this.value =
-        this.value.replace(/[^a-zA-Z0-9 ]/g, '')" required />
+    <input
+      type="text"
+      name="ideaProject"
+      placeholder="Idea del Proyecto"
+      autocomplete="off"
+      id="ideaProject"
+      oninput="this.value =
+        this.value.replace(/[^a-zA-Z0-9 ]/g, '')"
+      required
+    />
 
     <label for="descriptionProject">
       Ingresa tus prototipos en formato png, jpg:
@@ -36,15 +60,52 @@
     </label>
 
     <label for="descriptionProject">
-      Escribe la descriptcion del Proyecto:</label>
-    <textarea name="DescriptionProject" id="descriptionProject" cols="30" rows="10" contenteditable="true">
+      Escribe la descriptcion del Proyecto:</label
+    >
+    <textarea
+      name="DescriptionProject"
+      id="descriptionProject"
+      cols="30"
+      rows="10"
+      contenteditable="true"
+    >
 Descripcion....
-        </textarea>
+        </textarea
+    >
 
-    <label for="planProject"> Escribe El plan del Proyecto:</label>
-    <textarea name="planProject" id="planProject" cols="30" rows="10" contenteditable="true">
-Plan de contingencia....
-        </textarea>
+    <label for="date_init">Fecha de Iniciacion del Proyecto </label>
+
+    <input
+      type="date"
+      name="date_init"
+      id="date_init"
+      min="2023-12-12"
+      max="2025-12-31"
+      required
+    />
+
+    <label for="date_final">Fecha de finalizacion del Proyecto </label>
+
+    <input
+      type="date"
+      name="date_final"
+      id="date_final"
+      min="2023-12-12"
+      max="2028-12-31"
+      required
+    />
+
+    <label for="date_final">Presupuesto del Proyecto </label>
+
+    <input
+      type="number"
+      name="budget"
+      id="budget"
+      min="1000"
+      max="1000000"
+      oninput="this.value = Math.abs(this.value)"
+      required
+    />
     <input type="submit" value="Guardar Proyecto" class="btn" />
   </form>
 </section>
