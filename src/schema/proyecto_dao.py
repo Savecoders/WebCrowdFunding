@@ -1,5 +1,6 @@
 from oracledb import Connection, Cursor
-from src.models.proyecto import Proyecto
+from src.models import Proyecto
+from src.schema import GruposColaboradoresDao
 
 
 class ProyectoDao:
@@ -12,16 +13,13 @@ class ProyectoDao:
             raise ValueError("The Error al insertar el proyecto")
 
         sql = """
-        INSERT INTO PROYECTO (IDPROYECTO, IDEA, NOMBRE, FECHALIMITE, PRESENTACION, PRESUPUESTO, RECOMPENSA, METAALCANZADA, ESTADO, IDGRUPO,IDDONACION)
-        VALUES (:1, :2, :3, :4, :5, :6, :7, :8, :9, :10, :11 )
+        INSERT INTO PROYECTO (IDPROYECTO, NOMBRE, IDEA, DESCRIPCION, FECHALIMITE, PRESENTACION, PRESUPUESTO, RECOMPENSA, METAALCANZADA, ESTADO, IDGRUPO)
+        VALUES (:1, :2, :3, :4, :5, :6, :7, :8, :9, :10, :11)
         """
 
         self.__cursor.execute(sql, proyecto.inserdao())
         self.__conn.commit()
-        values = (proyecto.idProyecto, proyecto.idea, proyecto.nombre,
-                  proyecto.fechaLimite, proyecto.get_binary_presentacion(),
-                  proyecto.presupuesto, proyecto.recompensa, proyecto.metaAlcanzada,
-                  proyecto.estado)
+        values = ()
 
     def get_all_proyects(self) -> list[Proyecto]:
         self.__cursor.execute("SELECT * FROM PROYECTOS")
@@ -30,10 +28,21 @@ class ProyectoDao:
         proyectos = []
 
         for row in data:
+
+            # get group
+
+            grupo = GruposColaboradoresDao(self.__conn, self.__cursor)
+            grupo = grupo.get_by_id(row[11])
+
+            if grupo is None:
+                raise ValueError("The group doesn't exists.")
+
             proyecto = Proyecto(row[0], row[1], row[2], row[3],
                                 row[4], row[5], row[6], row[7],
                                 row[8], row[9], row[10]
                                 )
+
+            proyecto.group = grupo
 
             proyectos.append(proyecto)
 
@@ -51,10 +60,21 @@ class ProyectoDao:
         if data is None:
             return None
 
+        # get group
+
+        grupo = GruposColaboradoresDao(self.__conn, self.__cursor)
+        grupo = grupo.get_by_id(data[11])
+
+        if grupo is None:
+            raise ValueError("The group doesn't exists.")
+
         proyecto = Proyecto(data[0], data[1], data[2], data[3],
                             data[4], data[5], data[6], data[7],
                             data[8], data[9], data[10]
                             )
+
+        proyecto.group = grupo
+
         return proyecto
 
     def get_by_name(self, nombre: str) -> Proyecto:
@@ -69,10 +89,20 @@ class ProyectoDao:
         if data is None:
             return None
 
+        # get group
+
+        grupo = GruposColaboradoresDao(self.__conn, self.__cursor)
+        grupo = grupo.get_by_id(data[11])
+
+        if grupo is None:
+            raise ValueError("The group doesn't exists.")
+
         proyecto = Proyecto(data[0], data[1], data[2], data[3],
                             data[4], data[5], data[6], data[7],
                             data[8], data[9],  data[10]
                             )
+
+        proyecto.group = grupo
 
         return proyecto
 

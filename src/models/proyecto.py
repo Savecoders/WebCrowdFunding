@@ -1,3 +1,7 @@
+
+# Import grupo model
+from src.models import GruposColaboradores
+
 # secure_filename: Valida el nombre de un archivo
 from werkzeug.utils import secure_filename
 import hashlib
@@ -8,7 +12,7 @@ import re
 
 
 class Proyecto:
-    def __init__(self, idProyecto=None, idea=None, nombre=None, fechaLimite=None, presentacion=None, presupuesto=None, recompensa=None, metaAlcanzada=None, estado=None):
+    def __init__(self, idProyecto=None, idea=None, nombre=None, fechaLimite=None, presentacion=None, presupuesto=None, recompensa=None, metaAlcanzada=None, estado=None, descripcion=None):
         self.__id = idProyecto
         self.__idea = idea
         self.__nombre = nombre
@@ -18,8 +22,8 @@ class Proyecto:
         self.__recompensa = recompensa
         self.__metaAlcanzada = metaAlcanzada
         self.__estado = estado
-        self.__idgruppo = None
-        self.__iddonacion = None
+        self.__descripcion = descripcion
+        self.__grupo = None
 
     def __str__(self):
         return f'{self.__id}, {self.__idea}, {self.__nombre}, {self.__fechaLimite}, {self.__presentacion}, {self.__presupuesto}, {self.__recompensa}, {self.__metaAlcanzada}, {self.__estado}'
@@ -157,6 +161,33 @@ class Proyecto:
             raise ValueError("The name must have at least 5 characters.")
         self.__estado = estado
 
+    @property
+    def descripcion(self):
+        return self.__descripcion
+
+    @descripcion.setter
+    def descripcion(self, descripcion):
+        if not isinstance(descripcion, str):
+            raise ValueError("The name must be a string.")
+        if descripcion == "":
+            raise ValueError("The name can't be empty.")
+
+        if (len(descripcion) < 5):
+            raise ValueError("The name must have at least 10 characters.")
+        self.__descripcion = descripcion
+
+    @property
+    def group(self):
+        return self.__group
+
+    @group.setter
+    def group(self, group: GruposColaboradores):
+
+        if not isinstance(group, GruposColaboradores):
+            raise ValueError("The group must be a GruposColaboradores.")
+
+        self.__group = group
+
     def generateHashId(self):
         self.__id = hashlib.sha256(uuid.uuid4().bytes).hexdigest()
 
@@ -164,4 +195,4 @@ class Proyecto:
         return self.__presentacion
 
     def inserdao(self):
-        return (self.__id, self.__idea, self.__nombre, self.__fechaLimite, self.get_binary_presentacion(), self.__presupuesto, self.__recompensa, self.__metaAlcanzada, self.__estado)
+        return (self.__id, self.__nombre, self.__idea, self.__descripcion, self.__fechaLimite, self.get_binary_presentacion(), self.__presupuesto, self.__recompensa, self.__metaAlcanzada, self.__estado, self.__group.id_grupo_colaboradores)
