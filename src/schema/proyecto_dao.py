@@ -19,7 +19,6 @@ class ProyectoDao:
 
         self.__cursor.execute(sql, proyecto.inserdao())
         self.__conn.commit()
-        values = ()
 
     def get_all_proyects(self) -> list[Proyecto]:
         self.__cursor.execute("SELECT * FROM PROYECTOS")
