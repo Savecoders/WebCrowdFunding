@@ -107,7 +107,7 @@ class GruposColaboradoresDao:
 
     # SELECT QUERY | WHERE NOMBREGRUPO = '{nombre}'
 
-    def get_by_name(self, nombre):
+    def get_by_name(self, nombre) -> GruposColaboradores:
 
         sql = "SELECT * FROM GRUPOSCOLABORADORES WHERE NOMBREGRUPO = :1"
 
@@ -117,20 +117,32 @@ class GruposColaboradoresDao:
 
         # object Grupos Colaboradores
 
-        grupo = GruposColaboradores()
+        row = self.__cursor.fetchone()
+
+        if row:
+            grupo = GruposColaboradores(row[0], row[1], row[2], row[3], row[4])
+            return grupo
+        else:
+            return None
+
+    # SELECT QUERY | WHERE NOMBREGRUPO = '{nombre}'
+
+    def check_name(self, nombre):
+
+        sql = "SELECT * FROM GRUPOSCOLABORADORES WHERE NOMBREGRUPO = :1"
+
+        values = (nombre,)
+
+        self.__cursor.execute(sql, values)
+
+        # object Grupos Colaboradores
 
         row = self.__cursor.fetchone()
 
         if row:
-            grupo.id_grupo_colaboradores = row[0]
-            grupo.nombre = row[1]
-            grupo.descripcion = row[2]
-            grupo.imagen = row[3]
-            grupo.fecha_creacion = row[4]
-
-            return grupo
+            return True
         else:
-            return None
+            return False
 
     # UPDATE QUERY | WHERE IDGRUPO = '{id}'
 

@@ -42,6 +42,11 @@ def create():
             proyecto.fechaLimite = request.form["date_limit"]
             proyecto.presupuesto = request.form["budget"]
             proyecto.recompensa = request.form["reward"]
+            proyecto.estado = "Activo"
+            proyecto.metaAlcanzada = 0
+
+            # generates
+            proyecto.generateHashId()
 
             # name of the group
             grupo = request.form["nameGroup"]
@@ -51,26 +56,38 @@ def create():
 
             # check if the name of the project exists
 
-            grupo_dao = GruposColaboradoresDao(database.conn, database.cursor)
+            grupo_dao = GruposColaboradoresDao(
+                database.connection, database.cursor)
 
-            if grupo_dao.check_name(grupo):
-                grupo_dto = grupo_dao.get_by_name(grupo)
-                proyecto.group = grupo_dto
+            if grupo_dao.check_name(grupo) == False:
+                raise ValueError("The not exits the group name.")
 
-            proyecto_dao = ProyectoDao(database.conn, database.cursor)
+            # get the id of the group
+
+            grupo_dto = grupo_dao.get_by_name(grupo)
+
+            print(grupo_dto.id_grupo_colaboradores)
+
+            proyecto.group = grupo_dto
+
+            # insert the group id in the project
+
+            proyecto_dao = ProyectoDao(database.connection, database.cursor)
 
             if proyecto_dao.check_name(proyecto.nombre):
                 raise ValueError("The project name already exists.")
 
             proyecto_dao.insert(proyecto)
 
-            return 'Project created successfully'
+            database.close()
+
+            return redirect(url_for('user.profile'))
 
         except ValueError as error:
             flash(str(error), "error")
 
         except Exception as error:
             flash(str(error), "error")
+            print(error)
 
-        return 'Create project'
     return render_template('projects/create.html')
