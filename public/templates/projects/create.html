@@ -50,21 +50,25 @@
       required
     />
 
-    <label for="descriptionProject">
-      Ingresa tus prototipos en formato png, jpg:
+    <label for="image_present">
+      Ingresa tus prototipos o presentaciones en formato png, jpg:
     </label>
 
-    <label for="images" class="drop-container" id="dropcontainer">
+    <label for="image_present" class="drop-container" id="dropcontainer">
       <span class="drop-title">Arrastra tus imagenes</span>
-      <input type="file" name="s" id="images" accept="image/*" required />
+      <input
+        type="file"
+        name="image_present"
+        id="image_present"
+        accept="image/*"
+        required
+      />
     </label>
 
-    <label for="descriptionProject">
-      Escribe la descriptcion del Proyecto:</label
-    >
+    <label for="description"> Escribe la descriptcion del Proyecto:</label>
     <textarea
-      name="DescriptionProject"
-      id="descriptionProject"
+      name="description"
+      id="description"
       cols="30"
       rows="10"
       contenteditable="true"
@@ -73,18 +77,18 @@ Descripcion....
         </textarea
     >
 
-    <label for="date_final">Fecha de finalizacion del Proyecto </label>
+    <label for="date_limit">Fecha de finalizacion del Proyecto </label>
 
     <input
       type="date"
-      name="date_final"
-      id="date_final"
+      name="date_limit"
+      id="date_limit"
       min="2023-12-12"
       max="2028-12-31"
       required
     />
 
-    <label for="date_final">Presupuesto del Proyecto </label>
+    <label for="number">Presupuesto del Proyecto </label>
 
     <input
       type="number"
@@ -95,6 +99,20 @@ Descripcion....
       oninput="this.value = Math.abs(this.value)"
       required
     />
+
+    <label for="reward">Recompenza por Inversion:</label>
+
+    <input
+      type="text"
+      name="reward"
+      placeholder="Ingresa una recomenza por invertir en el proyecto"
+      autocomplete="off"
+      id="reward"
+      oninput="this.value =
+        this.value.replace(/[^a-zA-Z0-9 ]/g, '')"
+      required
+    />
+
     <input type="submit" value="Guardar Proyecto" class="btn" />
   </form>
 </section>

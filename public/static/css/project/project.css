@@ -1,26 +1,24 @@
 .section__form {
-  margin: 4rem auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 60%;
+  margin: 2rem auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  /* center */
+  justify-items: center;
+  width: 80%;
   text-align: center;
-  gap: 2rem;
+  gap: 2.6rem;
 }
 
 .container__form {
-  display: flex;
-  flex-direction: column;
-  margin-top: 2rem;
-  gap: 1.5rem 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.6rem;
   text-align: left;
-  width: 100%;
 }
 
 .main__title {
   font-size: 2rem;
-  margin-top: 1rem;
+  margin-top: 4rem;
   font-family: "Inter", sans-serif;
   font-weight: 700;
   line-height: 1.4;
@@ -55,6 +53,13 @@
 
 .container__form input:focus {
   border: 1px solid #79a6fe;
+}
+
+.container__form label {
+  font-family: "Raleway", sans-serif;
+  font-weight: 600;
+  font-size: 1.9ch;
+  word-spacing: 0.1em;
 }
 
 .container__form textarea {
@@ -95,7 +100,8 @@
   width: 100%;
   border-radius: 5px;
   transition: 0.3s;
-  padding: 1rem 1rem;
+  padding: 1.4rem;
+  font-size: 1.2rem;
   cursor: pointer;
   border: none;
 }
@@ -139,13 +145,13 @@
 @media (min-width: 900px) {
   .section__form {
     max-width: 1200px;
-    width: 80%;
-    gap: 2.6rem;
+    gap: 3.6rem;
   }
 
   .container__form {
     width: 75%;
     gap: 1.6rem;
+    margin-bottom: 2rem;
   }
 
   .main__title {
