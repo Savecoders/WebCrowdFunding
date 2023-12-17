@@ -23,7 +23,7 @@ class Proyecto:
         self.__metaAlcanzada = metaAlcanzada
         self.__estado = estado
         self.__descripcion = descripcion
-        self.__grupo = None
+        self.__group = None
 
     def __str__(self):
         return f'{self.__id}, {self.__idea}, {self.__nombre}, {self.__fechaLimite}, {self.__presentacion}, {self.__presupuesto}, {self.__recompensa}, {self.__metaAlcanzada}, {self.__estado}'
@@ -50,7 +50,7 @@ class Proyecto:
         # strip
         ideaStrip = idea.strip()
 
-        if (len(ideaStrip) < 30):
+        if (len(ideaStrip) < 8):
             raise ValueError("The name must have at least 30 characters.")
         self.__idea = idea
 
@@ -85,9 +85,18 @@ class Proyecto:
 
     @property
     def presentacion(self):
-        return self.__presentacion
+        if self.__presentacion:
+            # Read bytes from LOB
+            image_bytes = self.__presentacion
+            # Convert bytes to base64
+            image_encoded = base64.b64encode(image_bytes).decode('utf-8')
+            # Create data URL
+            image_data_url = f"data:image/png;base64,{image_encoded}"
+            return image_data_url
+        else:
+            return None
 
-    @fechaLimite.setter
+    @presentacion.setter
     def presentacion(self, presentacion):
         if not presentacion:
             raise ValueError("required image.")
@@ -119,9 +128,9 @@ class Proyecto:
 
     @presupuesto.setter
     def presupuesto(self, presupuesto):
-        if (presupuesto < 0):
+        if (float(presupuesto) < 0):
             raise ValueError("el presupuesto debe ser postivo.")
-        self.__presupuesto = presupuesto
+        self.__presupuesto = float(presupuesto)
 
     @property
     def recompensa(self):
@@ -129,8 +138,11 @@ class Proyecto:
 
     @recompensa.setter
     def recompensa(self, recompensa):
-        if (recompensa < 0):
-            raise ValueError("el presupuesto debe ser postivo.")
+        if not isinstance(recompensa, str):
+            raise ValueError("The name must be a string.")
+        if recompensa == "":
+            raise ValueError("The name can't be empty.")
+
         self.__recompensa = recompensa
 
     @property
@@ -139,9 +151,7 @@ class Proyecto:
 
     @metaAlcanzada.setter
     def metaAlcanzada(self, metaAlcanzada):
-        if (metaAlcanzada < 0):
-            raise ValueError("el presupuesto debe ser postivo.")
-        self.__metaAlcanzada = metaAlcanzada
+        self.__metaAlcanzada = int(metaAlcanzada)
 
     @property
     def estado(self):
@@ -193,6 +203,9 @@ class Proyecto:
 
     def get_binary_presentacion(self):
         return self.__presentacion
+
+    def load_image(self):
+        self.__presentacion = self.__presentacion.read()
 
     def inserdao(self):
         return (self.__id, self.__nombre, self.__idea, self.__descripcion, self.__fechaLimite, self.get_binary_presentacion(), self.__presupuesto, self.__recompensa, self.__metaAlcanzada, self.__estado, self.__group.id_grupo_colaboradores)
