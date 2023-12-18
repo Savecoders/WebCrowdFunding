@@ -115,6 +115,39 @@
   padding: 2em 0;
 }
 
+.section__donate {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.section__donate form {
+  display: flex;
+  flex-direction: row;
+  gap: 2.4em;
+}
+
+.section__donate form {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.section__comments {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  width: 100%;
+}
+
+.section__comments form {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  width: 100%;
+}
+
 /* media */
 
 @media screen and (min-width: 900px) {

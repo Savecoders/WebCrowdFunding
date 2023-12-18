@@ -49,6 +49,42 @@
       <p>{{ project.fechaLimite }}</p>
     </div>
   </article>
+
+  <section class="section__donate">
+    <h2>Donar</h2>
+
+    <form action="" method="POST">
+      <input type="number" name="amount" id="amount" placeholder="Cantidad" />
+      <button type="submit">Inversion</button>
+    </form>
+  </section>
+
+  <section class="section__comments">
+    <h2>Comentarios</h2>
+
+    <form
+      action="{{ url_for('projects.comment', project_id=project.idProyecto) }}"
+      method="POST"
+    >
+      <textarea
+        name="comment"
+        id="comment"
+        cols="10"
+        rows="10"
+        placeholder="Comenta algo"
+      ></textarea>
+      <button type="submit">Comentar</button>
+    </form>
+
+    <ul class="comments__list">
+      {% for comment in comments %}
+      <li class="comment__item">
+        <p>{{ comment.comentario }}</p>
+        <p>{{ comment.fecha_comentario }}</p>
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
 </main>
 
 {% endblock %}

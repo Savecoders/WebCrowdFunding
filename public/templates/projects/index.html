@@ -1,0 +1,44 @@
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/group/index.css') }}"
+/>
+
+{% extends "base.html" %} {% block content %} {% include "navbar.html" %}
+
+<main class="main__grid">
+  <!-- profile sidebar -->
+  <article class="main__article"></article>
+
+  <aside class="main__aside">
+    <section class="profile__projects">
+      <div class="title__container">
+        <h2 class="profile__title">Todos los Proyectos</h2>
+      </div>
+
+      <div class="projects__container">
+        {% if projects != [] %} {% for project in projects %}
+        <article class="card__article">
+          <img
+            class="media"
+            src="{{project.presentacion}}"
+            alt="image this project"
+          />
+          <div class="card__data">
+            <span class="card__date">{{project.fechaLimite}}</span>
+            <h2 class="card__title">{{project.nombre}}</h2>
+            <a
+              href="{{ url_for('projects.view', id=project.idProyecto) }}"
+              class="card__button"
+              >Ver mas</a
+            >
+          </div>
+        </article>
+        {% endfor %} {% else %}
+        <h2 class="no__projects">No hay proyectos</h2>
+        {% endif %}
+      </div>
+    </section>
+  </aside>
+</main>
+
+{% endblock %}
