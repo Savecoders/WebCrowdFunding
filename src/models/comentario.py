@@ -4,9 +4,6 @@ import re
 import hashlib
 import uuid
 
-# generate_password_hash: Genera un hash de la contraseña
-from werkzeug.security import generate_password_hash
-
 
 class Comentario:
     def __init__(self, id_comentario=None, comentario=None, fecha_comentario=None, usuario=None, id_proyecto=None) -> None:

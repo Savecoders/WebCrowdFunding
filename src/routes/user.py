@@ -22,13 +22,9 @@ import functools
 
 # imports models and schemas dao
 
-from src.models import Usuario
+from src.models import Usuario, GruposColaboradores
 
-from src.schema import UsuarioDao
-
-from src.models import GruposColaboradores
-
-from src.schema import GruposColaboradoresDao
+from src.schema import UsuarioDao, GruposColaboradoresDao, DonacionDao
 
 # Create the user blueprint
 # routes for user registration, login, and profile
@@ -287,10 +283,16 @@ def profile():
 
     grupos = grupos_dao.get_groups(g.user.id_usuario)
 
+    # get donations
+
+    donacion_dao = DonacionDao(database.connection, database.cursor)
+
+    donaciones = donacion_dao.get_all_donations_by_user(g.user.id_usuario)
+
     # close database connection
     database.close()
 
-    return render_template('user/profile.html', user=g.user, grupos=grupos)
+    return render_template('user/profile.html', user=g.user, grupos=grupos, donaciones=donaciones)
 
 
 @bp.route('/delete', methods=['POST'])
