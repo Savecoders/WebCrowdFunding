@@ -43,6 +43,8 @@ class ProyectoDao:
 
             proyecto.group = grupo
 
+            proyecto.load_image()
+
             proyectos.append(proyecto)
 
         return proyectos
