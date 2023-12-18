@@ -60,6 +60,8 @@ class ComentarioDao:
             usuario = UsuarioDao(self.__conn, self.__cursor).get_by_id(
                 comment[3])
 
+            usuario.load_image_perfil()
+
             comentario = Comentario(
                 comment[0], comment[1], comment[2], usuario, comment[4])
 

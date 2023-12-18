@@ -92,104 +92,26 @@
 
     <div class="profile__projects">
       <div class="title__container">
-        <h2 class="profile__title">Proyectos</h2>
-        {% if g.user.id_usuario == user.id_usuario %}
-        <a href=""> <i class="ti ti-apps-filled"></i> Agregar </a>
-        {% endif %}
+        <h2 class="inv__title">Inversiones Registradas</h2>
       </div>
-
-      <section class="projects__container">
-        <!-- <article class="card__article">
-          <img
-            class="media"
-            src="{{ url_for('static', filename='img/project.png')  }}"
-            alt="image this project"
-          />
-          <div class="card__data">
-            <span class="card__date">21-05-2023</span>
-            <h2 class="card__title">The best Project</h2>
-            <a href="#" class="card__button">Ver mas</a>
-          </div>
-        </article> -->
-
+      {% if donaciones %}
+      <section class="inv__container">
+        {% for donacion in donaciones %}
         <article class="card__article">
-          <img
-            class="media"
-            src="{{ url_for('static', filename='img/project.png')  }}"
-            alt="image this project"
-          />
-          <div class="card__data">
-            <span class="card__date">21-05-2023</span>
-            <h2 class="card__title">The best Project</h2>
-            <a href="#" class="card__button">Ver mas</a>
-          </div>
+          <span class="card__date">{{ donacion.fecha_donacion }}</span>
+          <h2 class="card__title">Cantidad Invertida: {{ donacion.monto }}</h2>
+          <a
+            href="{{ url_for('projects.view', id=donacion.id_proyecto) }}"
+            class="card__button"
+            >Ver projecto</a
+          >
         </article>
 
-        <article class="card__article">
-          <img
-            class="media"
-            src="{{ url_for('static', filename='img/project.png')  }}"
-            alt="image this project"
-          />
-          <div class="card__data">
-            <span class="card__date">21-05-2023</span>
-            <h2 class="card__title">The best Project</h2>
-            <a href="#" class="card__button">Ver mas</a>
-          </div>
-        </article>
-
-        <article class="card__article">
-          <img
-            class="media"
-            src="{{ url_for('static', filename='img/project.png')  }}"
-            alt="image this project"
-          />
-          <div class="card__data">
-            <span class="card__date">21-05-2023</span>
-            <h2 class="card__title">The best Project</h2>
-            <a href="#" class="card__button">Ver mas</a>
-          </div>
-        </article>
-
-        <article class="card__article">
-          <img
-            class="media"
-            src="{{ url_for('static', filename='img/project.png')  }}"
-            alt="image this project"
-          />
-          <div class="card__data">
-            <span class="card__date">21-05-2023</span>
-            <h2 class="card__title">The best Project</h2>
-            <a href="#" class="card__button">Ver mas</a>
-          </div>
-        </article>
-
-        <article class="card__article">
-          <img
-            class="media"
-            src="{{ url_for('static', filename='img/project.png')  }}"
-            alt="image this project"
-          />
-          <div class="card__data">
-            <span class="card__date">21-05-2023</span>
-            <h2 class="card__title">The best Project</h2>
-            <a href="#" class="card__button">Ver mas</a>
-          </div>
-        </article>
-
-        <article class="card__article">
-          <img
-            class="media"
-            src="{{ url_for('static', filename='img/project.png')  }}"
-            alt="image this project"
-          />
-          <div class="card__data">
-            <span class="card__date">21-05-2023</span>
-            <h2 class="card__title">The best Project</h2>
-            <a href="#" class="card__button">Ver mas</a>
-          </div>
-        </article>
+        {% endfor %} {% else %}
       </section>
+      <h2 class="no__projects">No hay inversiones registradas</h2>
+
+      {% endif %}
     </div>
   </aside>
 
