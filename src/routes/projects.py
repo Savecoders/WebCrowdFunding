@@ -27,6 +27,52 @@ def index():
     return 'show all projects'
 
 
+@bp.route('/<string:id>', methods=['GET'])
+def view(id):
+    try:
+        # validate form data
+
+        # database connection
+        database = DataBase()
+
+        # group dao
+        proyecto_dao = ProyectoDao(
+            database.connection, database.cursor)
+
+        # get group by name
+        project = proyecto_dao.get_by_id(id)
+
+        if project is None:
+            flash('The project does not exist.', 'error')
+        else:
+            # check if user is in group
+            user_in_group = False
+
+            if g.user != None:
+
+                grupo_dao = GruposColaboradoresDao(
+                    database.connection, database.cursor)
+
+                user_in_group = grupo_dao.check_user_in_group(
+                    g.user.id_usuario, project.group.id_grupo_colaboradores)
+
+            # get projects by group
+
+            database.close()
+
+            return render_template('projects/view.html', project=project, user_in_group=user_in_group)
+
+    except ValueError as error:
+        flash(str(error), "error")
+
+    except Exception as error:
+        flash(str(error), "error")
+        print(error)
+
+    # show error 404
+    return render_template('notFindPage.html', title='404 Group', message='Proyecto No Existe'), 404
+
+
 @bp.route('/create', methods=['GET', 'POST'])
 @login_required
 def create():

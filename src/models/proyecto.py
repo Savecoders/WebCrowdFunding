@@ -12,7 +12,7 @@ import re
 
 
 class Proyecto:
-    def __init__(self, idProyecto=None, idea=None, nombre=None, fechaLimite=None, presentacion=None, presupuesto=None, recompensa=None, metaAlcanzada=None, estado=None, descripcion=None):
+    def __init__(self, idProyecto=None,   nombre=None, idea=None, descripcion=None, fechaLimite=None, presentacion=None, presupuesto=None, recompensa=None, metaAlcanzada=None, estado=None):
         self.__id = idProyecto
         self.__idea = idea
         self.__nombre = nombre
@@ -151,7 +151,7 @@ class Proyecto:
 
     @metaAlcanzada.setter
     def metaAlcanzada(self, metaAlcanzada):
-        self.__metaAlcanzada = int(metaAlcanzada)
+        self.__metaAlcanzada = float(metaAlcanzada)
 
     @property
     def estado(self):

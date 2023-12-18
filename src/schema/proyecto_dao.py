@@ -31,14 +31,14 @@ class ProyectoDao:
             # get group
 
             grupo = GruposColaboradoresDao(self.__conn, self.__cursor)
-            grupo = grupo.get_by_id(row[11])
+            grupo = grupo.get_by_id(row[10])
 
             if grupo is None:
                 raise ValueError("The group doesn't exists.")
 
             proyecto = Proyecto(row[0], row[1], row[2], row[3],
                                 row[4], row[5], row[6], row[7],
-                                row[8], row[9], row[10]
+                                row[8], row[9]
                                 )
 
             proyecto.group = grupo
@@ -62,15 +62,19 @@ class ProyectoDao:
         # get group
 
         grupo = GruposColaboradoresDao(self.__conn, self.__cursor)
-        grupo = grupo.get_by_id(data[11])
+        grupo = grupo.get_by_id(data[10])
 
         if grupo is None:
             raise ValueError("The group doesn't exists.")
 
+        print(data)
+
         proyecto = Proyecto(data[0], data[1], data[2], data[3],
                             data[4], data[5], data[6], data[7],
-                            data[8], data[9], data[10]
+                            data[8], data[9]
                             )
+
+        proyecto.load_image()
 
         proyecto.group = grupo
 
@@ -91,14 +95,14 @@ class ProyectoDao:
         # get group
 
         grupo = GruposColaboradoresDao(self.__conn, self.__cursor)
-        grupo = grupo.get_by_id(data[11])
+        grupo = grupo.get_by_id(data[10])
 
         if grupo is None:
             raise ValueError("The group doesn't exists.")
 
         proyecto = Proyecto(data[0], data[1], data[2], data[3],
                             data[4], data[5], data[6], data[7],
-                            data[8], data[9],  data[10]
+                            data[8], data[9]
                             )
 
         proyecto.group = grupo
@@ -128,6 +132,40 @@ class ProyectoDao:
                   proyecto.metaAlcanzada, proyecto.estado)
         self.__cursor.execute(sql, values)
         self.__conn.commit()
+
+    def get_projects_by_group(self, id) -> list[Proyecto]:
+
+        sql = """
+        SELECT * FROM PROYECTOS
+        WHERE IDGRUPO = :1
+        """
+        values = (id,)
+        self.__cursor.execute(sql, values)
+        data = self.__cursor.fetchall()
+
+        proyectos = []
+
+        for row in data:
+
+            proyecto = Proyecto()
+
+            proyecto.idProyecto = row[0]
+
+            proyecto.nombre = row[1]
+
+            proyecto.idea = row[2]
+
+            proyecto.fechaLimite = row[4]
+
+            proyecto.insert_binary_image(row[5])
+
+            proyecto.presupuesto = row[6]
+
+            proyecto.load_image()
+
+            proyectos.append(proyecto)
+
+        return proyectos
 
     def update_basic_info(self, proyecto: Proyecto):
         sql = """

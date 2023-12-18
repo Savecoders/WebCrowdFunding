@@ -11,13 +11,10 @@ from flask import (Blueprint, request, render_template,
 
 # imports models and schemas dao
 
-from src.models import GruposColaboradores
+from src.models import GruposColaboradores, Usuario
 
-from src.schema import GruposColaboradoresDao
+from src.schema import GruposColaboradoresDao, UsuarioDao, ProyectoDao
 
-from src.models import Usuario
-
-from src.schema import UsuarioDao
 
 # login_required
 from .user import login_required
@@ -60,10 +57,17 @@ def index(id):
             grupo.usuario_grupos = grupo_dao.get_users_by_group(
                 grupo.id_grupo_colaboradores)
 
+            # get projects by group
+
+            proyecto_dao = ProyectoDao(database.connection, database.cursor)
+
+            projects = proyecto_dao.get_projects_by_group(
+                grupo.id_grupo_colaboradores)
+
             # close database connection
             database.close()
 
-            return render_template('group/view.html', grupo=grupo, user_in_group=user_in_group)
+            return render_template('group/view.html', grupo=grupo, user_in_group=user_in_group, projects=projects)
 
     except ValueError as e:
         flash(str(e), 'error')
@@ -73,6 +77,7 @@ def index(id):
 
     # show error 404
     return render_template('notFindPage.html', title='404 Group', message='Grupo No Existe'), 404
+
 
 @bp.route('/', methods=['GET'])
 def all_group():
