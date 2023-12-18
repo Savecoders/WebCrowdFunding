@@ -47,7 +47,7 @@ body.dark {
   --bg: #06080a;
   --bg2: #06080a;
   --bg-actions: #e0dcd1;
-  --secondary-color: #1a2840;
+  --secondary-color: rgb(53, 103, 190);
   --accent-color: #79a6fe;
   --hover-color: #5586e8;
   --check-color: rgb(146, 254, 107);

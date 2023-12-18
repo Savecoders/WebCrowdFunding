@@ -1,0 +1,54 @@
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/project/view.css') }}"
+/>
+
+{% extends "base.html" %} {% block content %} {% include "navbar.html" %}
+
+<main class="main__container">
+  <header class="hero__container">
+    <img src="{{ project.presentacion }}" srcset="" alt="image this project" />
+    <section class="card__text">
+      <h1>{{ project.nombre }}</h1>
+      <h2>{{ project.metaAlcanzada }} / {{ project.presupuesto }}</h2>
+    </section>
+  </header>
+
+  <article class="article__info">
+    <aside class="group__info">
+      <p>
+        <i class="ti ti-users"></i>
+
+        Grupo:
+        <a
+          class="group__link"
+          href="{{ url_for('group.index', id=project.group.id_grupo_colaboradores) }}"
+        >
+          {{ project.group.nombre }}<i class="ti ti-external-link"></i>
+        </a>
+      </p>
+
+      <p>
+        Fecha de creacion: {{ project.group.fecha_creacion }}
+        <i class="ti ti-calendar-month"></i>
+      </p>
+    </aside>
+
+    <h2>{{ project.idea }}</h2>
+
+    <p>{{ project.descripcion }}</p>
+
+    <h3>Posible Recompenza</h3>
+
+    <p>{{ project.recompensa }}</p>
+
+    <br />
+
+    <div class="project__state">
+      <p>{{ project.estado }}</p>
+      <p>{{ project.fechaLimite }}</p>
+    </div>
+  </article>
+</main>
+
+{% endblock %}

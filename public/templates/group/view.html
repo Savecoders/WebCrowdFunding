@@ -71,83 +71,26 @@
       </div>
 
       <section class="projects__container">
+        {% if projects != [] %} {% for project in projects %}
         <article class="card__article">
           <img
             class="media"
-            src="{{ url_for('static', filename='img/project.png')  }}"
+            src="{{project.presentacion}}"
             alt="image this project"
           />
           <div class="card__data">
-            <span class="card__date">21-05-2023</span>
-            <h2 class="card__title">The best Project</h2>
-            <a href="#" class="card__button">Ver mas</a>
+            <span class="card__date">{{project.fechaLimite}}</span>
+            <h2 class="card__title">{{project.nombre}}</h2>
+            <a
+              href="{{ url_for('projects.view', id=project.idProyecto) }}"
+              class="card__button"
+              >Ver mas</a
+            >
           </div>
         </article>
-
-        <article class="card__article">
-          <img
-            class="media"
-            src="{{ url_for('static', filename='img/project.png')  }}"
-            alt="image this project"
-          />
-          <div class="card__data">
-            <span class="card__date">21-05-2023</span>
-            <h2 class="card__title">The best Project</h2>
-            <a href="#" class="card__button">Ver mas</a>
-          </div>
-        </article>
-
-        <article class="card__article">
-          <img
-            class="media"
-            src="{{ url_for('static', filename='img/project.png')  }}"
-            alt="image this project"
-          />
-          <div class="card__data">
-            <span class="card__date">21-05-2023</span>
-            <h2 class="card__title">The best Project</h2>
-            <a href="#" class="card__button">Ver mas</a>
-          </div>
-        </article>
-
-        <article class="card__article">
-          <img
-            class="media"
-            src="{{ url_for('static', filename='img/project.png')  }}"
-            alt="image this project"
-          />
-          <div class="card__data">
-            <span class="card__date">21-05-2023</span>
-            <h2 class="card__title">The best Project</h2>
-            <a href="#" class="card__button">Ver mas</a>
-          </div>
-        </article>
-
-        <article class="card__article">
-          <img
-            class="media"
-            src="{{ url_for('static', filename='img/project.png')  }}"
-            alt="image this project"
-          />
-          <div class="card__data">
-            <span class="card__date">21-05-2023</span>
-            <h2 class="card__title">The best Project</h2>
-            <a href="#" class="card__button">Ver mas</a>
-          </div>
-        </article>
-
-        <article class="card__article">
-          <img
-            class="media"
-            src="{{ url_for('static', filename='img/project.png')  }}"
-            alt="image this project"
-          />
-          <div class="card__data">
-            <span class="card__date">21-05-2023</span>
-            <h2 class="card__title">The best Project</h2>
-            <a href="#" class="card__button">Ver mas</a>
-          </div>
-        </article>
+        {% endfor %} {% else %}
+        <h2 class="no__projects">No hay proyectos</h2>
+        {% endif %}
       </section>
     </div>
   </aside>
