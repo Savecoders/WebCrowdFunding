@@ -21,6 +21,7 @@
   width: 100%;
   height: auto;
   box-shadow: 0 0 10px var(--accent-color-transparent);
+  aspect-ratio: 16/9;
   box-sizing: border-box;
   object-fit: cover;
 }
@@ -137,8 +138,10 @@
 .section__comments {
   display: flex;
   flex-direction: column;
-  gap: 2em;
+  gap: 3em;
   width: 100%;
+  border-top: 1px solid var(--accent-color-transparent);
+  padding: 3em 0;
 }
 
 .section__comments form {
@@ -146,6 +149,105 @@
   flex-direction: column;
   gap: 1em;
   width: 100%;
+}
+
+.comments__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.comment__container {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 2em;
+}
+
+.comment__container .user__info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  align-items: center;
+  justify-content: center;
+  width: 10%;
+  overflow: hidden;
+}
+
+.comment__image {
+  width: 40px;
+  height: 40px;
+  border-radius: 3px;
+  object-fit: cover;
+  aspect-ratio: 1/2;
+}
+
+.comment__container h2 {
+  margin: 0;
+  font-size: 1.8ch;
+  font-weight: 500;
+}
+
+.comment__container p {
+  margin: 5px 0;
+}
+
+.comment__info {
+  border-radius: 4px;
+  border: 1px solid var(--accent-color-transparent);
+  width: 100%;
+  padding: 0.5em 1.2em;
+}
+
+.comment__form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.comment__form input[type="text"] {
+  background-color: var(--bg2);
+  border: 1px solid var(--accent-color-transparent);
+  border-radius: 8px;
+  flex-grow: 1;
+  resize: none;
+  text-align: left;
+  font-size: 1.6ch;
+  margin-bottom: 1em;
+  padding: 2em;
+}
+
+button {
+  align-self: flex-end;
+  color: var(--text-color2);
+  background: var(--accent-color);
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: "raleway", sans-serif;
+  font-weight: 600;
+  font-size: 2ch;
+  color: var(--bg);
+  padding: 0.7em 1.4em;
+  transition: 0.3s;
+  text-align: center;
+  align-items: center;
+  border: none;
+}
+
+.comment__form button[type="submit"]:hover {
+  background: var(--hover-color);
+  transition: 0.3s;
+}
+
+input[type="number"] {
+  background-color: var(--bg2);
+  border: 1px solid var(--accent-color-transparent);
+  border-radius: 4px;
+  flex-grow: 1;
+  resize: none;
+  text-align: left;
+  font-size: 1.6ch;
+  color: var(--text-color);
+  padding: 0.5em;
 }
 
 /* media */

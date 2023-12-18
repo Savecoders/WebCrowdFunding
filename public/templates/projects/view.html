@@ -51,36 +51,57 @@
   </article>
 
   <section class="section__donate">
-    <h2>Donar</h2>
+    <h2>Invierte en el Proyecto</h2>
 
-    <form action="" method="POST">
-      <input type="number" name="amount" id="amount" placeholder="Cantidad" />
-      <button type="submit">Inversion</button>
+    <form
+      action="{{ url_for('donation.register', project_id=project.idProyecto) }}"
+      class="donate__form"
+      method="POST"
+    >
+      <input
+        type="number"
+        name="amount"
+        id="amount"
+        oninput="this.value = this.value.replace(/[^0-9 ]/g, '')"
+        placeholder="Cantidad"
+        required
+      />
+      <button type="submit"><i class="ti ti-credit-card"></i></button>
     </form>
   </section>
 
   <section class="section__comments">
-    <h2>Comentarios</h2>
-
+    <h3>{{ comments|length }} Comentarios</h3>
     <form
       action="{{ url_for('projects.comment', project_id=project.idProyecto) }}"
+      class="comment__form"
       method="POST"
     >
-      <textarea
+      <input
+        type="text"
         name="comment"
         id="comment"
-        cols="10"
-        rows="10"
-        placeholder="Comenta algo"
-      ></textarea>
-      <button type="submit">Comentar</button>
+        placeholder="Comenta algo sobre el proyecto"
+      />
+      <button type="submit"><i class="ti ti-send-2"></i></button>
     </form>
 
     <ul class="comments__list">
       {% for comment in comments %}
-      <li class="comment__item">
-        <p>{{ comment.comentario }}</p>
-        <p>{{ comment.fecha_comentario }}</p>
+      <li class="comment__container">
+        <div class="user__info">
+          <img
+            class="comment__image"
+            src="{{ comment.usuario.image_perfil }}"
+            alt="image user comment "
+          />
+          <h2>{{ comment.usuario.nombre }}</h2>
+        </div>
+
+        <div class="comment__info">
+          <p>{{ comment.fecha_comentario }}</p>
+          <p>{{ comment.comentario }}</p>
+        </div>
       </li>
       {% endfor %}
     </ul>

@@ -106,7 +106,7 @@ def comment(project_id):
 
             # generate date
 
-            date = datetime.date.today()
+            date = datetime.date.now()
 
             new_comment.fecha_comentario = date.strftime("%d-%m-%Y")
 
@@ -129,6 +129,8 @@ def comment(project_id):
             # insert comment
 
             comment_dao.insert(new_comment)
+
+            database.close()
 
         except ValueError as error:
             flash(str(error), "error")
@@ -177,8 +179,6 @@ def create():
             # get the id of the group
 
             grupo_dto = grupo_dao.get_by_name(grupo)
-
-            print(grupo_dto.id_grupo_colaboradores)
 
             proyecto.group = grupo_dto
 
