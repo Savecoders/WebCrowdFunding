@@ -25,7 +25,20 @@ bp = Blueprint('donation', __name__, url_prefix='/donation')
 
 @bp.route('/', methods=['GET'])
 def index():
-    return 'show all donation in projects'
+
+    # database connection
+    database = DataBase()
+
+    # project dao
+    donacion_dao = DonacionDao(database.connection, database.cursor)
+
+    # get all donation
+
+    donations = []
+
+    donations = donacion_dao.get_all_donations()
+
+    return render_template('donation/index.html', donaciones=donations)
 
 
 @bp.route('/register/<string:project_id>', methods=['POST'])
@@ -41,7 +54,7 @@ def register(project_id):
 
             donacion.monto = request.form['amount']
 
-            date = datetime.datetime.now()
+            date = datetime.date.today()
 
             donacion.fecha_donacion = date.strftime("%d-%m-%Y")
 
