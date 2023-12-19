@@ -186,7 +186,7 @@
   border-radius: 5px;
   height: auto;
   box-sizing: border-box;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 2em;
   margin-right: 2rem;
 }
@@ -311,5 +311,7 @@
   .main__aside {
     margin: 1rem 2rem 1rem 2rem;
     align-items: initial;
+    border-left: 0.1px solid var(--accent-color-transparent2);
+    padding-left: 4rem;
   }
 }

@@ -208,6 +208,13 @@
   box-shadow: 0 0 10px var(--accent-color-transparent);
   box-sizing: border-box;
   object-fit: cover;
+  aspect-ratio: 16/9;
+  image-rendering: optimizeQuality;
+  mix-blend-mode: normal;
+
+  /* transition: 0.3s; */
+
+  transition: transform 0.3s ease-in-out;
 }
 
 .card__article {

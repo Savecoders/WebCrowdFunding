@@ -249,6 +249,9 @@
   box-shadow: 0 0 10px var(--accent-color-transparent);
   box-sizing: border-box;
   object-fit: cover;
+  aspect-ratio: 16/9;
+  image-rendering: optimizeQuality;
+  mix-blend-mode: normal;
 }
 
 .card__article {
@@ -398,5 +401,7 @@
   .main__aside {
     margin: 1rem 2rem 1rem 2rem;
     align-items: initial;
+    border-left: 0.1px solid var(--accent-color-transparent2);
+    padding-left: 4rem;
   }
 }

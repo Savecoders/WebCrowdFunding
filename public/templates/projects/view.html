@@ -50,6 +50,8 @@
     </div>
   </article>
 
+  {% if user_in_group == False%}
+
   <section class="section__donate">
     <h2>Invierte en el Proyecto</h2>
 
@@ -70,8 +72,17 @@
     </form>
   </section>
 
+  {% endif %}
   <section class="section__comments">
+    {% if comments %}
     <h3>{{ comments|length }} Comentarios</h3>
+
+    {% else %}
+
+    <h3>0 | Comentarios</h3>
+
+    {% endif %}
+
     <form
       action="{{ url_for('projects.comment', project_id=project.idProyecto) }}"
       class="comment__form"
@@ -87,7 +98,7 @@
     </form>
 
     <ul class="comments__list">
-      {% for comment in comments %}
+      {% if comments %} {% for comment in comments %}
       <li class="comment__container">
         <div class="user__info">
           <img
@@ -103,9 +114,12 @@
           <p>{{ comment.comentario }}</p>
         </div>
       </li>
-      {% endfor %}
+      {% endfor %} {% else %}
+
+      <li class="comment__container"><p>No hay comentarios disponibles</p></li>
+
+      {% endif %}
     </ul>
   </section>
 </main>
-
-{% endblock %}
+{% include "footer.html" %} {% endblock %}

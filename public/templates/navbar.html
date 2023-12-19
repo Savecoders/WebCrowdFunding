@@ -1,7 +1,7 @@
 <nav class="nav container">
   <div class="logo">
     <div class="logo__icon"></div>
-    <a href="/" class="logo__name">YStartUp</a>
+    <a href="{{ url_for('index')  }}" class="logo__name">YStartUp</a>
   </div>
 
   <div class="nav__hamburguer"></div>
@@ -30,7 +30,7 @@
           </li>
 
           <li class="nav__dropdown">
-            <a href="/projects" class="nav__link">
+            <a href="{{ url_for('donation.index')  }}" class="nav__link">
               <i class="ti ti-chart-histogram"></i>
               Inversiones mas Altas
             </a>
