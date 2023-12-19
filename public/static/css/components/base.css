@@ -4,6 +4,7 @@
 :root {
   --bg: #ffffff;
   --bg2: #fefefe;
+  --bg3: #f9f9f9c4;
   --bg-actions: #121212;
   --secondary-color: #6793ff;
   --accent-color: #f34a48;
@@ -46,6 +47,7 @@ body {
 body.dark {
   --bg: #06080a;
   --bg2: #06080a;
+  --bg3: #040506;
   --bg-actions: #e0dcd1;
   --secondary-color: rgb(53, 103, 190);
   --accent-color: #79a6fe;

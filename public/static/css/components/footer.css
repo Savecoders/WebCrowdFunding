@@ -1,0 +1,99 @@
+.footer {
+  width: 90%;
+  margin: 0 auto;
+  overflow: hidden;
+  max-width: 1600px;
+  margin-top: 5em;
+  margin-bottom: 3em;
+}
+
+.footer__container {
+  display: grid;
+  background-color: var(--bg3);
+  padding: 3.6em;
+  border-radius: 0.7em;
+  gap: 2.4em;
+  grid-template-areas:
+    "nosotros "
+    "contact "
+    "social "
+    " link";
+}
+
+.footer__about {
+  grid-area: nosotros;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.footer__contact {
+  grid-area: contact;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.social__media {
+  grid-area: social;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.footer__link {
+  grid-area: link;
+  display: flex;
+  flex-direction: column;
+  padding: 3em 0;
+  margin-top: 1em;
+  border-top: 1px solid var(--bg-actions);
+  gap: 1em;
+}
+
+h2 {
+  font-size: 2.4ch;
+  font-weight: 600;
+  font-family: "Raleway", sans-serif;
+}
+
+.link {
+  text-decoration: none;
+  color: var(--text-color);
+  font-size: 1.8ch;
+  font-family: "Inter", sans-serif;
+}
+
+.link:hover {
+  color: var(--hover-color);
+}
+
+p {
+  font-size: 1.8ch;
+  color: var(--subtext-color);
+  font-family: "Inter", sans-serif;
+}
+
+.logo__name {
+  font-size: 3.2ch;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+/* media */
+
+@media (min-width: 768px) {
+  .footer__container {
+    grid-template-areas:
+      "  nosotros  contact  social  "
+      "link link link";
+  }
+
+  .footer__link {
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+}
