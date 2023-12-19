@@ -50,8 +50,8 @@ class Proyecto:
         # strip
         ideaStrip = idea.strip()
 
-        if (len(ideaStrip) < 8):
-            raise ValueError("The name must have at least 30 characters.")
+        if (len(ideaStrip) < 4):
+            raise ValueError("The name must have at least 8 characters.")
         self.__idea = idea
 
     @property
@@ -68,8 +68,8 @@ class Proyecto:
         # strip
         nombreStrip = nombre.strip()
 
-        if (len(nombreStrip) < 10):
-            raise ValueError("The name must have at least 10 characters.")
+        if (len(nombreStrip) < 5):
+            raise ValueError("The name must have at least 5 characters.")
 
         self.__nombre = nombre
 

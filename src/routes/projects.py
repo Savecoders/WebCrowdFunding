@@ -61,6 +61,8 @@ def view(id):
 
         comment_dao = ComentarioDao(database.connection, database.cursor)
 
+        comments = []
+
         comments = comment_dao.get_all_comments_by_project(id)
 
         if project is None:
@@ -106,7 +108,7 @@ def comment(project_id):
 
             # generate date
 
-            date = datetime.date.now()
+            date = datetime.date.today()
 
             new_comment.fecha_comentario = date.strftime("%d-%m-%Y")
 
