@@ -106,7 +106,10 @@
             src="{{ comment.usuario.image_perfil }}"
             alt="image user comment "
           />
-          <h2>{{ comment.usuario.nombre }}</h2>
+          <a
+            href="{{ url_for('user.profile_by_id', username=comment.usuario.nombre) }}"
+            >{{ comment.usuario.nombre }}</a
+          >
         </div>
 
         <div class="comment__info">

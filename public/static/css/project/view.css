@@ -181,6 +181,15 @@
   justify-content: center;
   width: 10%;
   overflow: hidden;
+  min-width: 80px;
+  text-align: center;
+}
+
+.user__info a {
+  text-decoration: none;
+  color: var(--text-color);
+  font-size: 1.5ch;
+  font-weight: 500;
 }
 
 .comment__image {
@@ -222,6 +231,7 @@
   resize: none;
   text-align: left;
   font-size: 1.6ch;
+  color: var(--text-color);
   margin-bottom: 1em;
   padding: 2em;
 }
@@ -264,7 +274,7 @@ input[type="number"] {
 
 @media screen and (min-width: 900px) {
   .main__container {
-    width: 100%;
+    width: 80%;
     max-width: 1400px;
     margin: 4rem auto;
   }
