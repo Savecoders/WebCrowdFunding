@@ -221,6 +221,9 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  border: 1px solid var(--accent-color-transparent2);
+  padding: 3em;
+  border-radius: 6px;
 }
 
 .comment__form input[type="text"] {
