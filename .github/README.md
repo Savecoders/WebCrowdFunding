@@ -21,6 +21,7 @@ please execute next commands in powersheel
 * [Download Python](https://www.python.org/downloads/windows/)
 * [Download OracleDB 21c xe](https://www.oracle.com/database/technologies/xe-downloads.html)
 * [Download Git](https://git-scm.com/download/win)
+* [Download VSCode](https://code.visualstudio.com/download)
 
 ## Developer Folder
 
@@ -45,6 +46,9 @@ git config --global user.email "email@gmail.com"
 ```
 
 please using your username and email from github
+
+> [!NOTE]
+> It's the most important step from execute this project
 
 ## Create Virtual Environment
 
@@ -72,6 +76,9 @@ pip install -r requirements.txt
 ```
 
 ## Environment Variables
+
+> [!IMPORTANT]
+> You necesary replace the .env.template -> .env
 
 ```sh
 SECRET_KEY='secret'
