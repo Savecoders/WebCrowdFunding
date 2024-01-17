@@ -1,10 +1,9 @@
-from oracledb import Connection, Cursor
 from src.models import Donacion
 
 
 class DonacionDao:
 
-    def __init__(self, conn: Connection, cursor: Cursor) -> None:
+    def __init__(self, conn, cursor) -> None:
         self.__conn = conn
         self.__cursor = cursor
 
@@ -15,7 +14,7 @@ class DonacionDao:
 
         sql = """
         INSERT INTO DONACION (IDDONACION, MONTO, FECHADONACION, IDUSUARIO, IDPROYECTO)
-        VALUES (:1, :2, :3, :4, :5)
+        VALUES (%s, %s, %s, %s, %s)
         """
 
         self.__cursor.execute(sql, donacion.inserdao())
@@ -23,7 +22,7 @@ class DonacionDao:
 
         sql = """
         INSERT INTO PROYECTOS_DONACION (IDPROYECTO, IDDONACION)
-        VALUES (:1, :2)
+        VALUES (%s, %s)
         """
 
         values = (donacion.id_proyecto, donacion.id_donacion)
@@ -35,7 +34,7 @@ class DonacionDao:
     def get_all_donations_by_user(self, id_user: str) -> list[Donacion]:
 
         sql = """
-        SELECT * FROM DONACION WHERE IDUSUARIO = :1
+        SELECT * FROM DONACION WHERE IDUSUARIO = %s
         """
 
         self.__cursor.execute(sql, (id_user,))
@@ -58,7 +57,7 @@ class DonacionDao:
     def get_all_donations_by_project(self, id_project: str) -> list[Donacion]:
 
         sql = """
-        SELECT * FROM DONACION WHERE IDPROYECTO = :1
+        SELECT * FROM DONACION WHERE IDPROYECTO = %s
         """
 
         self.__cursor.execute(sql, (id_project,))

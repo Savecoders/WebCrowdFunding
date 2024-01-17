@@ -1,13 +1,9 @@
-from oracledb import Connection, Cursor
-
-# user model
-
 from src.models import GruposColaboradores, Usuario, UsuarioGrupo
 
 
 class GruposColaboradoresDao:
 
-    def __init__(self, conn: Connection, cursor: Cursor) -> None:
+    def __init__(self, conn, cursor) -> None:
         self.__conn = conn
         self.__cursor = cursor
 
@@ -54,7 +50,7 @@ class GruposColaboradoresDao:
 
         sql = """
         INSERT INTO GRUPOSCOLABORADORES (IDGRUPO, NOMBREGRUPO, DESCRIPCION, IMAGEN, FECHACREACION)
-        VALUES (:1, :2, :3, :4, :5)
+        VALUES (%s, %s, %s, %s, %s)
         """
 
         values = (grupo.id_grupo_colaboradores, grupo.nombre, grupo.descripcion,
@@ -89,7 +85,7 @@ class GruposColaboradoresDao:
     # SELECT QUERY | WHERE IDGRUPO = '{id}'
     def get_by_id(self, id):
 
-        sql = "SELECT * FROM GRUPOSCOLABORADORES WHERE IDGRUPO = :1"
+        sql = "SELECT * FROM GRUPOSCOLABORADORES WHERE IDGRUPO = %s"
 
         values = (id,)
 
@@ -109,7 +105,7 @@ class GruposColaboradoresDao:
 
     def get_by_name(self, nombre) -> GruposColaboradores:
 
-        sql = "SELECT * FROM GRUPOSCOLABORADORES WHERE NOMBREGRUPO = :1"
+        sql = "SELECT * FROM GRUPOSCOLABORADORES WHERE NOMBREGRUPO = %s"
 
         values = (nombre,)
 
@@ -129,7 +125,7 @@ class GruposColaboradoresDao:
 
     def check_name(self, nombre):
 
-        sql = "SELECT * FROM GRUPOSCOLABORADORES WHERE NOMBREGRUPO = :1"
+        sql = "SELECT * FROM GRUPOSCOLABORADORES WHERE NOMBREGRUPO = %s"
 
         values = (nombre,)
 
@@ -148,7 +144,7 @@ class GruposColaboradoresDao:
 
     def update(self, grupo: GruposColaboradores):
 
-        sql = "UPDATE GRUPOSCOLABORADORES SET NOMBREGRUPO = :1, DESCRIPCION = :2, IMAGEN = :3 WHERE IDGRUPO = :4"
+        sql = "UPDATE GRUPOSCOLABORADORES SET NOMBREGRUPO = %s, DESCRIPCION = %s, IMAGEN = %s WHERE IDGRUPO = %s"
 
         values = (grupo.nombre, grupo.descripcion, grupo.get_binary_image(),
                   grupo.id_grupo_colaboradores)
@@ -159,7 +155,7 @@ class GruposColaboradoresDao:
 
     # DELETE QUERY | WHERE IDGRUPO = '{id}'
     def delete(self, id):
-        sql = "DELETE FROM GRUPOSCOLABORADORES WHERE IDGRUPO = :1"
+        sql = "DELETE FROM GRUPOSCOLABORADORES WHERE IDGRUPO = %s"
 
         values = (id,)
 
@@ -180,7 +176,7 @@ class GruposColaboradoresDao:
         if self.check_user_in_group(id_usuario, id_grupo):
             raise ValueError("The user is already in the group.")
 
-        sql = "INSERT INTO USUARIOSGRUPOS (IDUSUARIO, IDGRUPO) VALUES (:1, :2)"
+        sql = "INSERT INTO USUARIOSGRUPOS (IDUSUARIO, IDGRUPO) VALUES (%s, %s)"
 
         values = (id_usuario, id_grupo)
 
@@ -192,7 +188,7 @@ class GruposColaboradoresDao:
         sql = """
         SELECT G.IDGRUPO, G.NOMBREGRUPO, G.DESCRIPCION, G.IMAGEN, G.FECHACREACION
         FROM GRUPOSCOLABORADORES G, USUARIOSGRUPOS UG
-        WHERE G.IDGRUPO = UG.IDGRUPO AND UG.IDUSUARIO = :1
+        WHERE G.IDGRUPO = UG.IDGRUPO AND UG.IDUSUARIO = %s
         """
         values = (id_usuario,)
         self.__cursor.execute(sql, values)
@@ -233,7 +229,7 @@ class GruposColaboradoresDao:
         sql = """
                 SELECT U.IDUSUARIO, U.NOMBRES, U.EMAIL, U.IMAGENPERFIL, G.IDGRUPO, G.NOMBREGRUPO
                 FROM USUARIOS U, GRUPOSCOLABORADORES G, USUARIOSGRUPOS UG
-                WHERE U.IDUSUARIO = UG.IDUSUARIO AND G.IDGRUPO = UG.IDGRUPO AND G.IDGRUPO = :1
+                WHERE U.IDUSUARIO = UG.IDUSUARIO AND G.IDGRUPO = UG.IDGRUPO AND G.IDGRUPO = %s
             """
         values = (id_grupo,)
 
@@ -278,7 +274,7 @@ class GruposColaboradoresDao:
         sql = """
         SELECT U.NOMBRES
         FROM USUARIOS U, GRUPOSCOLABORADORES G, USUARIOSGRUPOS UG
-        WHERE U.IDUSUARIO = UG.IDUSUARIO AND G.IDGRUPO = UG.IDGRUPO AND G.IDGRUPO = :1
+        WHERE U.IDUSUARIO = UG.IDUSUARIO AND G.IDGRUPO = UG.IDGRUPO AND G.IDGRUPO = %s
         """
         values = (id_grupo,)
         self.__cursor.execute(sql, values)
@@ -305,7 +301,7 @@ class GruposColaboradoresDao:
 
         sql = """
         SELECT * FROM USUARIOSGRUPOS
-        WHERE IDUSUARIO = :1 AND IDGRUPO = :2
+        WHERE IDUSUARIO = %s AND IDGRUPO = %s
         """
         values = (id_usuario, id_grupo)
 

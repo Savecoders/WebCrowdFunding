@@ -1,10 +1,9 @@
-from oracledb import Connection, Cursor
 from src.models import Proyecto
 from src.schema import GruposColaboradoresDao
 
 
 class ProyectoDao:
-    def __init__(self, conn: Connection, cursor: Cursor) -> None:
+    def __init__(self, conn, cursor) -> None:
         self.__conn = conn
         self.__cursor = cursor
 
@@ -14,7 +13,7 @@ class ProyectoDao:
 
         sql = """
         INSERT INTO PROYECTOS (IDPROYECTO, NOMBRE, IDEA, DESCRIPCION, FECHALIMITE, PRESENTACION, PRESUPUESTO, RECOMPENSA, METAALCANZADA, ESTADO, IDGRUPO)
-        VALUES (:1, :2, :3, :4, :5, :6, :7, :8, :9, :10, :11)
+        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
         """
 
         self.__cursor.execute(sql, proyecto.inserdao())
@@ -52,7 +51,7 @@ class ProyectoDao:
     def get_by_id(self, id) -> Proyecto:
         sql = """
         SELECT * FROM PROYECTOS
-        WHERE IDPROYECTO = :1
+        WHERE IDPROYECTO = %s
         """
         values = (id,)
         self.__cursor.execute(sql, values)
@@ -83,7 +82,7 @@ class ProyectoDao:
     def get_by_name(self, nombre: str) -> Proyecto:
         sql = """
         SELECT * FROM PROYECTOS
-        WHERE NOMBRE = :1
+        WHERE NOMBRE = %s
         """
         values = (nombre,)
         self.__cursor.execute(sql, values)
@@ -112,7 +111,7 @@ class ProyectoDao:
     def check_name(self, nombre) -> bool:
         sql = """
         SELECT * FROM PROYECTOS
-        WHERE NOMBRE = :1
+        WHERE NOMBRE = %s
         """
         values = (nombre,)
         self.__cursor.execute(sql, values)
@@ -126,7 +125,7 @@ class ProyectoDao:
     def update_all_info(self, proyecto: Proyecto):
         sql = """
         UPDATE PROYECTOS
-        SET IDEA = :1, NOMBRE = :2, FECHALIMITE = :3, PRESENTACION = :4, PRESUPUESTO = :5, RECOMPENSA = :6, ESTADO = :7
+        SET IDEA = %s, NOMBRE = %s, FECHALIMITE = %s, PRESENTACION = %s, PRESUPUESTO = %s, RECOMPENSA = %s, ESTADO = %s
         """
         values = (proyecto.idea, proyecto.nombre, proyecto.fechaLimite, proyecto.get_binary_presentacion(), proyecto.presupuesto, proyecto.recompensa,
                   proyecto.metaAlcanzada, proyecto.estado)
@@ -137,7 +136,7 @@ class ProyectoDao:
 
         sql = """
         SELECT * FROM PROYECTOS
-        WHERE IDGRUPO = :1
+        WHERE IDGRUPO = %s
         """
         values = (id,)
         self.__cursor.execute(sql, values)
@@ -170,7 +169,7 @@ class ProyectoDao:
     def update_basic_info(self, proyecto: Proyecto):
         sql = """
         UPDATE PROYECTOS
-        SET IDEA = :1, NOMBRE = :2, FECHALIMITE = :3, PRESENTACION = :4, RECOMPENSA = :5, 
+        SET IDEA = %s, NOMBRE = %s, FECHALIMITE = %s, PRESENTACION = %s, RECOMPENSA = %s, 
         """
         values = (proyecto.idea, proyecto.nombre, proyecto.fechaLimite, proyecto.get_binary_presentacion(), proyecto.recompensa,
                   proyecto.metaAlcanzada)
@@ -183,7 +182,7 @@ class ProyectoDao:
 
         sqlCheck = """
         SELECT * FROM PROYECTOS
-        WHERE IDPROYECTO = :1
+        WHERE IDPROYECTO = %s
         """
 
         valuesCheck = (id,)
@@ -199,7 +198,7 @@ class ProyectoDao:
 
         sql = """
         DELETE FROM PROYECTOS
-        WHERE IDPROYECTO = :1
+        WHERE IDPROYECTO = %s
         """
         values = (id,)
         self.__cursor.execute(sql, values)

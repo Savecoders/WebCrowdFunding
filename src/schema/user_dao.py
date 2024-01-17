@@ -1,11 +1,9 @@
-
-from oracledb import Connection, Cursor
 from src.models.user import Usuario
 
 
 class UsuarioDao:
 
-    def __init__(self, conn: Connection, cursor: Cursor) -> None:
+    def __init__(self, conn, cursor) -> None:
         self.__conn = conn
         self.__cursor = cursor
 
@@ -47,7 +45,7 @@ class UsuarioDao:
 
         sql = """
         INSERT INTO USUARIOS (IDUSUARIO, NOMBRES, CONTRASENA, TELEFONO, ESTADO, EMAIL, IMAGENPERFIL, PAIS, CIUDAD, FECHANACIMIENTO)
-        VALUES (:1, :2, :3, :4, :5, :6, :7, :8, :9, :10)
+        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
         """
 
         self.__cursor.execute(sql, usuario.inserdao())
@@ -78,7 +76,7 @@ class UsuarioDao:
     def get_by_id(self, id) -> Usuario:
         sql = """
         SELECT * FROM USUARIOS
-        WHERE IDUSUARIO = :1
+        WHERE IDUSUARIO = %s
         """
         values = (id,)
         self.__cursor.execute(sql, values)
@@ -97,7 +95,7 @@ class UsuarioDao:
     def get_by_email(self, email) -> Usuario:
         sql = """
         SELECT * FROM USUARIOS
-        WHERE EMAIL = :1
+        WHERE EMAIL = %s
         """
         values = (email,)
         self.__cursor.execute(sql, values)
@@ -118,7 +116,7 @@ class UsuarioDao:
     def check_email(self, email) -> bool:
         sql = """
         SELECT * FROM USUARIOS
-        WHERE EMAIL = :1
+        WHERE EMAIL = %s
         """
         values = (email,)
         self.__cursor.execute(sql, values)
@@ -134,7 +132,7 @@ class UsuarioDao:
     def check_username(self, username) -> bool:
         sql = """
         SELECT * FROM USUARIOS
-        WHERE NOMBRES = :1
+        WHERE NOMBRES = %s
         """
         values = (username,)
         self.__cursor.execute(sql, values)
@@ -149,7 +147,7 @@ class UsuarioDao:
     def get_by_username(self, username) -> Usuario:
         sql = """
         SELECT * FROM USUARIOS
-        WHERE NOMBRES = :1
+        WHERE NOMBRES = %s
         """
         values = (username,)
         self.__cursor.execute(sql, values)
@@ -172,8 +170,8 @@ class UsuarioDao:
     def update_all_info(self, usuario: Usuario):
         sql = """
         UPDATE USUARIOS
-        SET NOMBRES = :1, CONTRASENA = :2, TELEFONO = :3, ESTADO = :4, EMAIL = :5, IMAGENPERFIL = :6, PAIS = :7, CIUDAD = :8, FECHANACIMIENTO = :9
-        WHERE IDUSUARIO = :10
+        SET NOMBRES = %s, CONTRASENA = %s, TELEFONO = %s, ESTADO = %s, EMAIL = %s, IMAGENPERFIL = %s, PAIS = %s, CIUDAD = %s, FECHANACIMIENTO = %s
+        WHERE IDUSUARIO = %s
         """
         values = (usuario.nombre, usuario.contrasena, usuario.telefono, usuario.estado, usuario.email,
                   usuario.get_binary_image_perfil(), usuario.pais, usuario.ciudad, usuario.fecha_nacimiento, usuario.id_usuario)
@@ -184,8 +182,8 @@ class UsuarioDao:
     def update_basic_info(self,  usuario: Usuario):
         sql = """
         UPDATE USUARIOS
-        SET NOMBRES = :1, TELEFONO = :2, EMAIL = :3, IMAGENPERFIL = :4, PAIS = :5, CIUDAD = :6, FECHANACIMIENTO = :7
-        WHERE IDUSUARIO = :8
+        SET NOMBRES = %s, TELEFONO = %s, EMAIL = %s, IMAGENPERFIL = %s, PAIS = %s, CIUDAD = %s, FECHANACIMIENTO = %s
+        WHERE IDUSUARIO = %s
         """
         values = (usuario.nombre, usuario.telefono, usuario.email, usuario.get_binary_image_perfil(),
                   usuario.pais, usuario.ciudad, usuario.fecha_nacimiento, usuario.id_usuario)
@@ -199,7 +197,7 @@ class UsuarioDao:
 
         sqlCheck = """
         SELECT * FROM USUARIOSGRUPOS
-        WHERE IDUSUARIO = :1
+        WHERE IDUSUARIO = %s
         """
 
         valuesCheck = (id,)
@@ -215,7 +213,7 @@ class UsuarioDao:
 
         sql = """
         DELETE FROM USUARIOS
-        WHERE IDUSUARIO = :1
+        WHERE IDUSUARIO = %s
         """
         values = (id,)
         self.__cursor.execute(sql, values)

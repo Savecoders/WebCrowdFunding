@@ -1,4 +1,4 @@
-from oracledb import Connection, Cursor
+import psycopg2
 from src.models import Comentario, Usuario
 
 from src.schema import UsuarioDao
@@ -6,7 +6,7 @@ from src.schema import UsuarioDao
 
 class ComentarioDao:
 
-    def __init__(self, conn: Connection, cursor: Cursor) -> None:
+    def __init__(self, conn, cursor) -> None:
         self.__conn = conn
         self.__cursor = cursor
 
@@ -27,7 +27,7 @@ class ComentarioDao:
 
         sql = """
             INSERT INTO COMENTARIOS (IDCOMENTARIO, COMENTARIO, FECHACOMENTARIO, IDUSUARIO, IDPROYECTO)
-            VALUES (:1, :2, :3, :4, :5)
+            VALUES (%s, %s, %s, %s, %s)
             """
 
         values = (comentario.id_comentario, comentario.comentario,
@@ -41,7 +41,7 @@ class ComentarioDao:
     def get_all_comments_by_project(self, id_proyecto: str) -> list[Comentario]:
 
         sql = """
-            SELECT * FROM COMENTARIOS WHERE IDPROYECTO = :1
+            SELECT * FROM COMENTARIOS WHERE IDPROYECTO = %s
             """
 
         self.__cursor.execute(sql, (id_proyecto,))
