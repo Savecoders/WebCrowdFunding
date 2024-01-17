@@ -22,6 +22,7 @@ def create_app():
         DATABASE_PASSWORD=os.getenv('DATABASE_PASSWORD'),
         DATABASE_USER=os.getenv('DATABASE_USER'),
         DATABASE_PORT=os.getenv('DATABASE_PORT'),
+        DATABASE_NAME=os.getenv('DATABASE_NAME'),
         DATABASE_DSN=os.getenv('DATABASE_DSN'),
     )
     # Create the database object

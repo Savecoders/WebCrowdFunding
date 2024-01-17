@@ -1,4 +1,4 @@
-import oracledb
+import psycopg2
 import click
 
 from flask import current_app as app, g
@@ -10,11 +10,10 @@ from flask.cli import with_appcontext
 
 class DataBase:
     def __init__(self) -> None:
-        self._connection = oracledb.connect(
-            port=app.config['DATABASE_PORT'],
+        self._connection = psycopg2.connect(
             user=app.config['DATABASE_USER'],
             password=app.config['DATABASE_PASSWORD'],
-            dsn=app.config['DATABASE_DSN'],
+            database=app.config['DATABASE_NAME'],
             host=app.config['DATABASE_HOST']
         )
         self._cursor = self._connection.cursor()
@@ -31,19 +30,19 @@ class DataBase:
 
     # cursor get and setter
     @property
-    def cursor(self) -> oracledb.Cursor:
+    def cursor(self) -> psycopg2.Cursor:
         return self._cursor
 
     @cursor.setter
-    def cursor(self, cursor: oracledb.Cursor) -> None:
+    def cursor(self, cursor: psycopg2.Cursor) -> None:
         self._cursor = cursor
 
     @property
-    def connection(self) -> oracledb.Connection:
+    def connection(self) -> psycopg2.Connection:
         return self._connection
 
     @connection.setter
-    def connection(self, connection: oracledb.Connection) -> None:
+    def connection(self, connection: psycopg2.Connection) -> None:
         self._connection = connection
 
     def openCursor(self) -> None:
@@ -70,11 +69,10 @@ class DataBase:
 
 def get_db():
     if 'db' not in g:
-        g.db = oracledb.connect(
-            port=app.config['DATABASE_PORT'],
+        g.db = psycopg2.connect(
             user=app.config['DATABASE_USER'],
             password=app.config['DATABASE_PASSWORD'],
-            dsn=app.config['DATABASE_DSN'],
+            database=app.config['DATABASE_NAME'],
             host=app.config['DATABASE_HOST']
         )
         g.c = g.db.cursor()
