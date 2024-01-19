@@ -11,17 +11,14 @@ from flask.cli import with_appcontext
 class DataBase:
     def __init__(self) -> None:
         self._connection = psycopg2.connect(
-            user=app.config['DATABASE_USER'],
-            password=app.config['DATABASE_PASSWORD'],
-            database=app.config['DATABASE_NAME'],
-            host=app.config['DATABASE_HOST']
+            app.config['DATABASE_URL'],
         )
         self._cursor = self._connection.cursor()
 
     # initialize database
     def initialize(self) -> None:
         # path: src/db/tables.sql
-        with open('tables.sql', 'r') as file:
+        with open('creates.sql', 'r') as file:
             sql_commands = file.read().split(';')
             for command in sql_commands:
                 if command.strip() != '':
@@ -30,19 +27,19 @@ class DataBase:
 
     # cursor get and setter
     @property
-    def cursor(self) -> psycopg2.Cursor:
+    def cursor(self):
         return self._cursor
 
     @cursor.setter
-    def cursor(self, cursor: psycopg2.Cursor) -> None:
+    def cursor(self, cursor) -> None:
         self._cursor = cursor
 
     @property
-    def connection(self) -> psycopg2.Connection:
+    def connection(self):
         return self._connection
 
     @connection.setter
-    def connection(self, connection: psycopg2.Connection) -> None:
+    def connection(self, connection) -> None:
         self._connection = connection
 
     def openCursor(self) -> None:
@@ -70,10 +67,7 @@ class DataBase:
 def get_db():
     if 'db' not in g:
         g.db = psycopg2.connect(
-            user=app.config['DATABASE_USER'],
-            password=app.config['DATABASE_PASSWORD'],
-            database=app.config['DATABASE_NAME'],
-            host=app.config['DATABASE_HOST']
+            app.config['DATABASE_URL'],
         )
         g.c = g.db.cursor()
     return g.db, g.c
