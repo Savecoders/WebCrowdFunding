@@ -54,7 +54,7 @@ class GruposColaboradores:
         if (len(checknone) < 4):
             raise ValueError("The name must have at least 3 characters.")
 
-        self.__nombre = checknone
+        self.__nombre = checknone_strip
 
     @property
     def descripcion(self):
@@ -147,7 +147,7 @@ class GruposColaboradores:
             uuid.uuid4().bytes).hexdigest()
 
     def load_image(self):
-        self.__imagen = self.__imagen.read()
+        self.__imagen = self.__imagen
 
     def get_binary_image(self):
         return self.__imagen

@@ -61,7 +61,7 @@ class Usuario:
         if (len(nombreStrip) < 4):
             raise ValueError("The name must have at least 3 characters.")
 
-        self.__nombre = nombre
+        self.__nombre = nombreStrip
 
     @property
     def contrasena(self):
@@ -203,7 +203,7 @@ class Usuario:
     def load_image_perfil(self):
         if self.__image_perfil:
             # Read bytes from LOB
-            self.__image_perfil = self.__image_perfil.read()
+            self.__image_perfil = self.__image_perfil
 
     def get_binary_image_perfil(self):
         return self.__image_perfil

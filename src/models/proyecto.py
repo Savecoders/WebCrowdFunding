@@ -71,7 +71,7 @@ class Proyecto:
         if (len(nombreStrip) < 5):
             raise ValueError("The name must have at least 5 characters.")
 
-        self.__nombre = nombre
+        self.__nombre = nombreStrip
 
     @property
     def fechaLimite(self):
@@ -205,7 +205,7 @@ class Proyecto:
         return self.__presentacion
 
     def load_image(self):
-        self.__presentacion = self.__presentacion.read()
+        self.__presentacion = self.__presentacion
 
     def inserdao(self):
         return (self.__id, self.__nombre, self.__idea, self.__descripcion, self.__fechaLimite, self.get_binary_presentacion(), self.__presupuesto, self.__recompensa, self.__metaAlcanzada, self.__estado, self.__group.id_grupo_colaboradores)
