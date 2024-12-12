@@ -17,7 +17,7 @@
   padding: min(0.8rem, 2vw);
   word-wrap: break-word;
   box-sizing: border-box;
-  font-family: "Inter", sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 2ch;
   box-shadow: 0 0 4px var(--accent-color-transparent);
   font-weight: 500;

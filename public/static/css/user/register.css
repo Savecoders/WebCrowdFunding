@@ -3,7 +3,7 @@ body {
   padding: 0;
   gap: 0;
   overflow: auto;
-  font-family: "Raleway", sans-serif;
+  font-family: 'Raleway', sans-serif;
 }
 
 .flex {
@@ -26,14 +26,14 @@ body {
 
 .register-card h1 {
   color: var(--text-color);
-  font-family: "Inter", sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 3.6ch;
   margin: 0;
 }
 
 .register-card h4 {
   color: var(--text-color);
-  font-family: "Raleway", sans-serif;
+  font-family: 'Raleway', sans-serif;
   font-weight: 600;
   margin: 0;
   font-size: 2ch;
@@ -50,10 +50,10 @@ body {
   gap: 1.8rem;
 }
 
-.box input[type="email"],
-.box input[type="password"],
-.box input[type="date"],
-.box input[type="text"] {
+.box input[type='email'],
+.box input[type='password'],
+.box input[type='date'],
+.box input[type='text'] {
   border-radius: 5px;
   padding: 1rem 1rem;
   outline: none;
@@ -96,7 +96,7 @@ body {
   cursor: pointer;
 }
 
-.file-upload input[type="file"] {
+.file-upload input[type='file'] {
   appearance: none;
   display: none;
   visibility: hidden;
@@ -145,7 +145,7 @@ body {
 
 .file-upload-selected {
   color: var(--check-color);
-  font-family: "Raleway", sans-serif;
+  font-family: 'Raleway', sans-serif;
   font-size: 2ch;
   font-style: oblique;
   font-weight: 700;
@@ -154,7 +154,7 @@ body {
 .btn1 {
   color: var(--text-color2);
   background: var(--accent-color);
-  font-family: "Inter", sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 1.2rem;
   font-weight: 600;
   width: 320px;

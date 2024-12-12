@@ -1,7 +1,4 @@
-<link
-  rel="stylesheet"
-  href="{{ url_for('static', filename='css/donation/index.css') }}"
-/>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/donation/index.css') }}" />
 
 {% extends "base.html" %} {% block content %} {% include "navbar.html" %}
 
@@ -21,12 +18,8 @@
           {% for donacion in donaciones %}
           <article class="card__article">
             <span class="card__date">{{ donacion.fecha_donacion }}</span>
-            <h2 class="card__title">
-              Cantidad Invertida: {{ donacion.monto }}
-            </h2>
-            <a
-              href="{{ url_for('projects.view', id=donacion.id_proyecto) }}"
-              class="card__button"
+            <h2 class="card__title">Cantidad Invertida: {{ donacion.monto }}</h2>
+            <a href="{{ url_for('projects.view', id=donacion.id_proyecto) }}" class="card__button"
               >Ver proyecto</a
             >
           </article>

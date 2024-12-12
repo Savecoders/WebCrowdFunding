@@ -1,5 +1,5 @@
 /* imports fonts */
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Raleway:ital,wght@0,400;1,600&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Raleway:ital,wght@0,400;1,600&display=swap');
 
 :root {
   --bg: #ffffff;
@@ -17,10 +17,10 @@
   --subtext-color: #2c2c2c;
   --accent-color-transparent: #06080a3c;
   --accent-color-transparent2: #06080a2f;
-  --icon-close: url("../../icons/icon-close-menu.svg");
-  --icon-menu: url("../../icons/icon-menu.svg");
-  --icon-page: url("../../icons/icon-page.svg");
-  --icon-theme: url("../../icons/icon-sun.svg");
+  --icon-close: url('../../icons/icon-close-menu.svg');
+  --icon-menu: url('../../icons/icon-menu.svg');
+  --icon-page: url('../../icons/icon-page.svg');
+  --icon-theme: url('../../icons/icon-sun.svg');
   --h1: 48px;
   --h2: 32px;
   --subtitle: 24px;
@@ -39,7 +39,7 @@ html {
 }
 
 body {
-  font-family: "Raleway", sans-serif;
+  font-family: 'Raleway', sans-serif;
   color: var(--text-color);
   background-color: var(--bg);
 }
@@ -60,10 +60,10 @@ body.dark {
   --subtext-color: #e0dcd1;
   --accent-color-transparent: #e0dcd128;
   --accent-color-transparent2: #00000071;
-  --icon-close: url("../../icons/icon-close-menu-dark.svg");
-  --icon-menu: url("../../icons/icon-menu-dark.svg");
-  --icon-page: url("../../icons/icon-page-dark.svg");
-  --icon-theme: url("../../icons/icon-moon.svg");
+  --icon-close: url('../../icons/icon-close-menu-dark.svg');
+  --icon-menu: url('../../icons/icon-menu-dark.svg');
+  --icon-page: url('../../icons/icon-page-dark.svg');
+  --icon-theme: url('../../icons/icon-moon.svg');
   --h1: 48px;
   --h2: 32px;
   --subtitle: 24px;

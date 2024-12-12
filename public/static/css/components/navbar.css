@@ -1,6 +1,6 @@
 /* imports css */
 
-@import url("base.css");
+@import url('base.css');
 
 .container {
   width: 90%;
@@ -91,7 +91,7 @@
 
 .logo__name {
   font-size: 3.2ch;
-  font-family: "Inter", sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 600;
   text-decoration: none;
   color: var(--text-color);
@@ -139,7 +139,7 @@
 .arrow__down {
   width: 8px;
   height: 10px;
-  background-image: url("../../icons/icon-arrow-down.svg");
+  background-image: url('../../icons/icon-arrow-down.svg');
   background-repeat: no-repeat;
   background-position: center;
   transition: transform 0.3s;

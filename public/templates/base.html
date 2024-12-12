@@ -7,21 +7,12 @@
     <title>CrowdFunding</title>
 
     <!-- jinja2 static css -->
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static',  filename='css/components/navbar.css') }}"
-    />
+    <link rel="stylesheet" href="{{ url_for('static',  filename='css/components/navbar.css') }}" />
 
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='css/components/message.css') }}"
-    />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/components/message.css') }}" />
 
     <!-- icon page -->
-    <link
-      rel="icon"
-      href="{{ url_for('static', filename='icons/icon-page.svg') }}"
-    />
+    <link rel="icon" href="{{ url_for('static', filename='icons/icon-page.svg') }}" />
     <!-- link to chosen google fonts -->
     <link
       href="https://fonts.googleapis.com/css?family=Poppins:400,600,900&display=swap"
@@ -42,15 +33,11 @@
 
   <!-- flash messages -->
   <div class="notify-messages">
-    {% with messages = get_flashed_messages(with_categories=true) %} {% for
-    category, message in messages %} {% if category == "success" %}
-    <div class="message success" role="alert">
-      {{ message }} <i class="ti ti-check"></i>
-    </div>
+    {% with messages = get_flashed_messages(with_categories=true) %} {% for category, message in
+    messages %} {% if category == "success" %}
+    <div class="message success" role="alert">{{ message }} <i class="ti ti-check"></i></div>
     {% elif category == "error" %}
-    <div class="message error" role="alert">
-      {{ message }} <i class="ti ti-trash-filled"></i>
-    </div>
+    <div class="message error" role="alert">{{ message }} <i class="ti ti-trash-filled"></i></div>
     {% endif %} {% endfor %} {% endwith %}
   </div>
 

@@ -46,23 +46,17 @@
 
         <ul class="nav__inner">
           <li class="nav__dropdown">
-            <a href="/projects" class="nav__link"
-              ><i class="ti ti-database"></i> Proyecto Datos</a
-            >
+            <a href="/projects" class="nav__link"><i class="ti ti-database"></i> Proyecto Datos</a>
           </li>
 
           <li class="nav__dropdown">
-            <a href="/projects" class="nav__link"
-              ><i class="ti ti-box"></i> Nuestro Equipo</a
-            >
+            <a href="/projects" class="nav__link"><i class="ti ti-box"></i> Nuestro Equipo</a>
           </li>
         </ul>
       </li>
 
       <li class="nav__item">
-        <a href="{{ url_for('projects.create') }}" class="nav__link"
-          >Empieza Tu Proyecto</a
-        >
+        <a href="{{ url_for('projects.create') }}" class="nav__link">Empieza Tu Proyecto</a>
       </li>
 
       <li class="nav__item">
@@ -73,11 +67,7 @@
 
       <li class="nav__item">
         <span class="nav__parent can__open">
-          <img
-            src="{{g.user.image_perfil}}"
-            class="nav__image-perfil"
-            alt="Perfil"
-          />
+          <img src="{{g.user.image_perfil}}" class="nav__image-perfil" alt="Perfil" />
           {{ g.user.nombre }}
           <div class="arrow__down"></div>
         </span>
@@ -109,9 +99,7 @@
         <a href="{{ url_for('user.login') }}" class="">Iniciar Sesion</a>
       </li>
       <li class="nav__contain_sign">
-        <a href="{{ url_for('user.register') }}" class="nav__sign"
-          >Registrate</a
-        >
+        <a href="{{ url_for('user.register') }}" class="nav__sign">Registrate</a>
       </li>
 
       {% endif %}

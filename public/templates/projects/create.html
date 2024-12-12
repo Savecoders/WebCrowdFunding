@@ -1,7 +1,4 @@
-<link
-  rel="stylesheet"
-  href="{{ url_for('static', filename='css/project/project.css') }}"
-/>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/project/project.css') }}" />
 
 {% extends "base.html" %} {% block content %} {% include "navbar.html" %}
 
@@ -9,16 +6,10 @@
   <h1 class="main__title">Crear Proyecto</h1>
 
   <h3 class="sub_title">
-    Crea tu proyecto en YStartUp y cuentanos Que es lo que esas manos desean
-    crear!
+    Crea tu proyecto en YStartUp y cuentanos Que es lo que esas manos desean crear!
   </h3>
 
-  <form
-    name="formCreate"
-    method="post"
-    class="container__form"
-    enctype="multipart/form-data"
-  >
+  <form name="formCreate" method="post" class="container__form" enctype="multipart/form-data">
     <label for="titleProject">Nombre del Proyecto:</label>
     <input
       type="text"
@@ -61,13 +52,7 @@
 
     <label for="image_present" class="drop-container" id="dropcontainer">
       <span class="drop-title">Arrastra tus imagenes</span>
-      <input
-        type="file"
-        name="image_present"
-        id="image_present"
-        accept="image/*"
-        required
-      />
+      <input type="file" name="image_present" id="image_present" accept="image/*" required />
     </label>
 
     <label for="description"> Escribe la descriptcion del Proyecto:</label>

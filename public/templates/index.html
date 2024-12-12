@@ -1,7 +1,4 @@
-<link
-  rel="stylesheet"
-  href="{{ url_for('static', filename='css/hero.css') }}"
-/>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/hero.css') }}" />
 
 {% extends "base.html" %} {% block content %} {% include "navbar.html" %}
 <!-- Hero -->
@@ -14,28 +11,21 @@
         media="(min-width:768px)"
       />
 
-      <img
-        src="{{ url_for('static', filename='img/Scenes.svg') }}"
-        class="main__img"
-      />
+      <img src="{{ url_for('static', filename='img/Scenes.svg') }}" class="main__img" />
     </picture>
 
     <article class="main__article">
       <div class="main__texts">
         <h1 class="main__title">
-          <span class="color-effect">Crowdfunding</span> Para Tus Projectos
-          Innovadores e Inversiones
+          <span class="color-effect">Crowdfunding</span> Para Tus Projectos Innovadores e
+          Inversiones
         </h1>
         <p class="main__paragraph">
-          YStartUp es una plataforma de crowdfunding que te permite buscar
-          financiamiento para tus proyectos, emprendimientos y llevarlos al
-          mundo real. <br />
-          Tambien puedes encontrar proyectos innovadores a los que puedes
-          apoyar.
+          YStartUp es una plataforma de crowdfunding que te permite buscar financiamiento para tus
+          proyectos, emprendimientos y llevarlos al mundo real. <br />
+          Tambien puedes encontrar proyectos innovadores a los que puedes apoyar.
         </p>
-        <a href="{{ url_for('projects.create') }}" class="main__cta"
-          >Crea tu Proyecto</a
-        >
+        <a href="{{ url_for('projects.create') }}" class="main__cta">Crea tu Proyecto</a>
       </div>
 
       <div class="main__brands">
@@ -47,10 +37,7 @@
           src="{{ url_for('static', filename='icons/clients/spotify.svg') }}"
           class="main__brand"
         />
-        <img
-          src="{{ url_for('static', filename='icons/clients/meet.svg') }}"
-          class="main__brand"
-        />
+        <img src="{{ url_for('static', filename='icons/clients/meet.svg') }}" class="main__brand" />
         <img
           src="{{ url_for('static', filename='icons/clients/microsoft.svg') }}"
           class="main__brand"

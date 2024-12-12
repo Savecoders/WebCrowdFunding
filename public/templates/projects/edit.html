@@ -1,15 +1,11 @@
-<link
-  rel="stylesheet"
-  href="{{ url_for('static', filename='css/project.css') }}"
-/>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/project.css') }}" />
 
 {% extends "base.html" %} {% block content %} {% include "navbar.html" %}
 
 <section class="section__form">
   <h1 class="main__title">Crear Proyecto</h1>
   <h3 class="sub_title">
-    Crea tu proyecto en YStartUp y cuentanos Que es lo que esas manos desean
-    crear!
+    Crea tu proyecto en YStartUp y cuentanos Que es lo que esas manos desean crear!
   </h3>
   <form action="" method="post" class="container__form">
     <label for="titleProject">Titulo del Proyecto:</label>
@@ -36,9 +32,7 @@
       required
     />
 
-    <label for="presentacionProject">
-      Escribe la Presentacion del Proyecto:</label
-    >
+    <label for="presentacionProject"> Escribe la Presentacion del Proyecto:</label>
 
     <textarea
       name="presentacionProject"
@@ -51,18 +45,14 @@ Presentacion....
         </textarea
     >
 
-    <label for="descriptionProject">
-      Ingresa tus prototipos en formato png, jpg:
-    </label>
+    <label for="descriptionProject"> Ingresa tus prototipos en formato png, jpg: </label>
 
     <label for="images" class="drop-container" id="dropcontainer">
       <span class="drop-title">Arrastra tus imagenes</span>
       <input type="file" id="images" accept="image/*" required />
     </label>
 
-    <label for="descriptionProject">
-      Escribe la descriptcion del Proyecto:</label
-    >
+    <label for="descriptionProject"> Escribe la descriptcion del Proyecto:</label>
     <textarea
       name="DescriptionProject"
       id="descriptionProject"
@@ -75,13 +65,7 @@ Descripcion....
     >
 
     <label for="planProject"> Escribe El plan del Proyecto:</label>
-    <textarea
-      name="planProject"
-      id="planProject"
-      cols="30"
-      rows="10"
-      contenteditable="true"
-    >
+    <textarea name="planProject" id="planProject" cols="30" rows="10" contenteditable="true">
 Plan de contingencia....
         </textarea
     >

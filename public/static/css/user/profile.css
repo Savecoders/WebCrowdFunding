@@ -4,8 +4,8 @@
   gap: 3em;
   grid-template-columns: 1fr;
   grid-template-areas:
-    "profile"
-    " query ";
+    'profile'
+    ' query ';
   justify-content: center;
 }
 
@@ -29,7 +29,7 @@
 .profile__info h1 {
   font-size: 3.2ch;
   font-weight: 700;
-  font-family: "Inter", sans-serif;
+  font-family: 'Inter', sans-serif;
   color: var(--text-color);
 }
 
@@ -42,7 +42,7 @@
 .profile__info h4 {
   font-size: 1.8ch;
   font-weight: 500;
-  font-family: "Inter", sans-serif;
+  font-family: 'Inter', sans-serif;
   color: var(--text-color);
 }
 
@@ -126,7 +126,7 @@
 .profile__methods form .btn__delete {
   color: var(--bg);
   background: var(--accent-color);
-  font-family: "Inter", sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 2ch;
   font-weight: 500;
   width: 100%;
@@ -177,7 +177,7 @@
 .profile__title {
   font-size: 3ch;
   font-weight: 600;
-  font-family: "Inter", sans-serif;
+  font-family: 'Inter', sans-serif;
   color: var(--text-color);
 }
 
@@ -259,7 +259,7 @@
 .card__data span {
   font-size: 1.5ch;
   font-weight: 600;
-  font-family: "Inter", sans-serif;
+  font-family: 'Inter', sans-serif;
   color: var(--text-color);
 }
 
@@ -292,7 +292,7 @@
     max-width: 1600px;
     width: 90%;
     grid-template-columns: 1fr 3fr;
-    grid-template-areas: "profile query query query";
+    grid-template-areas: 'profile query query query';
   }
 
   .profile__info {
